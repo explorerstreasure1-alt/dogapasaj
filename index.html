@@ -630,6 +630,29 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   justify-content:center;cursor:pointer;
 }
 .cat-img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
+/* ─── EMOJİ SEÇİCİ ─── */
+.emoji-picker-wrap{width:100%;box-sizing:border-box}
+.emoji-selected-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.emoji-selected-display{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#f0f5f2,#e8f0ea);border:2px solid var(--gp);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;transition:.2s;user-select:none}
+.emoji-selected-row input[type=text]{flex:1;padding:.65rem .9rem;border:1.5px solid #e2e8e4;border-radius:12px;font-size:.9rem;background:#f8faf9;cursor:pointer;outline:none;font-family:'DM Sans',sans-serif;box-sizing:border-box}
+.emoji-clear-btn{background:none;border:1.5px solid #e2e8e4;color:var(--mut);width:36px;height:36px;border-radius:50%;font-size:.8rem;flex-shrink:0;transition:.2s;display:flex;align-items:center;justify-content:center;padding:0}
+.emoji-clear-btn:hover{background:#fff0f0;border-color:var(--red);color:var(--red)}
+.emoji-search-wrap{margin-bottom:.5rem}
+.emoji-search-wrap input{width:100%;padding:.6rem .9rem .6rem 2.2rem;border:1.5px solid #e2e8e4;border-radius:12px;font-size:.88rem;background:#f8faf9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b8272' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat .75rem center;outline:none;font-family:'DM Sans',sans-serif;box-sizing:border-box;transition:.2s}
+.emoji-search-wrap input:focus{border-color:var(--g3);background-color:#fff}
+.emoji-suggestions{background:#fff;border:1.5px solid var(--gp);border-radius:14px;padding:.75rem;margin-bottom:.5rem}
+.emoji-sug-label{font-size:.7rem;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.emoji-gallery{background:#f8faf9;border:1.5px solid #eaeeec;border-radius:14px;overflow:hidden}
+.emoji-tabs{display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #eaeeec;background:#fff}
+.emoji-tabs::-webkit-scrollbar{display:none}
+.emoji-tab-btn{border:none;background:none;padding:.5rem .7rem;font-size:.75rem;color:var(--mut);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.15s;font-weight:500;flex-shrink:0}
+.emoji-tab-btn:hover{color:var(--g1)}
+.emoji-tab-btn.on{color:var(--g2);border-bottom-color:var(--g3);font-weight:700}
+.emoji-tab-content{padding:.6rem;max-height:160px;overflow-y:auto}
+.emoji-grid{display:flex;flex-wrap:wrap;gap:.3rem}
+.ep-btn{width:36px;height:36px;border:none;background:none;font-size:1.25rem;border-radius:8px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;padding:0}
+.ep-btn:hover{background:#f0f5f2;transform:scale(1.2)}
+.ep-btn.ep-sel{background:var(--g1);transform:scale(1.1)}
 .settings-card{
   background:#f5faf6;
   border-radius:14px;
@@ -907,7 +930,27 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <div class="af-section">
           <div class="af-section-title"><i class="fas fa-folder-plus"></i> Kategori Ekle / Düzenle</div>
           <div class="fg2"><label>Kategori Adı *</label><input type="text" id="cName" placeholder="Örn: Balıklar"></div>
-          <div class="fg2"><label>Emoji</label><input type="text" id="cEmoji" placeholder="Örn: 🐟"></div>
+          <div class="fg2">
+            <label>Emoji / İkon</label>
+            <div class="emoji-picker-wrap">
+              <div class="emoji-selected-row">
+                <div class="emoji-selected-display" id="emojiDisplay">📦</div>
+                <input type="text" id="cEmoji" placeholder="Seçilen emoji burada görünür..." readonly>
+                <button type="button" class="emoji-clear-btn" id="emojiClearBtn" title="Temizle">✕</button>
+              </div>
+              <div class="emoji-search-wrap">
+                <input type="text" id="emojiSearch" placeholder="Ara: balık, ev, çiçek, hobi...">
+              </div>
+              <div class="emoji-suggestions" id="emojiSuggestions" style="display:none">
+                <div class="emoji-sug-label" id="emojiSugLabel">Öneriler</div>
+                <div class="emoji-grid" id="emojiSugGrid"></div>
+              </div>
+              <div class="emoji-gallery">
+                <div class="emoji-tabs" id="emojiTabs"></div>
+                <div class="emoji-tab-content" id="emojiTabContent"></div>
+              </div>
+            </div>
+          </div>
           <div class="fg2">
             <label>Kategori Görseli <span style="font-weight:400;text-transform:none;font-size:.7rem">(opsiyonel)</span></label>
             <div class="dz" id="catDropZone">
@@ -1664,7 +1707,7 @@ function renderAdminPList(){
    KRİTİK DÜZELTME: Kategori yönetimi — sunucuya kaydediyor
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 var editCatIdx=null;
-function clearCatForm(){document.getElementById('cName').value='';document.getElementById('cEmoji').value='';clearCatImg();editCatIdx=null;document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';document.getElementById('cancelCatEditBtn').classList.remove('show');}
+function clearCatForm(){document.getElementById('cName').value='';document.getElementById('cEmoji').value='';epSelect('');document.getElementById('emojiSearch').value='';document.getElementById('emojiSuggestions').style.display='none';clearCatImg();editCatIdx=null;document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';document.getElementById('cancelCatEditBtn').classList.remove('show');}
 document.getElementById('cancelCatEditBtn').addEventListener('click',function(){clearCatForm();});
 document.getElementById('saveCatBtn').addEventListener('click',function(){
   var name=document.getElementById('cName').value.trim(),emoji=document.getElementById('cEmoji').value.trim()||'📦';
@@ -1708,7 +1751,7 @@ function renderAdminCList(){
     var th='<img src="'+imgSrc+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">'+'<div class="cat-emoji-thumb" style="display:none">'+c.emoji+'</div>';
     div.innerHTML=th+'<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Varsayılan görsel</span>')+'</p></div><div class="aacts"><button class="editbtn"><i class="fas fa-edit"></i></button><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
     div.querySelector('.editbtn').addEventListener('click',function(){
-      editCatIdx=idx;document.getElementById('cName').value=c.name;document.getElementById('cEmoji').value=c.emoji!=='📦'?c.emoji:'';
+      editCatIdx=idx;document.getElementById('cName').value=c.name;document.getElementById('cEmoji').value=c.emoji!=='📦'?c.emoji:'';epSelect(c.emoji!=='📦'?c.emoji:'');
       if(c.img&&c.img.trim()){setCatPreview(c.img);document.getElementById('catImgOk').innerHTML='✅ Mevcut görsel';}else clearCatImg();
       document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';document.getElementById('cancelCatEditBtn').classList.add('show');
       document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});document.getElementById('cName').focus();
@@ -1727,6 +1770,221 @@ function renderAdminCList(){
     el.appendChild(div);
   });
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   EMOJİ SEÇİCİ — Akıllı arama + kategori galerisi
+   ══════════════════════════════════════════════════════════════ */
+var EMOJI_KW={
+  'balık':['🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦞','🦀','🐬','🐳','🐋','🦭','🪸','🐚','⚓','🌊','💧'],
+  'balik':['🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦞','🦀','🐬','🐳','🐋','🦭','🪸','🐚','⚓'],
+  'akvaryum':['🐠','🐟','🐡','🪸','🐚','🌿','💧','🌊','🦭','🐬','🔵','🫧'],
+  'su':['🌊','💧','🐟','🐠','🐡','🦈','🐬','🌀','☔','🏊','🫧','💦'],
+  'kaktüs':['🌵','🪴','🌱','🌿','🍀','🌾','🪨','🏜️','☀️','🌺','🌸','💚'],
+  'kaktus':['🌵','🪴','🌱','🌿','🍀','🌾','🪨','🏜️','☀️','🌺'],
+  'bitki':['🌿','🌱','🪴','🌵','🍃','🍀','🌾','🌺','🌸','🌻','🌲','🌳'],
+  'çiçek':['🌸','🌺','🌻','🌹','🌷','💐','🪷','🌼','🏵️','🌝','🌞','🌈'],
+  'cicek':['🌸','🌺','🌻','🌹','🌷','💐','🪷','🌼','🏵️'],
+  'sukulent':['🪴','🌵','🌿','🌱','💚','🌾','🍃','🪨','☀️','🌡️'],
+  'terrarium':['🦎','🐍','🌿','🪨','🌵','💧','🌱','🔮','🪸','🌡️'],
+  'teraryum':['🦎','🐍','🌿','🪨','🌵','💧','🌱','🔮','🪸','🌡️'],
+  'ev':['🏠','🏡','🏘️','🛋️','🪴','🕯️','🪞','🛏️','🚿','🛁','🪟','🚪','🏰','🔑','🗝️'],
+  'yaşam':['🏡','🛋️','🕯️','☕','🍵','🎨','📚','🎯','✨','🌟','🌿','🪴'],
+  'yasam':['🏡','🛋️','🕯️','☕','🍵','🎨','📚','🎯','✨','🌟'],
+  'dekor':['🎨','🖼️','🕯️','🪞','🪴','✨','💎','🌟','🏺','🎭','🪆'],
+  'hobi':['🎨','🎯','🎮','🎸','📚','✂️','🧩','🎭','🎪','🎠','🔭','🧪'],
+  'sanat':['🎨','🖌️','🖼️','✏️','📐','🎭','🎬','🎤','🎵','🖍️','🖊️'],
+  'müzik':['🎵','🎶','🎸','🎹','🎺','🎻','🥁','🪘','🎤','🎧','🪗','🎼'],
+  'muzik':['🎵','🎶','🎸','🎹','🎺','🎻','🥁','🪘','🎤','🎧'],
+  'oyun':['🎮','🕹️','🎲','🧩','🎯','♟️','🃏','🎳','🎪','🎠','🎡','🎢'],
+  'spor':['⚽','🏀','🎾','🏊','🚴','🤸','⛷️','🏋️','🤺','🥊','🏆','🥇'],
+  'hayvan':['🐾','🐕','🐈','🐇','🦜','🐠','🦎','🐍','🦋','🐝','🐿️','🦔'],
+  'köpek':['🐕','🦮','🐩','🐾','🦴','🎾','❤️','🐶','🐕‍🦺'],
+  'kopek':['🐕','🦮','🐩','🐾','🦴','🎾','❤️','🐶'],
+  'kedi':['🐈','🐱','🐾','🧶','🎀','😺','🐈‍⬛','😸','😻','🙀'],
+  'kuş':['🦜','🐦','🦅','🦆','🦢','🦩','🦚','🦋','🪶','🥚','🕊️','🐧'],
+  'kus':['🦜','🐦','🦅','🦆','🦢','🦩','🦚','🦋','🪶'],
+  'sürüngen':['🦎','🐍','🐢','🦕','🦖','🪲','🦗','🕷️','🌿','🪨'],
+  'suringen':['🦎','🐍','🐢','🦕','🦖','🪲','🦗','🕷️'],
+  'teknoloji':['💻','📱','⌨️','🖥️','🖨️','📡','🔋','💡','🔌','🤖','⚙️','🔧'],
+  'elektronik':['💻','📱','🎧','📷','🎮','📺','🔌','💡','⌚','🖥️','🖱️','💾'],
+  'giyim':['👕','👗','👠','🧥','👒','🎩','👟','👜','💍','🧣','🧤','🧢'],
+  'moda':['👗','👠','💄','💅','👒','🧣','🪭','💎','✨','👑','🎀','🕶️'],
+  'koleksiyon':['💎','🏆','⭐','🎖️','🪙','🗿','🏺','🎴','🃏','📦','🏅','🥇'],
+  'antika':['🏺','🗿','🪆','🎭','⚱️','🏛️','🗝️','📜','🕰️','⏳','🔮'],
+  'doğa':['🌲','🌳','🏔️','🌊','🌸','🦋','🌿','🍃','☀️','🌈','🌙','⭐'],
+  'doga':['🌲','🌳','🏔️','🌊','🌸','🦋','🌿','🍃','☀️','🌈'],
+  'kamp':['⛺','🏕️','🪵','🔥','🧭','🎣','🌲','⭐','🌙','🌄','🔦','🪓'],
+  'yiyecek':['🍎','🥑','🧁','🍕','🌮','🍜','🥗','🍣','🧆','🫐','🍰','🧃'],
+  'gıda':['🥦','🌽','🍅','🧅','🥕','🫑','🍇','🍓','🫒','🌾','🧄'],
+  'gida':['🥦','🌽','🍅','🧅','🥕','🫑','🍇','🍓','🫒','🌾'],
+  'bebek':['👶','🍼','🧸','🎀','🛁','🧷','🪆','🎠','🌸','💕'],
+  'çocuk':['🧒','🎠','🎡','🎢','🧸','🎨','🖍️','🎒','🪀','🏀','⚽'],
+  'cocuk':['🧒','🎠','🎡','🎢','🧸','🎨','🖍️','🎒','🪀'],
+  'ofis':['💼','📋','📁','📊','💻','🖊️','📎','🗂️','📅','🖥️','☕','🗃️'],
+  'mutfak':['🍳','🥘','🫕','🥄','🍴','🧑‍🍳','🫖','☕','🥣','🍽️','🧂'],
+  'bahçe':['🌻','🌷','🌱','🪴','🌿','🐛','🦋','🐝','🌈','☀️','🌧️'],
+  'bahce':['🌻','🌷','🌱','🪴','🌿','🐛','🦋','🐝','🌈','☀️'],
+  'deniz':['🌊','🏖️','🐚','🦀','🦞','🐠','🐟','⛵','🏄','🤿','🦭','⚓'],
+  'seyahat':['✈️','🚂','🚢','🗺️','🧳','🏨','🌍','🗼','🏰','🎡','📸','🗝️'],
+  'hediye':['🎁','🎀','🎊','🎉','🎈','💝','💌','🎗️','🛍️','🎟️','🏅','⭐'],
+  'temizlik':['🧹','🧺','🧼','🫧','🪣','🚿','🛁','🧽','🪥','💧','✨'],
+  'mutlu':['😊','🎉','✨','⭐','🌟','💫','🎊','🥳','💝','🌈'],
+  'spesiyel':['💎','⭐','🌟','✨','💫','🔮','🪄','🎩','👑','🏆'],
+  'indirim':['🏷️','💰','🤑','💵','🎁','🛍️','🔖','💲','🪙','💳'],
+  'yeni':['🆕','✨','🌱','🚀','⭐','🎉','🌟','💫','🎊','🎈'],
+};
+
+var EMOJI_CATS={
+  '🐾 Hayvanlar':['🐟','🐠','🐡','🦈','🐙','🦑','🦐','🦞','🦀','🐬','🐳','🦭','🪸','🐚','🦎','🐍','🐢','🦋','🐝','🦜','🐦','🦅','🦆','🦢','🦩','🐕','🐈','🐇','🐾','🐿️','🦔','🦕','🪲','🕷️','🦗','🐛','🐌','🪺','🥚','🪶','🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵'],
+  '🌿 Bitkiler':['🌵','🪴','🌱','🌿','🍀','🌾','🌲','🌳','🌴','🎋','🎍','🍃','🍂','🍁','🌺','🌸','🌻','🌹','🌷','💐','🪷','🌼','🏵️','🌝','🌞','🌈','🪨','🏜️','🌡️','💚','🌐'],
+  '🏠 Ev & Yaşam':['🏠','🏡','🏘️','🏰','🛋️','🪑','🛏️','🚿','🛁','🚪','🪟','🪞','🕯️','💡','🔑','🗝️','🧹','🧺','🧼','🪣','🧽','🪥','🏮','🎀','🛠️','🔧','🔨','🪚','🪝','📦','🗃️','🧲','⚒️','🔩','🪛'],
+  '🎨 Hobi & Sanat':['🎨','🖌️','🖍️','✏️','🖊️','📐','📏','🎭','🎪','🎠','🎡','🎢','🎬','🎤','🎵','🎶','🎸','🎹','🎺','🎻','🥁','🪘','🎧','🎯','🎮','🕹️','🎲','🧩','♟️','🃏','🎳','🔭','🔬','🧪','🧬','✂️','🪡','🧵','🧶','🪆','🧸'],
+  '🌍 Doğa & Outdoor':['🌊','🏖️','🏝️','🏔️','⛰️','🗻','🌋','🏕️','⛺','🪵','🔥','🧭','🎣','🌲','🌳','🦅','🌄','🌅','🌃','🌆','🌇','🌉','☀️','🌙','⭐','🌈','🌧️','⛈️','❄️','☃️','🌬️','🌊','🌏','🗺️','🧗','🏄','🤿','🚵'],
+  '🍕 Yiyecek':['🍎','🍊','🍋','🍇','🍓','🫐','🍑','🥝','🍅','🥑','🥦','🌽','🥕','🧅','🧄','🫒','🌾','☕','🍵','🧃','🥤','🍷','🫖','🍺','🧁','🍰','🎂','🍫','🍬','🍕','🌮','🍜','🥗','🍣','🧆','🥘','🍳','🍱','🥡','🫕'],
+  '💻 Teknoloji':['💻','📱','⌨️','🖥️','🖨️','🖱️','💾','💿','📡','🔋','💡','🔌','🤖','⚙️','🔧','🔩','🪛','📻','📠','☎️','📷','🎥','🎞️','⌚','🎮','🕹️','🛸','🚀','🛰️','🔭','🔬','🧲','⚡','🧪'],
+  '👗 Moda':['👕','👗','👠','🧥','👒','🎩','👟','👜','💍','🧣','🧤','🧢','💄','💅','🪭','💎','✨','👑','🎀','🕶️','⌚','👛','💼','🎒','🛍️','💳','🪮','👔','👙','🩳','🩱','👘','🥻','🩴','🥾','👞','👡'],
+  '💎 Koleksiyon':['💎','🏆','⭐','🎖️','🪙','🗿','🏺','🎴','🃏','📦','🏅','🥇','🥈','🥉','🎗️','🎫','🎟️','📜','🗝️','🕰️','⏳','🔮','🪆','⚱️','🏛️','🗺️','🧭','🪄','🎭','🎪','🧿','🔯','🪬'],
+  '✈️ Seyahat':['✈️','🚂','🚢','🚗','🛵','🚲','⛵','🚁','🛸','🗺️','🧳','🏨','🌍','🗼','🏰','🎡','📸','🗝️','🏖️','🏝️','🏔️','🌋','🏕️','🌃','🌆','🌇','🗽','⛩️','🕌','🕍','🏯','🛤️','🚏'],
+  '🎁 Genel':['🎁','🎀','🎊','🎉','🎈','💝','💌','🎗️','🛍️','⭐','✨','💫','🌟','⚡','🔥','💧','🌊','🌪️','❄️','🌈','☀️','🌙','🌑','🪐','🌌','🔮','💠','🔵','🟢','🟡','🟠','🔴','🟣','⚫','⚪','🏷️','💰','🎯','🆕','🆒','🆓'],
+};
+
+var EP_CUR_EMOJI='',EP_CUR_TAB=0,EP_TABS=Object.keys(EMOJI_CATS);
+
+function epInit(){
+  var tabs=document.getElementById('emojiTabs'),content=document.getElementById('emojiTabContent');
+  if(!tabs||!content)return;
+  tabs.innerHTML='';
+  EP_TABS.forEach(function(cat,i){
+    var b=document.createElement('button');
+    b.type='button';b.className='emoji-tab-btn'+(i===0?' on':'');b.textContent=cat;
+    b.onclick=function(){
+      document.querySelectorAll('.emoji-tab-btn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');EP_CUR_TAB=i;epRenderTab(i);
+    };
+    tabs.appendChild(b);
+  });
+  epRenderTab(0);
+
+  document.getElementById('emojiSearch').addEventListener('input',function(){
+    var q=this.value.trim().toLowerCase();
+    if(!q){document.getElementById('emojiSuggestions').style.display='none';return;}
+    epSearch(q);
+  });
+
+  document.getElementById('emojiClearBtn').addEventListener('click',function(){
+    epSelect('');
+    document.getElementById('emojiSearch').value='';
+    document.getElementById('emojiSuggestions').style.display='none';
+  });
+
+  /* Kategori adı yazınca otomatik öneri */
+  var cnInput=document.getElementById('cName');
+  if(cnInput){
+    cnInput.addEventListener('input',function(){
+      var name=this.value.trim().toLowerCase();
+      if(name.length<2)return;
+      epSuggestFromName(name);
+    });
+  }
+}
+
+function epRenderTab(idx){
+  var content=document.getElementById('emojiTabContent');
+  if(!content)return;
+  var cat=EP_TABS[idx],emojis=EMOJI_CATS[cat]||[];
+  content.innerHTML='';
+  var grid=document.createElement('div');grid.className='emoji-grid';
+  emojis.forEach(function(em){grid.appendChild(epMakeBtn(em));});
+  content.appendChild(grid);
+}
+
+function epMakeBtn(em){
+  var b=document.createElement('button');
+  b.type='button';b.className='ep-btn'+(EP_CUR_EMOJI===em?' ep-sel':'');
+  b.textContent=em;b.title=em;
+  b.onclick=function(){epSelect(em);};
+  return b;
+}
+
+function epSelect(em){
+  EP_CUR_EMOJI=em;
+  var disp=document.getElementById('emojiDisplay');
+  var inp=document.getElementById('cEmoji');
+  if(disp)disp.textContent=em||'📦';
+  if(inp)inp.value=em;
+  document.querySelectorAll('.ep-btn').forEach(function(b){b.classList.toggle('ep-sel',b.textContent===em);});
+  if(em)showToast('İkon seçildi: '+em);
+}
+
+function epSearch(q){
+  var res=[];
+  Object.keys(EMOJI_KW).forEach(function(k){
+    if(k.indexOf(q)>=0||q.indexOf(k)>=0){
+      EMOJI_KW[k].forEach(function(em){if(res.indexOf(em)<0)res.push(em);});
+    }
+  });
+  if(!res.length){
+    Object.values(EMOJI_CATS).forEach(function(arr){arr.forEach(function(em){if(res.indexOf(em)<0)res.push(em);});});
+    res=res.slice(0,24);
+  }
+  epShowSug('"'+q+'" sonuçları',res.slice(0,24));
+}
+
+function epSuggestFromName(name){
+  var res=[];
+  var words=name.split(/[\s&,\/\-]+/);
+  words.forEach(function(w){
+    if(w.length<2)return;
+    Object.keys(EMOJI_KW).forEach(function(k){
+      if(k.indexOf(w)>=0||w.indexOf(k)>=0){
+        EMOJI_KW[k].forEach(function(em){if(res.indexOf(em)<0)res.push(em);});
+      }
+    });
+  });
+  if(res.length>0)epShowSug('✨ "'+name+'" için öneriler',res.slice(0,16));
+}
+
+function epShowSug(label,emojis){
+  var sug=document.getElementById('emojiSuggestions');
+  var grid=document.getElementById('emojiSugGrid');
+  var lbl=document.getElementById('emojiSugLabel');
+  if(!sug||!grid||!lbl||!emojis.length){if(sug)sug.style.display='none';return;}
+  lbl.textContent=label;
+  grid.innerHTML='';
+  emojis.forEach(function(em){
+    var b=document.createElement('button');
+    b.type='button';b.className='ep-btn'+(EP_CUR_EMOJI===em?' ep-sel':'');
+    b.textContent=em;b.onclick=function(){epSelect(em);};
+    grid.appendChild(b);
+  });
+  sug.style.display='block';
+}
+/* ── Admin paneli açılınca emoji seçiciyi başlat ── */
+(function(){
+  var _orig=window.openAdminPanel;
+  if(_orig){
+    window.openAdminPanel=function(){
+      _orig.apply(this,arguments);
+      setTimeout(epInit,120);
+    };
+  }
+})();
+/* ── clearCatForm'u genişlet ── */
+(function(){
+  var _t=setInterval(function(){
+    var btn=document.getElementById('cancelCatEditBtn');
+    if(!btn)return;
+    clearInterval(_t);
+    btn.addEventListener('click',function(){
+      epSelect('');
+      document.getElementById('emojiSearch').value='';
+      document.getElementById('emojiSuggestions').style.display='none';
+    });
+  },300);
+})();
+/* ── Düzenle butonuna emoji sync ── */
+var _origRenderAdminCList=window.renderAdminCList;
 
 /* ─── START ─── */
 loadFavs();
