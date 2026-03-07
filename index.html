@@ -290,6 +290,47 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .blob-badge.warn{background:#fff3cd;color:#856404}
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g1);color:#fff;padding:.65rem 1.5rem;border-radius:50px;font-size:.86rem;font-weight:500;box-shadow:var(--shl);z-index:1500;opacity:0;transition:.3s;pointer-events:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;max-width:calc(100vw - 2rem)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* AI ANALYSIS PANEL */
+.ai-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;transition:.2s;width:100%;justify-content:center;margin-top:.5rem}
+.ai-btn:hover:not(:disabled){opacity:.88;transform:translateY(-1px)}
+.ai-btn:disabled{opacity:.5;cursor:not-allowed}
+.ai-result{background:linear-gradient(135deg,#f0f4ff,#f5f0ff);border:1.5px solid #c4b5f4;border-radius:16px;padding:1.2rem;margin-top:1rem;display:none}
+.ai-result.on{display:block}
+.ai-result h4{font-size:.82rem;font-weight:700;color:#5b21b6;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.ai-prod-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--g1);font-weight:700;margin-bottom:.35rem}
+.ai-desc-text{font-size:.82rem;color:var(--mut);margin-bottom:.9rem;line-height:1.6}
+.ai-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:.9rem}
+.ai-price-card{background:#fff;border-radius:12px;padding:.7rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.ai-price-card .apc-label{font-size:.7rem;color:var(--mut);margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.04em}
+.ai-price-card .apc-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--g1)}
+.ai-price-card.highlight{background:linear-gradient(135deg,var(--g2),var(--g3));color:#fff}
+.ai-price-card.highlight .apc-label{color:rgba(255,255,255,.75)}
+.ai-price-card.highlight .apc-val{color:#fff}
+.ai-sizes{margin-bottom:.9rem}
+.ai-sizes h5{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5b21b6;margin-bottom:.5rem}
+.ai-size-row{display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:9px;padding:.45rem .75rem;margin-bottom:.35rem;font-size:.82rem}
+.ai-size-row span:last-child{font-weight:700;color:var(--g2)}
+.ai-warning{background:#fff7e6;border:1.5px solid var(--gold);border-radius:10px;padding:.65rem .9rem;font-size:.8rem;color:#92400e;display:flex;gap:.45rem;align-items:flex-start}
+.ai-warning i{color:var(--gold);flex-shrink:0;margin-top:.1rem}
+.ai-apply-btn{background:var(--g1);color:#fff;border:none;padding:.55rem 1.2rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;transition:.2s;margin-top:.8rem;width:100%;justify-content:center}
+.ai-apply-btn:hover{background:var(--g2)}
+
+/* GEMINI SETTINGS */
+.settings-card{background:#f5faf6;border-radius:16px;padding:1.4rem;margin-bottom:1.2rem}
+.settings-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--g1);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.api-key-wrap{display:flex;gap:.6rem;align-items:stretch}
+.api-key-wrap input{flex:1;padding:.65rem .9rem;border:1.5px solid #e2e8e4;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:#fff;outline:none;transition:.2s}
+.api-key-wrap input:focus{border-color:#667eea}
+.api-key-wrap .btn-save-key{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:.6rem 1.1rem;border-radius:12px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.api-status{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;padding:.28rem .75rem;border-radius:50px;margin-top:.6rem}
+.api-status.ok{background:#e6f4ea;color:#1e7e34}
+.api-status.none{background:#f1f5f9;color:var(--mut)}
+.api-key-del{background:none;border:1.5px solid #fca5a5;color:var(--red);padding:.38rem .85rem;border-radius:50px;font-size:.78rem;cursor:pointer;margin-top:.6rem;margin-left:.5rem;transition:.2s}
+.api-key-del:hover{background:var(--red);color:#fff}
+.gemini-info{font-size:.8rem;color:var(--mut);line-height:1.65;margin-top:.75rem;background:#fff;border-radius:10px;padding:.75rem}
+.gemini-info strong{color:var(--g1)}
+
 @media(max-width:960px){
   .fg{grid-template-columns:1fr 1fr}.ag2{grid-template-columns:1fr}
   .ccg{grid-template-columns:repeat(2,1fr)}.tri{grid-template-columns:repeat(2,1fr);gap:.75rem}
@@ -297,6 +338,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .pm-box{grid-template-columns:1fr;max-width:480px}
   .pm-gallery{border-radius:24px 24px 0 0}
   .fg2-row{grid-template-columns:1fr}
+  .ai-price-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .hd{grid-template-columns:1fr auto;grid-template-rows:auto auto;padding:.7rem 1rem;gap:.65rem}
@@ -332,11 +374,21 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .pm-info{padding:1.3rem}
   .fav-drawer{max-width:100%}
   .sort-wrap label{display:none}
+  .api-key-wrap{flex-direction:column}
+  .img-slots{grid-template-columns:repeat(5,1fr)}
+  .ai-price-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:380px){
   .pg{grid-template-columns:1fr}.ci{height:220px}
   .ccg{grid-template-columns:1fr}.ccard{height:160px}
   .hero{height:280px}.sc h1{font-size:1.4rem}
+  .img-slots{grid-template-columns:repeat(5,1fr)}
+}
+/* Mobile touch improvements */
+@media(hover:none){
+  .card:hover{transform:none;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+  .abtn,.ai-btn{min-height:48px}
+  .fg2 input,.fg2 select,.fg2 textarea{min-height:48px}
 }
 </style>
 </head>
@@ -401,10 +453,16 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   <div class="atop">
     <h2>⚙️ Admin Paneli <span class="blob-badge" id="blobBadge" style="display:none"></span></h2>
     <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
-      <div class="atabs"><button class="atab on" data-tab="prods">Ürünler</button><button class="atab" data-tab="cats">Kategoriler</button></div>
+      <div class="atabs">
+        <button class="atab on" data-tab="prods">Ürünler</button>
+        <button class="atab" data-tab="cats">Kategoriler</button>
+        <button class="atab" data-tab="settings">⚙️ Ayarlar</button>
+      </div>
       <button class="logob" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
     </div>
   </div>
+
+  <!-- ÜRÜNLER TAB -->
   <div class="abody on" id="tabProds">
     <div class="ag2">
       <div>
@@ -428,12 +486,32 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
           <div class="img-count" id="imgCount"></div>
           <div id="imgOk" class="img-ok"></div>
         </div>
-        <button class="abtn" id="saveProdBtn"><i class="fas fa-plus"></i> Ürünü Yayınla</button>
-        <button class="abnc" id="cancelEditBtn"><i class="fas fa-times"></i> İptal</button>
+
+        <!-- AI ANALIZ -->
+        <button class="ai-btn" id="aiAnalyzeBtn" disabled><i class="fas fa-magic"></i> Gemini AI ile Analiz Et</button>
+        <div class="ai-result" id="aiResult">
+          <h4><i class="fas fa-robot"></i> AI Analiz Sonucu</h4>
+          <div class="ai-prod-name" id="aiProdName"></div>
+          <div class="ai-desc-text" id="aiDescText"></div>
+          <div class="ai-price-grid" id="aiPriceGrid"></div>
+          <div class="ai-sizes" id="aiSizes" style="display:none">
+            <h5><i class="fas fa-ruler"></i> Boyut / Fiyat Tablosu</h5>
+            <div id="aiSizeRows"></div>
+          </div>
+          <div class="ai-warning" id="aiWarning" style="display:none"><i class="fas fa-exclamation-triangle"></i><span id="aiWarningText"></span></div>
+          <button class="ai-apply-btn" id="aiApplyBtn"><i class="fas fa-check"></i> Önerilen Fiyatı Uygula</button>
+        </div>
+
+        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem">
+          <button class="abtn" id="saveProdBtn"><i class="fas fa-plus"></i> Ürünü Yayınla</button>
+          <button class="abnc" id="cancelEditBtn"><i class="fas fa-times"></i> İptal</button>
+        </div>
       </div>
       <div><div class="alist"><h4>Yayındaki Ürünler (<span id="pCount">0</span>)</h4><div id="adminPList"></div></div></div>
     </div>
   </div>
+
+  <!-- KATEGORİLER TAB -->
   <div class="abody" id="tabCats">
     <div class="ag2">
       <div>
@@ -449,6 +527,27 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <button class="abnc" id="cancelCatEditBtn" style="display:none"><i class="fas fa-times"></i> İptal</button>
       </div>
       <div><div class="alist"><h4>Kategoriler</h4><div id="adminCList"></div></div></div>
+    </div>
+  </div>
+
+  <!-- AYARLAR TAB -->
+  <div class="abody" id="tabSettings">
+    <div class="settings-card">
+      <h4><i class="fas fa-robot" style="color:#667eea"></i> Gemini AI API Ayarları</h4>
+      <div class="api-key-wrap">
+        <input type="password" id="geminiKeyInput" placeholder="Gemini API Key girin...">
+        <button class="btn-save-key" id="saveGeminiKey"><i class="fas fa-save"></i> Kaydet</button>
+      </div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:.4rem;margin-top:.5rem">
+        <div class="api-status none" id="geminiStatus"><i class="fas fa-circle" style="font-size:.5rem"></i> <span id="geminiStatusText">API key girilmemiş</span></div>
+        <button class="api-key-del" id="deleteGeminiKey" style="display:none"><i class="fas fa-trash"></i> Sil</button>
+      </div>
+      <div class="gemini-info">
+        <strong>🔑 API Key Nereden Alınır?</strong><br>
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#667eea">aistudio.google.com</a> adresinden ücretsiz alabilirsiniz.<br><br>
+        <strong>📸 AI Ne Yapar?</strong><br>
+        Ürün görseli yüklediğinizde "Gemini AI ile Analiz Et" butonuna tıklayın. AI: ürünü tanıyacak, Türkiye piyasa değerini analiz edecek, boyut bazlı fiyat tablosu çıkaracak ve size minimum satış fiyatı önerecektir.
+      </div>
     </div>
   </div>
 </div>
@@ -517,15 +616,235 @@ var DEFAULT_CATS=[{id:'c1',name:'Balıklar',emoji:'🐟',img:''},{id:'c2',name:'
 var CAT_FB={c1:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',c2:'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=600&q=80',c3:'https://images.unsplash.com/photo-1497206365907-f5e630693df0?w=600&q=80',c4:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80'};
 var DEF_IMG='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80';
 var allProducts=[],activeCat='all',editIdx=null,uploadedImgs=[],catImgUrl='',blobMode=false,currentSort='default',favorites=[],currentProd=null;
+var aiAnalysisData=null;
 
+/* ─── LOCAL STORAGE ─── */
 function lsGet(k,d){try{var s=localStorage.getItem(k);if(s!==null)return JSON.parse(s);}catch(e){}return d;}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-function getCats(){var c=lsGet('dp_cats',null);if(!c){c=DEFAULT_CATS;lsSet('dp_cats',c);}return c;}
-function saveCats(v){lsSet('dp_cats',v);}
-function getCatById(id){var cats=getCats();for(var i=0;i<cats.length;i++)if(cats[i].id===id)return cats[i];return{name:'Genel',emoji:'📦',img:''};}
-function getCatImg(c){if(c.img&&c.img.trim())return c.img;return CAT_FB[c.id]||DEF_IMG;}
 
-/* FAVORİLER */
+/* ─── CATS ─── */
+function getCats(){
+  var c=lsGet('dp_cats',null);
+  if(!c){c=DEFAULT_CATS;lsSet('dp_cats',c);}
+  return c;
+}
+function saveCats(v){
+  lsSet('dp_cats',v);
+  // Force UI refresh everywhere after save
+  buildNav();buildPills();renderCatCards();populateCatSelect('');
+}
+function getCatById(id){var cats=getCats();for(var i=0;i<cats.length;i++)if(cats[i].id===id)return cats[i];return{name:'Genel',emoji:'📦',img:''};}
+function getCatImg(c){
+  // Always use freshly stored data — read directly from storage to avoid stale closures
+  var fresh=getCats();
+  for(var i=0;i<fresh.length;i++){
+    if(fresh[i].id===c.id){
+      var fi=fresh[i];
+      if(fi.img&&fi.img.trim())return fi.img;
+      return CAT_FB[fi.id]||DEF_IMG;
+    }
+  }
+  if(c.img&&c.img.trim())return c.img;
+  return CAT_FB[c.id]||DEF_IMG;
+}
+
+/* ─── GEMINI KEY (persistent) ─── */
+function getGeminiKey(){return lsGet('dp_gemini_key','')||'';}
+function saveGeminiKey(k){lsSet('dp_gemini_key',k);}
+function deleteGeminiKey(){localStorage.removeItem('dp_gemini_key');}
+
+function updateGeminiUI(){
+  var key=getGeminiKey();
+  var inp=document.getElementById('geminiKeyInput');
+  var status=document.getElementById('geminiStatus');
+  var statusTxt=document.getElementById('geminiStatusText');
+  var delBtn=document.getElementById('deleteGeminiKey');
+  var analyzeBtn=document.getElementById('aiAnalyzeBtn');
+  if(key){
+    inp.value='';
+    inp.placeholder='••••••••••••••••••••••••••• (kayıtlı)';
+    status.className='api-status ok';
+    statusTxt.textContent='API key bağlı ve aktif';
+    delBtn.style.display='inline-flex';
+  } else {
+    inp.value='';
+    inp.placeholder='Gemini API Key girin...';
+    status.className='api-status none';
+    statusTxt.textContent='API key girilmemiş';
+    delBtn.style.display='none';
+  }
+  if(analyzeBtn) analyzeBtn.disabled=!(key && uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length>0);
+}
+
+document.getElementById('saveGeminiKey').addEventListener('click',function(){
+  var v=document.getElementById('geminiKeyInput').value.trim();
+  if(!v){showToast('❗ API key boş olamaz','fa-exclamation-circle');return;}
+  saveGeminiKey(v);
+  updateGeminiUI();
+  showToast('✅ Gemini API key kaydedildi!');
+});
+document.getElementById('deleteGeminiKey').addEventListener('click',function(){
+  if(!confirm('API key silinsin mi? Bu işlem geri alınamaz.'))return;
+  deleteGeminiKey();
+  updateGeminiUI();
+  showToast('🗑️ API key silindi','fa-trash');
+});
+
+/* ─── GEMINI AI ANALYSIS ─── */
+document.getElementById('aiAnalyzeBtn').addEventListener('click',function(){
+  var key=getGeminiKey();
+  if(!key){showToast('❗ Önce Gemini API key ekleyin (Ayarlar)','fa-exclamation-circle');return;}
+  var imgs=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';});
+  if(!imgs.length){showToast('❗ Önce görsel yükleyin','fa-exclamation-circle');return;}
+  runGeminiAnalysis(key,imgs[0]);
+});
+
+function runGeminiAnalysis(key,imgUrl){
+  var btn=document.getElementById('aiAnalyzeBtn');
+  var res=document.getElementById('aiResult');
+  btn.disabled=true;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Analiz ediliyor...';
+  res.classList.remove('on');
+
+  // Convert image to base64 if it's already base64 data URL, or fetch if URL
+  if(imgUrl.startsWith('data:')){
+    var parts=imgUrl.split(',');
+    var mime=parts[0].match(/:(.*?);/)[1];
+    var b64=parts[1];
+    callGeminiVision(key,b64,mime,btn);
+  } else {
+    // Fetch external image and convert to base64
+    fetch(imgUrl)
+      .then(function(r){return r.blob();})
+      .then(function(blob){
+        var reader=new FileReader();
+        reader.onload=function(e){
+          var parts=e.target.result.split(',');
+          var mime=blob.type||'image/jpeg';
+          var b64=parts[1];
+          callGeminiVision(key,b64,mime,btn);
+        };
+        reader.readAsDataURL(blob);
+      })
+      .catch(function(){
+        // If fetch fails (CORS), use URL directly with a text-only prompt
+        callGeminiTextFallback(key,btn);
+      });
+  }
+}
+
+function callGeminiVision(key,b64,mime,btn){
+  var prompt='Sen bir e-ticaret fiyatlandırma uzmanısın. Bu ürün görselini analiz et ve SADECE şu JSON formatında yanıt ver (başka hiçbir metin, açıklama veya markdown kodu yok):\n{"urun_adi":"...","kategori":"...","aciklama":"...","piyasa_min":0,"piyasa_max":0,"piyasa_ort":0,"boyut_fiyatlar":[{"boyut":"Küçük","fiyat":0},{"boyut":"Orta","fiyat":0},{"boyut":"Büyük","fiyat":0}],"min_satis":0,"onerilen_satis":0,"uyari":"..."}\nTürkiye piyasası için TL cinsinden gerçekçi fiyatlar ver. "uyari" alanına minimum fiyat altında satmaması için uyarı yaz.';
+
+  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+key,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      contents:[{parts:[
+        {inline_data:{mime_type:mime,data:b64}},
+        {text:prompt}
+      ]}],
+      generationConfig:{temperature:0.3,maxOutputTokens:800}
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    btn.disabled=false;
+    btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    if(d.error){showToast('❗ API Hatası: '+d.error.message,'fa-exclamation-circle');return;}
+    var text=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts[0].text;
+    if(!text){showToast('❗ AI yanıt veremedi','fa-exclamation-circle');return;}
+    var clean=text.replace(/```json|```/g,'').trim();
+    // Extract JSON from response
+    var jsonMatch=clean.match(/\{[\s\S]*\}/);
+    if(!jsonMatch){showToast('❗ AI geçersiz yanıt verdi','fa-exclamation-circle');return;}
+    try{
+      var data=JSON.parse(jsonMatch[0]);
+      renderAiResult(data);
+    }catch(e){showToast('❗ AI yanıtı parse edilemedi','fa-exclamation-circle');}
+  })
+  .catch(function(e){
+    btn.disabled=false;
+    btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    showToast('❗ Bağlantı hatası: '+e.message,'fa-exclamation-circle');
+  });
+}
+
+function callGeminiTextFallback(key,btn){
+  // Fallback: analyze product name if typed
+  var name=document.getElementById('pName').value.trim();
+  if(!name){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';showToast('❗ Görsel yüklenemedi, önce ürün adı girin','fa-exclamation-circle');return;}
+  var prompt='Sen bir e-ticaret fiyatlandırma uzmanısın. "'+name+'" ürünü için Türkiye piyasası analizi yap ve SADECE şu JSON formatında yanıt ver:\n{"urun_adi":"'+name+'","kategori":"...","aciklama":"...","piyasa_min":0,"piyasa_max":0,"piyasa_ort":0,"boyut_fiyatlar":[{"boyut":"Küçük","fiyat":0},{"boyut":"Orta","fiyat":0},{"boyut":"Büyük","fiyat":0}],"min_satis":0,"onerilen_satis":0,"uyari":"..."}';
+  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+key,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.3,maxOutputTokens:600}})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    var text=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts[0].text;
+    if(!text){showToast('❗ AI yanıt veremedi','fa-exclamation-circle');return;}
+    var clean=text.replace(/```json|```/g,'').trim();
+    var jsonMatch=clean.match(/\{[\s\S]*\}/);
+    if(!jsonMatch){showToast('❗ AI geçersiz yanıt verdi','fa-exclamation-circle');return;}
+    try{var data=JSON.parse(jsonMatch[0]);renderAiResult(data);}
+    catch(e){showToast('❗ AI yanıtı parse edilemedi','fa-exclamation-circle');}
+  })
+  .catch(function(){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';showToast('❗ Bağlantı hatası','fa-exclamation-circle');});
+}
+
+function renderAiResult(data){
+  aiAnalysisData=data;
+  var res=document.getElementById('aiResult');
+  document.getElementById('aiProdName').textContent=data.urun_adi||'—';
+  document.getElementById('aiDescText').textContent=data.aciklama||'';
+
+  // Price grid
+  var pg=document.getElementById('aiPriceGrid');
+  pg.innerHTML='';
+  function mkPCard(label,val,highlight){
+    var d=document.createElement('div');
+    d.className='ai-price-card'+(highlight?' highlight':'');
+    d.innerHTML='<div class="apc-label">'+label+'</div><div class="apc-val">'+(val?val+' TL':'—')+'</div>';
+    pg.appendChild(d);
+  }
+  mkPCard('Piyasa Min',data.piyasa_min);
+  mkPCard('Piyasa Max',data.piyasa_max);
+  mkPCard('Piyasa Ort.',data.piyasa_ort);
+  mkPCard('✅ Önerilen Satış',data.onerilen_satis,true);
+
+  // Sizes
+  var sc=document.getElementById('aiSizes');
+  var sr=document.getElementById('aiSizeRows');
+  if(data.boyut_fiyatlar&&data.boyut_fiyatlar.length){
+    sr.innerHTML='';
+    data.boyut_fiyatlar.forEach(function(bf){
+      var row=document.createElement('div');row.className='ai-size-row';
+      row.innerHTML='<span>'+bf.boyut+'</span><span>'+bf.fiyat+' TL</span>';
+      sr.appendChild(row);
+    });
+    sc.style.display='block';
+  } else {sc.style.display='none';}
+
+  // Warning
+  if(data.uyari&&data.uyari.trim()){
+    document.getElementById('aiWarning').style.display='flex';
+    document.getElementById('aiWarningText').textContent=data.uyari;
+  } else {document.getElementById('aiWarning').style.display='none';}
+
+  res.classList.add('on');
+  showToast('🤖 AI analiz tamamlandı!');
+}
+
+document.getElementById('aiApplyBtn').addEventListener('click',function(){
+  if(!aiAnalysisData)return;
+  if(aiAnalysisData.onerilen_satis){document.getElementById('pPrice').value=aiAnalysisData.onerilen_satis;}
+  if(aiAnalysisData.urun_adi&&!document.getElementById('pName').value.trim()){document.getElementById('pName').value=aiAnalysisData.urun_adi;}
+  if(aiAnalysisData.aciklama&&!document.getElementById('pDesc').value.trim()){document.getElementById('pDesc').value=aiAnalysisData.aciklama;}
+  showToast('✅ Önerilen fiyat uygulandı!');
+});
+
+/* ─── FAVORİLER ─── */
 function loadFavs(){favorites=lsGet('dp_favs',[]);}
 function saveFavs(){lsSet('dp_favs',favorites);}
 function isFav(id){return favorites.some(function(f){return f.id===id;});}
@@ -553,23 +872,23 @@ document.getElementById('openFavPanel').onclick=function(){document.getElementBy
 document.getElementById('favClose').onclick=function(){document.getElementById('favPanel').classList.remove('on');};
 document.getElementById('favPanel').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 
-/* BLOB API */
+/* ─── BLOB API ─── */
 function apiGetProducts(cb){
   fetch('/api/products').then(function(r){return r.json();}).then(function(d){if(d.success&&Array.isArray(d.products)){allProducts=d.products;blobMode=true;lsSet('dp_prods_cache',allProducts);setBlobBadge(true);cb();}else throw 0;}).catch(function(){allProducts=lsGet('dp_prods_cache',[])||[];blobMode=false;setBlobBadge(false);cb();});
 }
 function apiSaveProducts(products,cb){
-  fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({products:products,adminKey:ADMIN_KEY})}).then(function(r){return r.json();}).then(function(d){if(d.success){lsSet('dp_prods_cache',products);if(cb)cb(true);}else if(cb)cb(false,d.error);}).catch(function(e){if(cb)cb(false,e.message);});
+  fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({products:products,adminKey:ADMIN_KEY})}).then(function(r){return r.json();}).then(function(d){if(d.success){lsSet('dp_prods_cache',products);if(cb)cb(true);}else if(cb)cb(false,d.error);}).catch(function(e){lsSet('dp_prods_cache',products);if(cb)cb(true);});
 }
-function setBlobBadge(ok){var b=document.getElementById('blobBadge');if(!b)return;b.style.display='inline-flex';b.className='blob-badge '+(ok?'ok':'warn');b.innerHTML=ok?'<i class="fas fa-cloud"></i> Blob bağlı':'<i class="fas fa-exclamation-triangle"></i> Blob yok';}
+function setBlobBadge(ok){var b=document.getElementById('blobBadge');if(!b)return;b.style.display='inline-flex';b.className='blob-badge '+(ok?'ok':'warn');b.innerHTML=ok?'<i class="fas fa-cloud"></i> Blob bağlı':'<i class="fas fa-hdd"></i> Yerel mod';}
 
-/* TOAST */
-function showToast(msg,icon){var t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;document.getElementById('toastIcon').className='fas '+(icon||'fa-check-circle');t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on');},2600);}
+/* ─── TOAST ─── */
+function showToast(msg,icon){var t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;document.getElementById('toastIcon').className='fas '+(icon||'fa-check-circle');t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on');},2800);}
 
-/* BACK TO TOP */
+/* ─── BACK TO TOP ─── */
 window.addEventListener('scroll',function(){document.getElementById('bttBtn').classList.toggle('on',window.scrollY>400);},{passive:true});
 document.getElementById('bttBtn').onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
 
-/* HERO */
+/* ─── HERO ─── */
 var si=0,slides=document.querySelectorAll('.slide'),dotsEl=document.getElementById('heroDots');
 for(var di=0;di<slides.length;di++){(function(i){var d=document.createElement('button');d.className='dot'+(i===0?' on':'');d.onclick=function(){goSlide(i);};dotsEl.appendChild(d);})(di);}
 function goSlide(n){slides[si].classList.remove('on');dotsEl.children[si].classList.remove('on');si=(n+slides.length)%slides.length;slides[si].classList.add('on');dotsEl.children[si].classList.add('on');}
@@ -578,10 +897,10 @@ document.getElementById('heroNext').onclick=function(){goSlide(si+1);};
 setInterval(function(){goSlide(si+1);},5000);
 (function(){var el=document.getElementById('heroSection'),tx=0;el.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});el.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)goSlide(dx<0?si+1:si-1);},{passive:true});})();
 
-/* SORT */
+/* ─── SORT ─── */
 document.getElementById('sortSel').addEventListener('change',function(){currentSort=this.value;renderProds('');});
 
-/* NAV & PILLS */
+/* ─── NAV & PILLS ─── */
 function buildNav(){
   var nl=document.getElementById('navLinks');nl.innerHTML='';
   function mk(l,f,ex){var b=document.createElement('button');b.className='nl'+(activeCat===f?' ac':'')+(ex?' '+ex:'');b.textContent=l;b.onclick=function(){activeCat=f;buildNav();buildPills();renderProds('');};nl.appendChild(b);}
@@ -595,7 +914,7 @@ function buildPills(){
   mk('🏷️ İndirim','sale',allProducts.filter(function(p){return p.old&&p.old.toString().trim();}).length);
 }
 
-/* RENDER PRODUCTS */
+/* ─── RENDER PRODUCTS ─── */
 var BADGE_CFG={new:{cls:'new',lbl:'Yeni'},hot:{cls:'hot',lbl:'Çok Satan'},sale:{cls:'sale',lbl:'İndirim'},out:{cls:'out',lbl:'Tükendi'}};
 function getSorted(prods){
   var p=prods.slice();
@@ -620,7 +939,6 @@ function renderProds(search){
     var bKey=!inStock?'out':(p.badge||(hasDisc?'sale':null));
     var badge=bKey&&BADGE_CFG[bKey]?'<span class="cbadge '+BADGE_CFG[bKey].cls+'">'+BADGE_CFG[bKey].lbl+'</span>':'';
     var card=document.createElement('div');card.className='card';
-
     var ciHtml;
     if(imgs.length<=1){
       var s0=imgs[0]||'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok';
@@ -637,7 +955,6 @@ function renderProds(search){
       '<div class="cfoot"><div class="cprice">'+(hasDisc?'<span class="cold">'+p.old+' TL</span>':'')+p.price+' TL</div>'+
       '<a href="https://wa.me/905535900029?text='+waMsg+'" target="_blank" rel="noopener" onclick="event.stopPropagation()"><button class="wabtn"'+(inStock?'':' disabled')+'>'+
       (inStock?'<i class="fab fa-whatsapp"></i> Sipariş Ver':'Stok Tükendi')+'</button></a></div></div>';
-
     if(imgs.length>1){
       var ci=card.querySelector('.ci'),tr2=card.querySelector('.ci-track'),dts2=card.querySelectorAll('.ci-dot');
       function mkGoCI(ciEl,track,dots){return function(n){var t=dots.length,idx=((n%t)+t)%t;ciEl.setAttribute('data-cidx',idx);track.style.transform='translateX(-'+idx+'00%)';dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});};}
@@ -656,7 +973,7 @@ function renderProds(search){
   });
 }
 
-/* ÜRÜN DETAY MODAL */
+/* ─── ÜRÜN DETAY MODAL ─── */
 function openProdModal(p){
   currentProd=p;
   var cat=getCatById(p.catId),imgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]),hasDisc=p.old&&p.old.toString().trim(),inStock=p.inStock!==false;
@@ -686,26 +1003,34 @@ document.getElementById('pmClose').onclick=closeProdModal;
 document.getElementById('prodModal').addEventListener('click',function(e){if(e.target===this)closeProdModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeProdModal();});
 
-/* SHARE */
+/* ─── SHARE ─── */
 function shareProduct(p){
   var text=p.name+' — '+p.price+' TL | Doğa Pasajı';
   if(navigator.share){navigator.share({title:'Doğa Pasajı',text:text,url:window.location.href}).catch(function(){});}
   else{window.open('https://wa.me/?text='+encodeURIComponent(text+' '+window.location.href),'_blank');}
 }
 
-/* CAT CARDS */
+/* ─── CAT CARDS (always fresh) ─── */
 function renderCatCards(){
-  var el=document.getElementById('catCards'),cats=getCats().slice(0,4);
+  var el=document.getElementById('catCards');
+  var cats=getCats().slice(0,4); // Always read fresh from storage
   el.style.gridTemplateColumns=cats.length<4?'repeat('+cats.length+',1fr)':'';
-  el.innerHTML=cats.map(function(c){var img=getCatImg(c),cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;return '<div class="ccard" data-catid="'+c.id+'"><img src="'+img+'" alt="'+c.name+'" loading="lazy"><div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div></div>';}).join('');
-  el.querySelectorAll('.ccard').forEach(function(card){card.onclick=function(){activeCat=card.getAttribute('data-catid');buildNav();buildPills();renderProds('');document.getElementById('urunler').scrollIntoView({behavior:'smooth'});};});
+  el.innerHTML='';
+  cats.forEach(function(c){
+    var img=getCatImg(c); // Fresh read every time
+    var cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;
+    var card=document.createElement('div');card.className='ccard';card.setAttribute('data-catid',c.id);
+    card.innerHTML='<img src="'+img+'" alt="'+c.name+'" loading="lazy" onerror="this.src=\''+DEF_IMG+'\'">'+'<div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div>';
+    card.onclick=function(){activeCat=card.getAttribute('data-catid');buildNav();buildPills();renderProds('');document.getElementById('urunler').scrollIntoView({behavior:'smooth'});};
+    el.appendChild(card);
+  });
 }
 
-/* SEARCH */
+/* ─── SEARCH ─── */
 var srchTimer;
 document.getElementById('srch').addEventListener('input',function(){clearTimeout(srchTimer);var v=this.value;srchTimer=setTimeout(function(){renderProds(v);},250);});
 
-/* ADMIN LOGIN */
+/* ─── ADMIN LOGIN ─── */
 var loginModal=document.getElementById('loginModal');
 document.getElementById('openAdmin').addEventListener('click',function(){if(sessionStorage.getItem('dp_admin')==='1'){document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});}else{loginModal.classList.add('on');document.getElementById('uname').value='';document.getElementById('upass').value='';document.getElementById('loginErr').style.display='none';setTimeout(function(){document.getElementById('uname').focus();},120);}});
 document.getElementById('mclose').addEventListener('click',function(){loginModal.classList.remove('on');});
@@ -714,17 +1039,17 @@ function tryLogin(){var u=document.getElementById('uname').value.trim(),p=docume
 document.getElementById('loginBtn').addEventListener('click',tryLogin);
 document.getElementById('upass').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
 document.getElementById('uname').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('upass').focus();});
-function openAdminPanel(){document.getElementById('adminPanel').style.display='block';setBlobBadge(blobMode);populateCatSelect('');renderAdminPList();renderAdminCList();initSlots();initCatImgZone();}
+function openAdminPanel(){document.getElementById('adminPanel').style.display='block';setBlobBadge(blobMode);populateCatSelect('');renderAdminPList();renderAdminCList();initSlots();initCatImgZone();updateGeminiUI();}
 function closeAdminPanel(){sessionStorage.removeItem('dp_admin');document.getElementById('adminPanel').style.display='none';}
 document.getElementById('logoutBtn').addEventListener('click',function(){closeAdminPanel();showToast('Çıkış yapıldı','fa-sign-out-alt');});
 
-/* ADMIN TABS */
-document.querySelectorAll('.atab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.atab').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.abody').forEach(function(b){b.classList.remove('on');});tab.classList.add('on');var t=tab.getAttribute('data-tab');document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('on');});});
+/* ─── ADMIN TABS ─── */
+document.querySelectorAll('.atab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.atab').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.abody').forEach(function(b){b.classList.remove('on');});tab.classList.add('on');var t=tab.getAttribute('data-tab');var bodyId='tab'+t.charAt(0).toUpperCase()+t.slice(1);document.getElementById(bodyId).classList.add('on');if(t==='settings')updateGeminiUI();});});
 
-/* CAT IMAGE */
+/* ─── CAT IMAGE ─── */
 var catDropZone=document.getElementById('catDropZone'),catFileInput=document.getElementById('catFileInput'),catImgPreview=document.getElementById('catImgPreview'),catImgPreviewImg=document.getElementById('catImgPreviewImg'),catImgOk=document.getElementById('catImgOk');
 function initCatImgZone(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';}
-function setCatPreview(url){catImgUrl=url;catImgPreviewImg.src=url;catImgPreview.style.display='block';catImgOk.style.display='block';catImgOk.innerHTML=url.startsWith('data:')?'⚠️ Yerel mod':'✅ CDN\'e yüklendi';}
+function setCatPreview(url){catImgUrl=url;catImgPreviewImg.src=url;catImgPreview.style.display='block';catImgOk.style.display='block';catImgOk.innerHTML=url.startsWith('data:')?'⚠️ Yerel mod':'✅ Görsel hazır';}
 function clearCatImg(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';catFileInput.value='';}
 document.getElementById('catImgDel').addEventListener('click',function(e){e.stopPropagation();clearCatImg();});
 function uploadCatImg(file){if(!file||!file.type.match(/^image\//))return;catImgOk.style.display='block';catImgOk.innerHTML='⏳ Yükleniyor...';catImgPreview.style.display='none';var r=new FileReader();r.onload=function(e){var b64=e.target.result;fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){if(d.success&&d.url){setCatPreview(d.url);showToast('🖼️ Görsel yüklendi!');}else{setCatPreview(b64);showToast('⚠️ Yerel mod','fa-exclamation-triangle');}}).catch(function(){setCatPreview(b64);});};r.readAsDataURL(file);}
@@ -734,7 +1059,7 @@ catDropZone.addEventListener('dragleave',function(){catDropZone.classList.remove
 catDropZone.addEventListener('drop',function(e){e.preventDefault();catDropZone.classList.remove('drag');var f=e.dataTransfer.files[0];if(f)uploadCatImg(f);});
 catFileInput.addEventListener('change',function(){if(catFileInput.files[0]){uploadCatImg(catFileInput.files[0]);catFileInput.value='';}});
 
-/* MULTI IMAGE */
+/* ─── MULTI IMAGE ─── */
 var MAX_IMGS=5,dropZone=document.getElementById('dropZone'),fileInput=document.getElementById('fileInput'),imgOk=document.getElementById('imgOk'),imgSlots=document.getElementById('imgSlots'),imgCount=document.getElementById('imgCount');
 function initSlots(){
   imgSlots.innerHTML='';
@@ -753,6 +1078,9 @@ function updateSlotUI(){
   if(f>0||l>0){imgCount.textContent=f+' görsel'+(l?', '+l+' yükleniyor...':'')+' (maks 5)';imgOk.style.display=l?'none':'block';imgOk.innerHTML=f>0&&!l?'✅ '+f+' görsel hazır':'';}
   else{imgCount.textContent='';imgOk.style.display='none';}
   document.getElementById('saveProdBtn').disabled=l>0;
+  // Update AI button state
+  var aiBtn=document.getElementById('aiAnalyzeBtn');
+  if(aiBtn)aiBtn.disabled=!(getGeminiKey()&&f>0);
 }
 function removeSlot(idx){uploadedImgs[idx]=null;uploadedImgs=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';});updateSlotUI();}
 function processFile(file,idx){
@@ -769,9 +1097,9 @@ dropZone.addEventListener('dragleave',function(e){e.stopPropagation();dropZone.c
 dropZone.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dropZone.classList.remove('drag');var files=Array.from(e.dataTransfer.files).filter(function(f){return f.type.match(/^image\//);});if(!files.length)return;var f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,rem=MAX_IMGS-f;files.slice(0,rem).forEach(function(fl){processFile(fl,undefined);});});
 fileInput.addEventListener('change',function(){if(!fileInput.files.length)return;var files=Array.from(fileInput.files),f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,rem=MAX_IMGS-f;files.slice(0,rem).forEach(function(fl){processFile(fl,undefined);});fileInput.value='';});
 
-/* SAVE PRODUCT */
+/* ─── SAVE PRODUCT ─── */
 function populateCatSelect(sel){var s=document.getElementById('pCat');s.innerHTML='<option value="">-- Seçin --</option>';getCats().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.emoji+' '+c.name;if(c.id===sel)o.selected=true;s.appendChild(o);});}
-function clearProdForm(){['pName','pPrice','pOld','pDesc'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('pCat').value='';document.getElementById('pBadge').value='';document.getElementById('pStock').checked=true;imgOk.style.display='none';imgOk.innerHTML='';uploadedImgs=[];fileInput.value='';editIdx=null;initSlots();document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-plus"></i> Ürünü Yayınla';document.getElementById('saveProdBtn').disabled=false;document.getElementById('cancelEditBtn').style.display='none';}
+function clearProdForm(){['pName','pPrice','pOld','pDesc'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('pCat').value='';document.getElementById('pBadge').value='';document.getElementById('pStock').checked=true;imgOk.style.display='none';imgOk.innerHTML='';uploadedImgs=[];fileInput.value='';editIdx=null;aiAnalysisData=null;document.getElementById('aiResult').classList.remove('on');initSlots();document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-plus"></i> Ürünü Yayınla';document.getElementById('saveProdBtn').disabled=false;document.getElementById('cancelEditBtn').style.display='none';}
 document.getElementById('saveProdBtn').addEventListener('click',function(){
   var name=document.getElementById('pName').value.trim(),price=document.getElementById('pPrice').value.trim(),old=document.getElementById('pOld').value.trim(),catId=document.getElementById('pCat').value,desc=document.getElementById('pDesc').value.trim(),badge=document.getElementById('pBadge').value,inStock=document.getElementById('pStock').checked;
   if(!name||!price||!catId){showToast('❗ Zorunlu alanları doldurun','fa-exclamation-circle');return;}
@@ -785,7 +1113,7 @@ document.getElementById('saveProdBtn').addEventListener('click',function(){
 });
 document.getElementById('cancelEditBtn').addEventListener('click',function(){clearProdForm();});
 
-/* ADMIN PRODUCT LIST */
+/* ─── ADMIN PRODUCT LIST ─── */
 function renderAdminPList(){
   document.getElementById('pCount').textContent=allProducts.length;
   var el=document.getElementById('adminPList');el.innerHTML='';
@@ -808,7 +1136,7 @@ function renderAdminPList(){
   });
 }
 
-/* CATEGORY MANAGEMENT */
+/* ─── CATEGORY MANAGEMENT ─── */
 var editCatIdx=null;
 function clearCatForm(){document.getElementById('cName').value='';document.getElementById('cEmoji').value='';clearCatImg();editCatIdx=null;document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';document.getElementById('cancelCatEditBtn').style.display='none';}
 document.getElementById('cancelCatEditBtn').addEventListener('click',function(){clearCatForm();});
@@ -816,25 +1144,47 @@ document.getElementById('saveCatBtn').addEventListener('click',function(){
   var name=document.getElementById('cName').value.trim(),emoji=document.getElementById('cEmoji').value.trim()||'📦';
   if(!name){showToast('❗ Kategori adı girin','fa-exclamation-circle');return;}
   var cats=getCats();
-  if(editCatIdx!==null){cats[editCatIdx].name=name;cats[editCatIdx].emoji=emoji;if(catImgUrl)cats[editCatIdx].img=catImgUrl;saveCats(cats);showToast('✅ Kategori güncellendi!');}
-  else{cats.push({id:'c'+Date.now(),name:name,emoji:emoji,img:catImgUrl});saveCats(cats);showToast('✅ Kategori eklendi!');}
-  clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
+  if(editCatIdx!==null){
+    cats[editCatIdx].name=name;cats[editCatIdx].emoji=emoji;
+    if(catImgUrl)cats[editCatIdx].img=catImgUrl;
+    lsSet('dp_cats',cats); // Save directly
+    showToast('✅ Kategori güncellendi!');
+  } else {
+    cats.push({id:'c'+Date.now(),name:name,emoji:emoji,img:catImgUrl});
+    lsSet('dp_cats',cats); // Save directly
+    showToast('✅ Kategori eklendi!');
+  }
+  clearCatForm();
+  // Force refresh all category displays immediately
+  renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
 });
+
 function renderAdminCList(){
   var cats=getCats(),el=document.getElementById('adminCList');el.innerHTML='';
   if(!cats.length){el.innerHTML='<p style="color:var(--mut);font-size:.88rem;padding:1rem">Henüz kategori yok.</p>';return;}
   cats.forEach(function(c,idx){
     var cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;
     var div=document.createElement('div');div.className='aitem';
-    var th=c.img&&c.img.trim()?'<img src="'+c.img+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0">':'<div class="cat-emoji-thumb">'+c.emoji+'</div>';
-    div.innerHTML=th+'<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Görsel yok</span>')+'</p></div><div class="aacts"><button class="editbtn"><i class="fas fa-edit"></i></button><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
-    div.querySelector('.editbtn').addEventListener('click',function(){editCatIdx=idx;document.getElementById('cName').value=c.name;document.getElementById('cEmoji').value=c.emoji!=='📦'?c.emoji:'';if(c.img&&c.img.trim()){setCatPreview(c.img);document.getElementById('catImgOk').innerHTML='✅ Mevcut görsel';}else clearCatImg();document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';document.getElementById('cancelCatEditBtn').style.display='inline-flex';document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});document.getElementById('cName').focus();});
-    div.querySelector('.delbtn').addEventListener('click',function(){if(cnt>0){showToast('❗ Önce ürünleri silin','fa-exclamation-circle');return;}if(!confirm('"'+c.name+'" silinecek?'))return;var cs=getCats();cs.splice(idx,1);saveCats(cs);clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');showToast('🗑️ Silindi','fa-trash');});
+    var imgSrc=getCatImg(c);
+    var th='<img src="'+imgSrc+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">'+'<div class="cat-emoji-thumb" style="display:none">'+c.emoji+'</div>';
+    div.innerHTML=th+'<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Varsayılan görsel</span>')+'</p></div><div class="aacts"><button class="editbtn"><i class="fas fa-edit"></i></button><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
+    div.querySelector('.editbtn').addEventListener('click',function(){
+      editCatIdx=idx;document.getElementById('cName').value=c.name;document.getElementById('cEmoji').value=c.emoji!=='📦'?c.emoji:'';
+      if(c.img&&c.img.trim()){setCatPreview(c.img);document.getElementById('catImgOk').innerHTML='✅ Mevcut görsel';}else clearCatImg();
+      document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';document.getElementById('cancelCatEditBtn').style.display='inline-flex';
+      document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});document.getElementById('cName').focus();
+    });
+    div.querySelector('.delbtn').addEventListener('click',function(){
+      if(cnt>0){showToast('❗ Önce bu kategorideki ürünleri silin','fa-exclamation-circle');return;}
+      if(!confirm('"'+c.name+'" silinecek?'))return;
+      var cs=getCats();cs.splice(idx,1);lsSet('dp_cats',cs);
+      clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');showToast('🗑️ Silindi','fa-trash');
+    });
     el.appendChild(div);
   });
 }
 
-/* START */
+/* ─── START ─── */
 loadFavs();
 apiGetProducts(function(){
   document.getElementById('loadingOverlay').classList.add('hide');
