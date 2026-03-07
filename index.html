@@ -4,25 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Doğa Pasajı | Balık, Kaktüs ve Daha Fazlası</title>
+<meta name="description" content="Nadir balık türleri, kaktüs, sukulent ve teraryum ürünleri. Bursa'dan Türkiye'ye hızlı kargo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --g1:#1a3a2a;--g2:#2d5a3d;--g3:#4a8c5c;--gp:#c8dfc0;
-  --cream:#f5f0e8;--warm:#faf7f2;--gold:#c9a84c;
-  --txt:#1a2e22;--mut:#6b8272;--red:#e05252;
-  --sh:0 4px 24px rgba(26,58,42,.12);--shl:0 12px 48px rgba(26,58,42,.18)
-}
+:root{--g1:#1a3a2a;--g2:#2d5a3d;--g3:#4a8c5c;--gp:#c8dfc0;--cream:#f5f0e8;--warm:#faf7f2;--gold:#c9a84c;--txt:#1a2e22;--mut:#6b8272;--red:#e05252;--sh:0 4px 24px rgba(26,58,42,.12);--shl:0 12px 48px rgba(26,58,42,.18)}
 body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--txt);overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
-button{font-family:'DM Sans',sans-serif;cursor:pointer}
-
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}button{font-family:'DM Sans',sans-serif;cursor:pointer}
 .tb{background:var(--g1);color:#fff;text-align:center;padding:.5rem 1rem;font-size:.8rem;line-height:1.5}
 .tb strong{color:var(--gp)}
-
 header{background:#fff;border-bottom:1px solid #e5ebe7;position:sticky;top:0;z-index:500;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .hd{max-width:1380px;margin:0 auto;padding:.85rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem}
 .logo{display:flex;align-items:center;gap:.65rem;flex-shrink:0}
@@ -38,16 +30,17 @@ header{background:#fff;border-bottom:1px solid #e5ebe7;position:sticky;top:0;z-i
 .ha{display:flex;gap:.6rem;align-items:center;flex-shrink:0}
 .adb{background:var(--g1);color:#fff;border:none;padding:.5rem 1rem;border-radius:50px;font-size:.82rem;font-weight:500;display:flex;align-items:center;gap:.4rem;white-space:nowrap;transition:.2s}
 .adb:hover{background:var(--g2)}
-
+.fav-btn-head{position:relative;background:none;border:1.5px solid #e2e8e4;padding:.48rem .85rem;border-radius:50px;color:var(--g1);font-size:.9rem;transition:.2s}
+.fav-btn-head:hover{background:#fff0f0;border-color:var(--red);color:var(--red)}
+.fav-count-badge{position:absolute;top:-5px;right:-5px;background:var(--red);color:#fff;font-size:.6rem;font-weight:700;width:17px;height:17px;border-radius:50%;display:none;align-items:center;justify-content:center}
+.fav-count-badge.on{display:flex}
 nav{background:var(--g1);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 .ni{max-width:1380px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0;min-width:max-content}
 .nl{color:rgba(255,255,255,.82);font-size:.87rem;font-weight:500;padding:.78rem 1.1rem;white-space:nowrap;transition:.15s;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent}
 .nl:hover,.nl.ac{color:#fff;border-bottom-color:var(--gp)}
 .nl.sale{color:var(--gold)}
-
-/* HERO */
-.hero{position:relative;height:480px;overflow:hidden}
+.hero{position:relative;height:480px;overflow:hidden;user-select:none}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .8s}
 .slide.on{opacity:1}
 .slide img{width:100%;height:100%;object-fit:cover}
@@ -64,22 +57,18 @@ nav::-webkit-scrollbar{display:none}
 .har{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.18);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:.95rem;backdrop-filter:blur(6px);transition:.2s;z-index:5}
 .har:hover{background:rgba(255,255,255,.32)}
 .har.pv{left:1rem}.har.nx{right:1rem}
-
-/* LOADING OVERLAY */
 .loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;gap:1rem}
 .loading-overlay i{font-size:2.5rem;color:var(--g3);animation:spin 1s linear infinite}
 .loading-overlay p{color:var(--mut);font-size:.95rem}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-overlay.hide{display:none}
-
-/* FILTER PILLS */
 .fp{background:#fff;border-bottom:1px solid #eaeeec;padding:.85rem 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .fp::-webkit-scrollbar{display:none}
 .fpi{max-width:1380px;margin:0 auto;padding:0 1.5rem;display:flex;gap:.55rem;min-width:max-content}
-.pill{background:#f2f6f3;border:1.5px solid transparent;border-radius:50px;padding:.38rem .95rem;font-size:.83rem;font-weight:500;color:var(--g1);cursor:pointer;transition:.2s;white-space:nowrap}
+.pill{background:#f2f6f3;border:1.5px solid transparent;border-radius:50px;padding:.38rem .95rem;font-size:.83rem;font-weight:500;color:var(--g1);cursor:pointer;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:.4rem}
 .pill:hover,.pill.on{background:var(--g1);color:#fff;border-color:var(--g1)}
-
-/* PROMO */
+.pill-cnt{background:rgba(0,0,0,.12);border-radius:50px;padding:.05rem .45rem;font-size:.7rem;font-weight:700}
+.pill.on .pill-cnt{background:rgba(255,255,255,.25)}
 .promo{max-width:1380px;margin:1.8rem auto;padding:0 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .pc{border-radius:18px;overflow:hidden;position:relative;height:185px;cursor:pointer}
 .pc img{width:100%;height:100%;object-fit:cover;transition:.4s}
@@ -90,23 +79,39 @@ nav::-webkit-scrollbar{display:none}
 .pco p{color:rgba(255,255,255,.75);font-size:.82rem;margin-bottom:.8rem}
 .pco a{display:inline-block;background:#fff;color:var(--g1);font-size:.78rem;font-weight:600;padding:.35rem .9rem;border-radius:50px;transition:.2s}
 .pco a:hover{background:var(--gold);color:#fff}
-
-/* SECTION */
 .sec{max-width:1380px;margin:0 auto;padding:2rem 1.5rem}
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.6rem}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.6rem;gap:1rem;flex-wrap:wrap}
 .sh h2{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--g1)}
 .sdiv{height:3px;width:50px;background:linear-gradient(90deg,var(--g3),var(--gp));border-radius:2px;margin:.35rem 0 0}
-
-/* PRODUCT GRID */
+.sort-wrap{display:flex;align-items:center;gap:.55rem;flex-shrink:0}
+.sort-wrap label{font-size:.8rem;color:var(--mut);white-space:nowrap}
+.sort-sel{border:1.5px solid #e2e8e4;border-radius:50px;padding:.38rem 1rem;font-size:.83rem;font-family:'DM Sans',sans-serif;color:var(--g1);background:#f8faf9;outline:none;cursor:pointer;transition:.2s}
+.sort-sel:focus{border-color:var(--g3)}
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
 .empty-pg{grid-column:1/-1;text-align:center;padding:4rem 1rem;color:var(--mut)}
 .empty-pg i{font-size:3rem;color:var(--gp);display:block;margin-bottom:1rem}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:.25s}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:.25s;cursor:pointer}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shl)}
-.ci{position:relative;overflow:hidden;height:200px;background:#f0f5f2}
-.ci img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.card:hover .ci img{transform:scale(1.07)}
-.cbadge{position:absolute;top:.65rem;left:.65rem;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;padding:.18rem .6rem;border-radius:50px}
+.ci{position:relative;overflow:hidden;height:200px;background:#f0f5f2;user-select:none}
+.ci-track{display:flex;height:100%;transition:transform .35s ease}
+.ci-track img{width:100%;height:100%;object-fit:cover;flex-shrink:0;pointer-events:none}
+.ci-dots{position:absolute;bottom:.4rem;left:50%;transform:translateX(-50%);display:flex;gap:.3rem;z-index:4}
+.ci-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);border:none;padding:0;cursor:pointer;transition:.2s}
+.ci-dot.on{background:#fff;width:12px;border-radius:3px}
+.ci-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.28);border:none;color:#fff;width:26px;height:26px;border-radius:50%;font-size:.7rem;cursor:pointer;transition:.2s;z-index:4;display:flex;align-items:center;justify-content:center;padding:0}
+.ci-arr:hover{background:rgba(0,0,0,.5)}
+.ci-arr.lf{left:.4rem}.ci-arr.rg{right:.4rem}
+.cbadge{position:absolute;top:.65rem;left:.65rem;color:#fff;font-size:.7rem;font-weight:700;padding:.18rem .6rem;border-radius:50px;z-index:3}
+.cbadge.sale{background:var(--red)}.cbadge.new{background:var(--g3)}.cbadge.hot{background:var(--gold)}.cbadge.out{background:#999}
+.card-actions{position:absolute;top:.6rem;right:.6rem;display:flex;flex-direction:column;gap:.35rem;z-index:4}
+.ca-btn{width:32px;height:32px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:.2s;backdrop-filter:blur(6px)}
+.fav-toggle{background:rgba(255,255,255,.85);color:#bbb}
+.fav-toggle.on{background:#fff0f0;color:var(--red)}
+.fav-toggle:hover{background:#fff;color:var(--red)}
+.share-ca{background:rgba(255,255,255,.85);color:var(--g2)}
+.share-ca:hover{background:#fff;color:var(--g3)}
+.stock-out-overlay{position:absolute;inset:0;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;z-index:3}
+.stock-out-overlay span{background:#fff;color:var(--txt);font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px}
 .cb{padding:1rem}
 .ccat{font-size:.74rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.22rem}
 .cname{font-weight:600;font-size:.92rem;line-height:1.35;margin-bottom:.45rem;color:var(--txt)}
@@ -116,8 +121,58 @@ nav::-webkit-scrollbar{display:none}
 .cold{font-size:.8rem;color:var(--mut);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:400;margin-right:.25rem}
 .wabtn{background:#25d366;color:#fff;border:none;padding:.42rem .85rem;border-radius:50px;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:.3rem;transition:.2s;white-space:nowrap;cursor:pointer}
 .wabtn:hover{background:#128C7E}
-
-/* CATEGORY CARDS */
+.wabtn:disabled{background:#ccc;cursor:not-allowed}
+/* PRODUCT MODAL */
+.prod-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
+.prod-modal.on{display:flex}
+.pm-box{background:#fff;border-radius:24px;width:100%;max-width:860px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 32px 80px rgba(0,0,0,.25)}
+.pm-gallery{position:relative;background:#f0f5f2;border-radius:24px 0 0 24px;overflow:hidden;display:flex;flex-direction:column}
+.pm-main-wrap{flex:1;min-height:320px;overflow:hidden}
+.pm-main-img{width:100%;height:100%;object-fit:cover;min-height:320px;display:block}
+.pm-thumbs{display:flex;gap:.5rem;padding:.75rem;background:#fff;border-top:1px solid #eaeeec;overflow-x:auto;scrollbar-width:none}
+.pm-thumbs::-webkit-scrollbar{display:none}
+.pm-thumb{width:54px;height:54px;border-radius:10px;object-fit:cover;border:2.5px solid transparent;cursor:pointer;flex-shrink:0;transition:.2s}
+.pm-thumb.on{border-color:var(--g3)}
+.pm-close{position:absolute;top:.75rem;right:.75rem;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:36px;height:36px;font-size:.9rem;color:var(--g1);display:flex;align-items:center;justify-content:center;z-index:5;backdrop-filter:blur(4px)}
+.pm-info{padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;overflow-y:auto}
+.pm-cat{font-size:.75rem;color:var(--mut);text-transform:uppercase;letter-spacing:.07em}
+.pm-name{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--g1);line-height:1.2}
+.pm-price-row{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.pm-price{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--g1)}
+.pm-old{font-size:1rem;color:var(--mut);text-decoration:line-through}
+.pm-disc{background:var(--red);color:#fff;font-size:.75rem;font-weight:700;padding:.18rem .6rem;border-radius:50px}
+.pm-desc{font-size:.9rem;color:var(--mut);line-height:1.7}
+.pm-stock{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;padding:.3rem .8rem;border-radius:50px;align-self:flex-start}
+.pm-stock.in{background:#e6f4ea;color:#1e7e34}
+.pm-stock.out{background:#fde8e8;color:var(--red)}
+.pm-actions{display:flex;flex-direction:column;gap:.7rem;margin-top:auto}
+.pm-wa{background:#25d366;color:#fff;border:none;padding:.8rem 1.5rem;border-radius:50px;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:.2s;width:100%}
+.pm-wa:hover{background:#128C7E}
+.pm-wa:disabled{background:#ccc;cursor:not-allowed}
+.pm-fav{background:none;border:1.5px solid #e2e8e4;color:var(--mut);padding:.65rem 1.5rem;border-radius:50px;font-size:.88rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:.45rem;transition:.2s;width:100%}
+.pm-fav.on{border-color:var(--red);color:var(--red);background:#fff0f0}
+.pm-fav:hover{border-color:var(--red);color:var(--red)}
+.pm-share{background:none;border:1.5px solid #e2e8e4;color:var(--g1);padding:.65rem 1.5rem;border-radius:50px;font-size:.88rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:.45rem;transition:.2s;width:100%}
+.pm-share:hover{background:#f5faf6;border-color:var(--g3)}
+/* FAV DRAWER */
+.fav-panel{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;justify-content:flex-end;backdrop-filter:blur(4px)}
+.fav-panel.on{display:flex}
+.fav-drawer{background:#fff;width:100%;max-width:400px;height:100%;overflow-y:auto;padding:1.8rem;box-shadow:-12px 0 40px rgba(0,0,0,.15)}
+.fav-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.fav-head h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--g1)}
+.fav-close{background:none;border:none;font-size:1.2rem;color:var(--mut);padding:.3rem}
+.fav-list{display:flex;flex-direction:column;gap:.9rem}
+.fav-item{display:flex;gap:.85rem;align-items:center;background:#f5faf6;border-radius:14px;padding:.75rem;cursor:pointer;transition:.2s}
+.fav-item:hover{background:#edf5ef}
+.fav-item img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.fav-item-info{flex:1;min-width:0}
+.fav-item-info h5{font-size:.88rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.15rem}
+.fav-item-info p{font-size:.8rem;color:var(--g2);font-weight:600}
+.fav-item-del{background:none;border:none;color:#ccc;font-size:.9rem;padding:.3rem;flex-shrink:0}
+.fav-item-del:hover{color:var(--red)}
+.fav-empty{text-align:center;padding:3rem 1rem;color:var(--mut)}
+.fav-empty i{font-size:2.5rem;color:var(--gp);display:block;margin-bottom:.8rem}
+/* CAT CARDS */
 .ccg{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
 .ccard{position:relative;border-radius:16px;overflow:hidden;height:175px;cursor:pointer}
 .ccard img{width:100%;height:100%;object-fit:cover;transition:.4s}
@@ -125,21 +180,16 @@ nav::-webkit-scrollbar{display:none}
 .ccov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,30,18,.72) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1rem}
 .ccov h3{font-family:'Playfair Display',serif;color:#fff;font-size:1.05rem}
 .ccov span{color:rgba(255,255,255,.72);font-size:.78rem}
-
-/* TRUST */
 .trust{background:var(--g1);padding:1.6rem 0}
 .tri{max-width:1380px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:1rem}
 .tri div i{font-size:1.4rem;color:var(--gp);display:block;margin-bottom:.35rem}
 .tri div h4{color:#fff;font-size:.88rem;margin-bottom:.1rem}
 .tri div p{color:rgba(255,255,255,.6);font-size:.76rem}
-
-/* FOOTER */
 footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .fi{max-width:1380px;margin:0 auto;padding:0 1.5rem}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:2rem;margin-bottom:2.5rem}
 .fc h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:1rem}
-.fc ul{list-style:none}
-.fc li{margin-bottom:.55rem}
+.fc ul{list-style:none}.fc li{margin-bottom:.55rem}
 .fc a{color:rgba(255,255,255,.6);font-size:.85rem;transition:.15s}
 .fc a:hover{color:#fff}
 .fc .ci2{display:flex;align-items:center;gap:.55rem;color:rgba(255,255,255,.6);font-size:.85rem;margin-bottom:.7rem}
@@ -151,12 +201,13 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .fbrand{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;margin-bottom:.7rem}
 .fbrand span{color:var(--gp)}
 .fbrand-desc{color:rgba(255,255,255,.6);font-size:.84rem;line-height:1.7}
-
 .waf{position:fixed;bottom:1.5rem;right:1.5rem;background:#25d366;color:#fff;padding:.72rem 1.3rem;border-radius:50px;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:.88rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:400;transition:.25s;text-decoration:none}
 .waf:hover{background:#128C7E;transform:translateY(-3px)}
 .waf i{font-size:1.3rem}
-
-/* MODAL */
+.btt{position:fixed;bottom:5rem;right:1.5rem;width:42px;height:42px;background:var(--g1);color:#fff;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;box-shadow:var(--sh);z-index:400;opacity:0;pointer-events:none;transition:.3s;transform:translateY(10px)}
+.btt.on{opacity:1;pointer-events:auto;transform:translateY(0)}
+.btt:hover{background:var(--g2)}
+/* LOGIN MODAL */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;align-items:center;justify-content:center;backdrop-filter:blur(5px);padding:1rem}
 .modal.on{display:flex}
 .mbox{background:#fff;border-radius:22px;width:100%;max-width:400px;padding:2rem;box-shadow:0 24px 60px rgba(0,0,0,.2)}
@@ -167,7 +218,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .bcnc{background:none;border:1.5px solid #d0d8d4;color:var(--mut);padding:.48rem 1.1rem;border-radius:50px;font-size:.88rem;cursor:pointer}
 .bsub{background:var(--g1);color:#fff;border:none;padding:.48rem 1.5rem;border-radius:50px;font-size:.88rem;font-weight:600;transition:.2s;cursor:pointer}
 .bsub:hover{background:var(--g2)}
-
 /* ADMIN */
 #adminPanel{display:none;background:#fff;border-radius:20px;box-shadow:var(--sh);border:1px solid #eaeeec;overflow:hidden;margin:1.5rem 1.5rem}
 .atop{background:var(--g1);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
@@ -185,25 +235,29 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .fg2 input,.fg2 textarea,.fg2 select{width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8e4;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:#f8faf9;outline:none;transition:.2s}
 .fg2 input:focus,.fg2 textarea:focus,.fg2 select:focus{border-color:var(--g3);background:#fff}
 .fg2 textarea{min-height:70px;resize:vertical}
+.fg2-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+.toggle-wrap{display:flex;align-items:center;gap:.65rem;padding:.5rem 0}
+.toggle{position:relative;width:42px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-sl{position:absolute;inset:0;background:#d0d8d4;border-radius:24px;transition:.3s;cursor:pointer}
+.toggle-sl:before{content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-sl{background:var(--g3)}
+.toggle input:checked+.toggle-sl:before{transform:translateX(18px)}
+.toggle-label{font-size:.88rem;color:var(--txt)}
 .dz{border:2px dashed var(--gp);border-radius:16px;padding:1.8rem 1.5rem;text-align:center;background:#f5faf6;cursor:pointer;transition:.2s;user-select:none;position:relative}
 .dz:hover,.dz.drag{border-color:var(--g2);background:#edf5ef}
 .dz i{font-size:2rem;color:var(--g3);display:block;margin-bottom:.45rem}
 .dz p{color:var(--mut);font-size:.85rem}
 .dz small{color:var(--g3);font-weight:600}
-
-/* Kategori görsel önizleme */
 .cat-img-preview{display:none;margin-top:.75rem;position:relative;border-radius:14px;overflow:hidden;height:120px;background:#f0f5f2}
 .cat-img-preview img{width:100%;height:100%;object-fit:cover}
 .cat-img-preview .cat-img-del{position:absolute;top:.4rem;right:.4rem;background:var(--red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .cat-img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
-
-/* ── Çoklu Görsel Yükleme ── */
 .img-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-top:.75rem}
 .img-slot{position:relative;aspect-ratio:1;border-radius:10px;border:2px dashed var(--gp);background:#f5faf6;overflow:hidden;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.2rem}
 .img-slot:hover{border-color:var(--g2);background:#edf5ef}
 .img-slot.filled{border-style:solid;border-color:var(--g3)}
 .img-slot.uploading{border-color:var(--gold);background:#fffbf0}
-.img-slot.error{border-color:var(--red);background:#fff5f5}
 .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 .img-slot .slot-icon{font-size:1.3rem;color:var(--gp);pointer-events:none}
 .img-slot .slot-num{font-size:.65rem;color:var(--mut);font-weight:600;pointer-events:none}
@@ -213,16 +267,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .img-slot .slot-prog i{color:var(--gold);font-size:1.1rem;animation:spin 1s linear infinite}
 .img-slot .slot-star{position:absolute;bottom:3px;left:3px;background:var(--gold);color:#fff;font-size:.58rem;font-weight:700;padding:.1rem .35rem;border-radius:4px}
 .img-count{font-size:.76rem;color:var(--mut);margin-top:.4rem;text-align:center}
-/* ── Ürün Kartı Carousel ── */
-.ci{position:relative;overflow:hidden;height:200px;background:#f0f5f2}
-.ci-track{display:flex;height:100%;transition:transform .35s ease}
-.ci-track img{width:100%;height:100%;object-fit:cover;flex-shrink:0}
-.ci-dots{position:absolute;bottom:.4rem;left:50%;transform:translateX(-50%);display:flex;gap:.3rem;z-index:4}
-.ci-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);border:none;padding:0;cursor:pointer;transition:.2s}
-.ci-dot.on{background:#fff;width:12px;border-radius:3px}
-.ci-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.28);border:none;color:#fff;width:26px;height:26px;border-radius:50%;font-size:.7rem;cursor:pointer;transition:.2s;z-index:4;display:flex;align-items:center;justify-content:center;padding:0}
-.ci-arr:hover{background:rgba(0,0,0,.5)}
-.ci-arr.lf{left:.4rem}.ci-arr.rg{right:.4rem}
 .img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
 .abtn{background:var(--g1);color:#fff;border:none;padding:.65rem 1.6rem;border-radius:50px;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:.45rem;transition:.2s;cursor:pointer}
 .abtn:hover:not(:disabled){background:var(--g2)}
@@ -241,19 +285,18 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .aacts button{background:none;border:1.5px solid #dde5de;border-radius:20px;padding:.2rem .52rem;font-size:.73rem;cursor:pointer;transition:.2s}
 .delbtn{color:var(--red)}.delbtn:hover{background:var(--red);color:#fff;border-color:var(--red)}
 .editbtn:hover{background:var(--g2);color:#fff;border-color:var(--g2)}
-
-/* BLOB durumu rozeti */
 .blob-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;padding:.2rem .6rem;border-radius:50px;font-weight:600;margin-left:.5rem}
 .blob-badge.ok{background:#e6f4ea;color:#1e7e34}
 .blob-badge.warn{background:#fff3cd;color:#856404}
-
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g1);color:#fff;padding:.65rem 1.5rem;border-radius:50px;font-size:.86rem;font-weight:500;box-shadow:var(--shl);z-index:1500;opacity:0;transition:.3s;pointer-events:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;max-width:calc(100vw - 2rem)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media(max-width:960px){
   .fg{grid-template-columns:1fr 1fr}.ag2{grid-template-columns:1fr}
   .ccg{grid-template-columns:repeat(2,1fr)}.tri{grid-template-columns:repeat(2,1fr);gap:.75rem}
   .promo{grid-template-columns:1fr}.pg{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .pm-box{grid-template-columns:1fr;max-width:480px}
+  .pm-gallery{border-radius:24px 24px 0 0}
+  .fg2-row{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .hd{grid-template-columns:1fr auto;grid-template-rows:auto auto;padding:.7rem 1rem;gap:.65rem}
@@ -283,7 +326,12 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .aitem{padding:.6rem;gap:.6rem}.aitem img{width:44px;height:44px;border-radius:8px}
   .aii h5{font-size:.82rem}.aii p{font-size:.72rem}.aacts button{padding:.18rem .48rem;font-size:.72rem}
   .waf span{display:none}.waf{padding:.82rem;border-radius:50%;bottom:1.2rem;right:1.2rem}
+  .btt{bottom:4.5rem;right:1.2rem}
   .fpi{padding:0 1rem}.sh h2{font-size:1.45rem}
+  .pm-box{max-width:100%;border-radius:20px 20px 0 0;position:fixed;bottom:0;left:0;right:0;max-height:92vh}
+  .pm-info{padding:1.3rem}
+  .fav-drawer{max-width:100%}
+  .sort-wrap label{display:none}
 }
 @media(max-width:380px){
   .pg{grid-template-columns:1fr}.ci{height:220px}
@@ -293,71 +341,52 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 </style>
 </head>
 <body>
-
-<!-- Sayfa yüklenirken loading göster -->
-<div class="loading-overlay" id="loadingOverlay">
-  <i class="fas fa-leaf"></i>
-  <p>Ürünler yükleniyor...</p>
-</div>
-
+<div class="loading-overlay" id="loadingOverlay"><i class="fas fa-leaf"></i><p>Ürünler yükleniyor...</p></div>
 <div class="tb">🚚 250 TL ve üzeri alışverişlerde <strong>ÜCRETSİZ KARGO</strong> &nbsp;|&nbsp; WhatsApp: <strong>0553 590 00 29</strong></div>
-
 <header>
   <div class="hd">
-    <div class="logo">
-      <div class="logo-ic"><i class="fas fa-leaf"></i></div>
-      <div class="logo-t">Doğa<span>Pasajı</span></div>
-    </div>
-    <div class="srch-wrap">
-      <input type="text" id="srch" placeholder="Balık, kaktüs, terrarium ara...">
-      <button type="button"><i class="fas fa-search"></i></button>
-    </div>
+    <div class="logo"><div class="logo-ic"><i class="fas fa-leaf"></i></div><div class="logo-t">Doğa<span>Pasajı</span></div></div>
+    <div class="srch-wrap"><input type="text" id="srch" placeholder="Balık, kaktüs, terrarium ara..."><button type="button"><i class="fas fa-search"></i></button></div>
     <div class="ha">
+      <button class="fav-btn-head" id="openFavPanel" title="Favorilerim"><i class="fas fa-heart"></i><span class="fav-count-badge" id="favCountBadge">0</span></button>
       <button class="adb" id="openAdmin"><i class="fas fa-lock"></i> <span>Admin</span></button>
     </div>
   </div>
 </header>
-
 <nav><div class="ni" id="navLinks"></div></nav>
-
-<section class="hero">
-  <div class="slide on">
-    <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=1400&q=80" alt="">
-    <div class="sov"></div>
-    <div class="sc"><span class="stag">Yeni Koleksiyon</span><h1>Doğanın En Güzel Renkleri</h1><p>Nadir ve egzotik balık türleriyle akvaryumunuzu canlandırın.</p><a href="#urunler" class="sb">Hemen Keşfet</a></div>
-  </div>
-  <div class="slide">
-    <img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=1400&q=80" alt="">
-    <div class="sov"></div>
-    <div class="sc"><span class="stag">Sezonda</span><h1>Kaktüs & Sukulent Dünyası</h1><p>Bakımı kolay, görünümü büyüleyici yüzlerce tür sizi bekliyor.</p><a href="#urunler" class="sb">Koleksiyonu Gör</a></div>
-  </div>
-  <div class="slide">
-    <img src="https://images.unsplash.com/photo-1611843467160-25afb8df1074?w=1400&q=80" alt="">
-    <div class="sov"></div>
-    <div class="sc"><span class="stag">El Yapımı</span><h1>Doğayla Buluşan Tasarımlar</h1><p>El yapımı teraryumlar ve dekor ürünleriyle yaşam alanlarınıza doğa katın.</p><a href="#urunler" class="sb">Alışverişe Başla</a></div>
-  </div>
+<section class="hero" id="heroSection">
+  <div class="slide on"><img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=1400&q=80" alt=""><div class="sov"></div><div class="sc"><span class="stag">Yeni Koleksiyon</span><h1>Doğanın En Güzel Renkleri</h1><p>Nadir ve egzotik balık türleriyle akvaryumunuzu canlandırın.</p><a href="#urunler" class="sb">Hemen Keşfet</a></div></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=1400&q=80" alt=""><div class="sov"></div><div class="sc"><span class="stag">Sezonda</span><h1>Kaktüs & Sukulent Dünyası</h1><p>Bakımı kolay, görünümü büyüleyici yüzlerce tür sizi bekliyor.</p><a href="#urunler" class="sb">Koleksiyonu Gör</a></div></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1611843467160-25afb8df1074?w=1400&q=80" alt=""><div class="sov"></div><div class="sc"><span class="stag">El Yapımı</span><h1>Doğayla Buluşan Tasarımlar</h1><p>El yapımı teraryumlar ve dekor ürünleriyle yaşam alanlarınıza doğa katın.</p><a href="#urunler" class="sb">Alışverişe Başla</a></div></div>
   <button class="har pv" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
   <button class="har nx" id="heroNext"><i class="fas fa-chevron-right"></i></button>
   <div class="hdots" id="heroDots"></div>
 </section>
-
 <div class="fp"><div class="fpi" id="pills"></div></div>
-
 <div class="promo">
   <div class="pc"><img src="https://images.unsplash.com/photo-1621460248083-6271cc4437a8?w=800&q=80" alt=""><div class="pco"><div class="pt">Yeni Gelenler</div><h3>Dekoratif Teraryumlar</h3><p>Cam teraryumlar ve özel tasarımlar</p><a href="#urunler">Keşfet →</a></div></div>
   <div class="pc"><img src="https://images.unsplash.com/photo-1534710961216-75c88202f43e?w=800&q=80" alt=""><div class="pco"><div class="pt">Kampanya</div><h3>Mevsim Sonu Fırsatları</h3><p>Seçili ürünlerde büyük indirimler</p><a href="#urunler">Alışverişe Başla →</a></div></div>
 </div>
-
 <section class="sec" id="urunler">
-  <div class="sh"><div><h2>Ürünlerimiz</h2><div class="sdiv"></div></div></div>
+  <div class="sh">
+    <div><h2>Ürünlerimiz</h2><div class="sdiv"></div></div>
+    <div class="sort-wrap">
+      <label>Sırala:</label>
+      <select class="sort-sel" id="sortSel">
+        <option value="default">Varsayılan</option>
+        <option value="newest">En Yeni</option>
+        <option value="price_asc">Fiyat: Düşük → Yüksek</option>
+        <option value="price_desc">Fiyat: Yüksek → Düşük</option>
+        <option value="name_az">İsim: A → Z</option>
+      </select>
+    </div>
+  </div>
   <div class="pg" id="grid"></div>
 </section>
-
 <section class="sec" style="padding-top:0">
   <div class="sh"><div><h2>Kategoriler</h2><div class="sdiv"></div></div></div>
   <div class="ccg" id="catCards"></div>
 </section>
-
 <div class="trust">
   <div class="tri">
     <div><i class="fas fa-truck"></i><h4>Ücretsiz Kargo</h4><p>250 TL ve üzeri</p></div>
@@ -370,14 +399,9 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 <!-- ADMIN PANEL -->
 <div id="adminPanel">
   <div class="atop">
-    <h2>⚙️ Admin Paneli
-      <span class="blob-badge" id="blobBadge" style="display:none"></span>
-    </h2>
+    <h2>⚙️ Admin Paneli <span class="blob-badge" id="blobBadge" style="display:none"></span></h2>
     <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
-      <div class="atabs">
-        <button class="atab on" data-tab="prods">Ürünler</button>
-        <button class="atab" data-tab="cats">Kategoriler</button>
-      </div>
+      <div class="atabs"><button class="atab on" data-tab="prods">Ürünler</button><button class="atab" data-tab="cats">Kategoriler</button></div>
       <button class="logob" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
     </div>
   </div>
@@ -385,17 +409,21 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
     <div class="ag2">
       <div>
         <div class="fg2"><label>Ürün Adı *</label><input type="text" id="pName" placeholder="Örn: Renkli Betta Balığı"></div>
-        <div class="fg2"><label>Fiyat (TL) *</label><input type="number" id="pPrice" placeholder="250" min="1"></div>
-        <div class="fg2"><label>Eski Fiyat (opsiyonel)</label><input type="number" id="pOld" placeholder="Örn: 320" min="1"></div>
-        <div class="fg2"><label>Kategori *</label><select id="pCat"><option value="">-- Kategori seçin --</option></select></div>
+        <div class="fg2-row">
+          <div class="fg2" style="margin-bottom:0"><label>Fiyat (TL) *</label><input type="number" id="pPrice" placeholder="250" min="1"></div>
+          <div class="fg2" style="margin-bottom:0"><label>Eski Fiyat</label><input type="number" id="pOld" placeholder="Örn: 320" min="1"></div>
+        </div>
+        <div class="fg2-row">
+          <div class="fg2" style="margin-bottom:0"><label>Kategori *</label><select id="pCat"><option value="">-- Seçin --</option></select></div>
+          <div class="fg2" style="margin-bottom:0"><label>Rozet</label><select id="pBadge"><option value="">Yok</option><option value="new">🟢 Yeni</option><option value="hot">🟡 Çok Satan</option><option value="sale">🔴 İndirim</option></select></div>
+        </div>
+        <div class="fg2">
+          <div class="toggle-wrap"><label class="toggle"><input type="checkbox" id="pStock" checked><span class="toggle-sl"></span></label><span class="toggle-label">Stokta mevcut</span></div>
+        </div>
         <div class="fg2"><label>Açıklama</label><textarea id="pDesc" placeholder="Ürün hakkında kısa açıklama..."></textarea></div>
         <div class="fg2">
-          <label>Ürün Görselleri * <span style="font-weight:400;color:var(--mut);text-transform:none">(en fazla 5, ilki ana görsel)</span></label>
-          <div class="dz" id="dropZone">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Görselleri buraya <small>sürükle &amp; bırak</small><br>ya da <small>tıkla ve seç</small></p>
-            <input type="file" id="fileInput" accept="image/*" multiple style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer">
-          </div>
+          <label>Ürün Görselleri * <span style="font-weight:400;color:var(--mut);text-transform:none">(en fazla 5)</span></label>
+          <div class="dz" id="dropZone"><i class="fas fa-cloud-upload-alt"></i><p>Görselleri buraya <small>sürükle &amp; bırak</small><br>ya da <small>tıkla ve seç</small></p><input type="file" id="fileInput" accept="image/*" multiple style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer"></div>
           <div class="img-slots" id="imgSlots"></div>
           <div class="img-count" id="imgCount"></div>
           <div id="imgOk" class="img-ok"></div>
@@ -403,38 +431,24 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <button class="abtn" id="saveProdBtn"><i class="fas fa-plus"></i> Ürünü Yayınla</button>
         <button class="abnc" id="cancelEditBtn"><i class="fas fa-times"></i> İptal</button>
       </div>
-      <div>
-        <div class="alist">
-          <h4>Yayındaki Ürünler (<span id="pCount">0</span>)</h4>
-          <div id="adminPList"></div>
-        </div>
-      </div>
+      <div><div class="alist"><h4>Yayındaki Ürünler (<span id="pCount">0</span>)</h4><div id="adminPList"></div></div></div>
     </div>
   </div>
   <div class="abody" id="tabCats">
     <div class="ag2">
       <div>
         <div class="fg2"><label>Kategori Adı *</label><input type="text" id="cName" placeholder="Örn: Balıklar"></div>
-        <div class="fg2"><label>Emoji (opsiyonel)</label><input type="text" id="cEmoji" placeholder="Örn: 🐟"></div>
+        <div class="fg2"><label>Emoji</label><input type="text" id="cEmoji" placeholder="Örn: 🐟"></div>
         <div class="fg2">
           <label>Kategori Görseli <span style="font-weight:400;color:var(--mut);text-transform:none">(opsiyonel)</span></label>
-          <div class="dz" id="catDropZone" style="padding:1.2rem">
-            <i class="fas fa-image"></i>
-            <p>Görsel seç ya da <small>sürükle &amp; bırak</small></p>
-            <input type="file" id="catFileInput" accept="image/*" style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer">
-          </div>
-          <div class="cat-img-preview" id="catImgPreview">
-            <img id="catImgPreviewImg" src="" alt="Kategori görseli">
-            <button class="cat-img-del" id="catImgDel" title="Görseli kaldır"><i class="fas fa-times"></i></button>
-          </div>
+          <div class="dz" id="catDropZone" style="padding:1.2rem"><i class="fas fa-image"></i><p>Görsel seç ya da <small>sürükle &amp; bırak</small></p><input type="file" id="catFileInput" accept="image/*" style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer"></div>
+          <div class="cat-img-preview" id="catImgPreview"><img id="catImgPreviewImg" src="" alt=""><button class="cat-img-del" id="catImgDel"><i class="fas fa-times"></i></button></div>
           <div class="cat-img-ok" id="catImgOk"></div>
         </div>
         <button class="abtn" id="saveCatBtn"><i class="fas fa-plus"></i> Kategori Ekle</button>
         <button class="abnc" id="cancelCatEditBtn" style="display:none"><i class="fas fa-times"></i> İptal</button>
       </div>
-      <div>
-        <div class="alist"><h4>Kategoriler</h4><div id="adminCList"></div></div>
-      </div>
+      <div><div class="alist"><h4>Kategoriler</h4><div id="adminCList"></div></div></div>
     </div>
   </div>
 </div>
@@ -442,785 +456,390 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 <footer id="iletisim">
   <div class="fi">
     <div class="fg">
-      <div class="fc">
-        <div class="fbrand">Doğa<span>Pasajı</span></div>
-        <div class="fbrand-desc">2015'ten beri doğanın güzelliğini evinize taşıyan, sürdürülebilir ve estetik ürünler sunuyoruz.</div>
-        <div class="soc">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-pinterest"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-      <div class="fc">
-        <h4>Mağaza</h4>
-        <ul>
-          <li><a href="#">Balıklar</a></li><li><a href="#">Kaktüs & Sukulentler</a></li>
-          <li><a href="#">Akvaryum Malzemeleri</a></li><li><a href="#">Ev & Yaşam</a></li>
-          <li><a href="#">İndirimli Ürünler</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h4>Yardım</h4>
-        <ul>
-          <li><a href="#">Sık Sorulanlar</a></li><li><a href="#">Kargo Bilgileri</a></li>
-          <li><a href="#">İade & Değişim</a></li><li><a href="#">Gizlilik Politikası</a></li>
-        </ul>
-      </div>
-      <div class="fc">
-        <h4>İletişim</h4>
-        <div class="ci2"><i class="fas fa-map-marker-alt"></i><span>Bursa Nilüfer, Görükle</span></div>
-        <div class="ci2"><i class="fas fa-phone"></i><a href="tel:+905535900029">+90 553 590 00 29</a></div>
-        <div class="ci2"><i class="fas fa-envelope"></i><a href="mailto:onatpinar55@gmail.com">onatpinar55@gmail.com</a></div>
-        <div class="ci2"><i class="fab fa-whatsapp"></i><a href="https://wa.me/905535900029">WhatsApp ile Yaz</a></div>
-      </div>
+      <div class="fc"><div class="fbrand">Doğa<span>Pasajı</span></div><div class="fbrand-desc">2015'ten beri doğanın güzelliğini evinize taşıyan, sürdürülebilir ve estetik ürünler sunuyoruz.</div><div class="soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-pinterest"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+      <div class="fc"><h4>Mağaza</h4><ul><li><a href="#">Balıklar</a></li><li><a href="#">Kaktüs & Sukulentler</a></li><li><a href="#">Akvaryum Malzemeleri</a></li><li><a href="#">Ev & Yaşam</a></li><li><a href="#">İndirimli Ürünler</a></li></ul></div>
+      <div class="fc"><h4>Yardım</h4><ul><li><a href="#">Sık Sorulanlar</a></li><li><a href="#">Kargo Bilgileri</a></li><li><a href="#">İade & Değişim</a></li><li><a href="#">Gizlilik Politikası</a></li></ul></div>
+      <div class="fc"><h4>İletişim</h4><div class="ci2"><i class="fas fa-map-marker-alt"></i><span>Bursa Nilüfer, Görükle</span></div><div class="ci2"><i class="fas fa-phone"></i><a href="tel:+905535900029">+90 553 590 00 29</a></div><div class="ci2"><i class="fas fa-envelope"></i><a href="mailto:onatpinar55@gmail.com">onatpinar55@gmail.com</a></div><div class="ci2"><i class="fab fa-whatsapp"></i><a href="https://wa.me/905535900029">WhatsApp ile Yaz</a></div></div>
     </div>
     <div class="fbot">&copy; 2025 Doğa Pasajı · Tüm hakları saklıdır.</div>
   </div>
 </footer>
 
 <a href="https://wa.me/905535900029" target="_blank" class="waf"><i class="fab fa-whatsapp"></i><span>Canlı Destek</span></a>
+<button class="btt" id="bttBtn" title="Yukarı çık"><i class="fas fa-chevron-up"></i></button>
 
+<!-- ÜRÜN DETAY MODAL -->
+<div class="prod-modal" id="prodModal">
+  <div class="pm-box" id="pmBox">
+    <div class="pm-gallery">
+      <button class="pm-close" id="pmClose"><i class="fas fa-times"></i></button>
+      <div class="pm-main-wrap"><img class="pm-main-img" id="pmMainImg" src="" alt=""></div>
+      <div class="pm-thumbs" id="pmThumbs"></div>
+    </div>
+    <div class="pm-info">
+      <div><div class="pm-cat" id="pmCat"></div><div class="pm-name" id="pmName"></div></div>
+      <div class="pm-price-row"><div class="pm-price" id="pmPrice"></div><div class="pm-old" id="pmOld" style="display:none"></div><div class="pm-disc" id="pmDisc" style="display:none"></div></div>
+      <div class="pm-stock" id="pmStock"></div>
+      <div class="pm-desc" id="pmDesc" style="display:none"></div>
+      <div class="pm-actions">
+        <button class="pm-wa" id="pmWaBtn"><i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver</button>
+        <button class="pm-fav" id="pmFav"><i class="fas fa-heart"></i> Favorilere Ekle</button>
+        <button class="pm-share" id="pmShare"><i class="fas fa-share-alt"></i> Paylaş</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAVORİLER PANELİ -->
+<div class="fav-panel" id="favPanel">
+  <div class="fav-drawer">
+    <div class="fav-head"><h3>❤️ Favorilerim</h3><button class="fav-close" id="favClose"><i class="fas fa-times"></i></button></div>
+    <div class="fav-list" id="favList"></div>
+  </div>
+</div>
+
+<!-- LOGIN -->
 <div class="modal" id="loginModal">
   <div class="mbox">
     <h3>🔒 Admin Girişi</h3>
     <input type="text" id="uname" placeholder="Kullanıcı Adı" autocomplete="username">
     <input type="password" id="upass" placeholder="Şifre" autocomplete="current-password">
     <div id="loginErr" style="color:var(--red);font-size:.83rem;margin-bottom:.6rem;display:none;padding:.48rem .8rem;background:#fff0f0;border-radius:8px">❌ Hatalı kullanıcı adı veya şifre!</div>
-    <div class="mbtns">
-      <button class="bcnc" id="mclose">İptal</button>
-      <button class="bsub" id="loginBtn">Giriş Yap</button>
-    </div>
+    <div class="mbtns"><button class="bcnc" id="mclose">İptal</button><button class="bsub" id="loginBtn">Giriş Yap</button></div>
   </div>
 </div>
-
 <div class="toast" id="toast"><i class="fas fa-check-circle" id="toastIcon"></i><span id="toastMsg"></span></div>
 
 <script>
 'use strict';
+var ADMIN_U='admin',ADMIN_P='admin123',ADMIN_KEY='dp_admin_2025';
+var DEFAULT_CATS=[{id:'c1',name:'Balıklar',emoji:'🐟',img:''},{id:'c2',name:'Kaktüs & Bitkiler',emoji:'🌵',img:''},{id:'c3',name:'Akvaryum',emoji:'🐠',img:''},{id:'c4',name:'Ev & Yaşam',emoji:'🏡',img:''}];
+var CAT_FB={c1:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',c2:'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=600&q=80',c3:'https://images.unsplash.com/photo-1497206365907-f5e630693df0?w=600&q=80',c4:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80'};
+var DEF_IMG='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80';
+var allProducts=[],activeCat='all',editIdx=null,uploadedImgs=[],catImgUrl='',blobMode=false,currentSort='default',favorites=[],currentProd=null;
 
-var ADMIN_U   = 'admin';
-var ADMIN_P   = 'admin123';
-var ADMIN_KEY = 'dp_admin_2025';
+function lsGet(k,d){try{var s=localStorage.getItem(k);if(s!==null)return JSON.parse(s);}catch(e){}return d;}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function getCats(){var c=lsGet('dp_cats',null);if(!c){c=DEFAULT_CATS;lsSet('dp_cats',c);}return c;}
+function saveCats(v){lsSet('dp_cats',v);}
+function getCatById(id){var cats=getCats();for(var i=0;i<cats.length;i++)if(cats[i].id===id)return cats[i];return{name:'Genel',emoji:'📦',img:''};}
+function getCatImg(c){if(c.img&&c.img.trim())return c.img;return CAT_FB[c.id]||DEF_IMG;}
 
-var DEFAULT_CATS = [
-  {id:'c1', name:'Balıklar',         emoji:'🐟', img:''},
-  {id:'c2', name:'Kaktüs & Bitkiler',emoji:'🌵', img:''},
-  {id:'c3', name:'Akvaryum',         emoji:'🐠', img:''},
-  {id:'c4', name:'Ev & Yaşam',       emoji:'🏡', img:''}
-];
-
-// Fallback görseller — sadece kategori kendi görseli yoksa kullanılır
-var CAT_IMGS_FALLBACK = {
-  c1:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-  c2:'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=600&q=80',
-  c3:'https://images.unsplash.com/photo-1497206365907-f5e630693df0?w=600&q=80',
-  c4:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80'
-};
-var DEFAULT_CAT_IMG = 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80';
-
-// ── State ──────────────────────────────────────────────────
-var allProducts  = [];
-var activeCat    = 'all';
-var editIdx      = null;
-var uploadedImgs = [];
-var catImgUrl    = '';   // Kategori için yüklenen görsel URL'si
-var blobMode     = false;
-
-// ── localStorage ──────────────────────────────────────────
-function lsGet(k, def) {
-  try { var s = localStorage.getItem(k); if (s !== null) return JSON.parse(s); } catch(e) {}
-  return def;
+/* FAVORİLER */
+function loadFavs(){favorites=lsGet('dp_favs',[]);}
+function saveFavs(){lsSet('dp_favs',favorites);}
+function isFav(id){return favorites.some(function(f){return f.id===id;});}
+function toggleFav(p){
+  if(isFav(p.id)){favorites=favorites.filter(function(f){return f.id!==p.id;});showToast('Favorilerden kaldırıldı','fa-heart-broken');}
+  else{var imgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]);favorites.push({id:p.id,name:p.name,price:p.price,img:imgs[0]||''});showToast('❤️ Favorilere eklendi!');}
+  saveFavs();updateFavBadge();renderFavList();
+  document.querySelectorAll('.fav-toggle[data-id="'+p.id+'"]').forEach(function(b){b.classList.toggle('on',isFav(p.id));});
+  if(currentProd&&currentProd.id===p.id){var pf=document.getElementById('pmFav');pf.classList.toggle('on',isFav(p.id));pf.innerHTML=isFav(p.id)?'<i class="fas fa-heart"></i> Favorilerde':'<i class="fas fa-heart"></i> Favorilere Ekle';}
 }
-function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} }
-function getCats()       { var c = lsGet('dp_cats', null); if (!c) { c = DEFAULT_CATS; lsSet('dp_cats', c); } return c; }
-function saveCats(v)     { lsSet('dp_cats', v); }
-function getCatById(id)  { var cats = getCats(); for (var i=0;i<cats.length;i++) if (cats[i].id===id) return cats[i]; return {name:'Genel',emoji:'📦',img:''}; }
-
-/* ════════════════════════════════════════════════════════════
-   BLOB API
-════════════════════════════════════════════════════════════ */
-function apiGetProducts(cb) {
-  fetch('/api/products')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data.success && Array.isArray(data.products)) {
-        allProducts = data.products;
-        blobMode    = true;
-        lsSet('dp_prods_cache', allProducts);
-        setBlobBadge(true);
-        cb(allProducts);
-      } else { throw new Error('API success:false'); }
-    })
-    .catch(function(){
-      var cached = lsGet('dp_prods_cache', null);
-      allProducts = cached || [];
-      blobMode    = false;
-      setBlobBadge(false);
-      cb(allProducts);
-    });
+function updateFavBadge(){var b=document.getElementById('favCountBadge');b.textContent=favorites.length;b.classList.toggle('on',favorites.length>0);}
+function renderFavList(){
+  var el=document.getElementById('favList');
+  if(!favorites.length){el.innerHTML='<div class="fav-empty"><i class="fas fa-heart"></i><p>Henüz favori eklemediniz.</p></div>';return;}
+  el.innerHTML='';
+  favorites.forEach(function(f){
+    var div=document.createElement('div');div.className='fav-item';
+    div.innerHTML='<img src="'+(f.img||'https://via.placeholder.com/56?text=?')+'" alt="'+f.name+'" onerror="this.src=\'https://via.placeholder.com/56?text=?\'">'+'<div class="fav-item-info"><h5>'+f.name+'</h5><p>'+f.price+' TL</p></div><button class="fav-item-del"><i class="fas fa-times"></i></button>';
+    div.querySelector('.fav-item-del').onclick=function(e){e.stopPropagation();favorites=favorites.filter(function(x){return x.id!==f.id;});saveFavs();updateFavBadge();renderFavList();document.querySelectorAll('.fav-toggle[data-id="'+f.id+'"]').forEach(function(b){b.classList.remove('on');});};
+    div.onclick=function(e){if(e.target.closest('.fav-item-del'))return;var pr=allProducts.find(function(x){return x.id===f.id;});if(pr){document.getElementById('favPanel').classList.remove('on');openProdModal(pr);}};
+    el.appendChild(div);
+  });
 }
+document.getElementById('openFavPanel').onclick=function(){document.getElementById('favPanel').classList.add('on');renderFavList();};
+document.getElementById('favClose').onclick=function(){document.getElementById('favPanel').classList.remove('on');};
+document.getElementById('favPanel').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 
-function apiSaveProducts(products, cb) {
-  fetch('/api/products', {
-    method:  'POST',
-    headers: {'Content-Type':'application/json'},
-    body:    JSON.stringify({ products: products, adminKey: ADMIN_KEY })
-  })
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data.success) { lsSet('dp_prods_cache', products); if (cb) cb(true); }
-      else { if (cb) cb(false, data.error); }
-    })
-    .catch(function(err){ if (cb) cb(false, err.message); });
+/* BLOB API */
+function apiGetProducts(cb){
+  fetch('/api/products').then(function(r){return r.json();}).then(function(d){if(d.success&&Array.isArray(d.products)){allProducts=d.products;blobMode=true;lsSet('dp_prods_cache',allProducts);setBlobBadge(true);cb();}else throw 0;}).catch(function(){allProducts=lsGet('dp_prods_cache',[])||[];blobMode=false;setBlobBadge(false);cb();});
 }
+function apiSaveProducts(products,cb){
+  fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({products:products,adminKey:ADMIN_KEY})}).then(function(r){return r.json();}).then(function(d){if(d.success){lsSet('dp_prods_cache',products);if(cb)cb(true);}else if(cb)cb(false,d.error);}).catch(function(e){if(cb)cb(false,e.message);});
+}
+function setBlobBadge(ok){var b=document.getElementById('blobBadge');if(!b)return;b.style.display='inline-flex';b.className='blob-badge '+(ok?'ok':'warn');b.innerHTML=ok?'<i class="fas fa-cloud"></i> Blob bağlı':'<i class="fas fa-exclamation-triangle"></i> Blob yok';}
 
-function setBlobBadge(ok) {
-  var b = document.getElementById('blobBadge');
-  if (!b) return;
-  b.style.display = 'inline-flex';
-  if (ok) { b.className='blob-badge ok'; b.innerHTML='<i class="fas fa-cloud"></i> Blob bağlı — herkes görür'; }
-  else     { b.className='blob-badge warn'; b.innerHTML='<i class="fas fa-exclamation-triangle"></i> Blob bağlı değil'; }
+/* TOAST */
+function showToast(msg,icon){var t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;document.getElementById('toastIcon').className='fas '+(icon||'fa-check-circle');t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on');},2600);}
+
+/* BACK TO TOP */
+window.addEventListener('scroll',function(){document.getElementById('bttBtn').classList.toggle('on',window.scrollY>400);},{passive:true});
+document.getElementById('bttBtn').onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};
+
+/* HERO */
+var si=0,slides=document.querySelectorAll('.slide'),dotsEl=document.getElementById('heroDots');
+for(var di=0;di<slides.length;di++){(function(i){var d=document.createElement('button');d.className='dot'+(i===0?' on':'');d.onclick=function(){goSlide(i);};dotsEl.appendChild(d);})(di);}
+function goSlide(n){slides[si].classList.remove('on');dotsEl.children[si].classList.remove('on');si=(n+slides.length)%slides.length;slides[si].classList.add('on');dotsEl.children[si].classList.add('on');}
+document.getElementById('heroPrev').onclick=function(){goSlide(si-1);};
+document.getElementById('heroNext').onclick=function(){goSlide(si+1);};
+setInterval(function(){goSlide(si+1);},5000);
+(function(){var el=document.getElementById('heroSection'),tx=0;el.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});el.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)goSlide(dx<0?si+1:si-1);},{passive:true});})();
+
+/* SORT */
+document.getElementById('sortSel').addEventListener('change',function(){currentSort=this.value;renderProds('');});
+
+/* NAV & PILLS */
+function buildNav(){
+  var nl=document.getElementById('navLinks');nl.innerHTML='';
+  function mk(l,f,ex){var b=document.createElement('button');b.className='nl'+(activeCat===f?' ac':'')+(ex?' '+ex:'');b.textContent=l;b.onclick=function(){activeCat=f;buildNav();buildPills();renderProds('');};nl.appendChild(b);}
+  mk('🌿 Tüm Ürünler','all');getCats().forEach(function(c){mk(c.emoji+' '+c.name,c.id);});mk('🏷️ İndirim','sale','sale');
+}
+function buildPills(){
+  var el=document.getElementById('pills');el.innerHTML='';
+  function mk(l,f,cnt){var b=document.createElement('button');b.className='pill'+(activeCat===f?' on':'');b.innerHTML=l+(cnt!==undefined?'<span class="pill-cnt">'+cnt+'</span>':'');b.onclick=function(){activeCat=f;buildNav();buildPills();renderProds('');};el.appendChild(b);}
+  mk('🌿 Tüm Ürünler','all',allProducts.length);
+  getCats().forEach(function(c){mk(c.emoji+' '+c.name,c.id,allProducts.filter(function(p){return p.catId===c.id;}).length);});
+  mk('🏷️ İndirim','sale',allProducts.filter(function(p){return p.old&&p.old.toString().trim();}).length);
 }
 
-/* ══════════════════  TOAST  ══════════════════ */
-function showToast(msg, icon) {
-  var t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  document.getElementById('toastIcon').className = 'fas ' + (icon || 'fa-check-circle');
-  t.classList.add('on');
-  clearTimeout(t._timer);
-  t._timer = setTimeout(function(){ t.classList.remove('on'); }, 2600);
+/* RENDER PRODUCTS */
+var BADGE_CFG={new:{cls:'new',lbl:'Yeni'},hot:{cls:'hot',lbl:'Çok Satan'},sale:{cls:'sale',lbl:'İndirim'},out:{cls:'out',lbl:'Tükendi'}};
+function getSorted(prods){
+  var p=prods.slice();
+  if(currentSort==='newest')p.sort(function(a,b){return (b.id||'').localeCompare(a.id||'');});
+  else if(currentSort==='price_asc')p.sort(function(a,b){return parseFloat(a.price)-parseFloat(b.price);});
+  else if(currentSort==='price_desc')p.sort(function(a,b){return parseFloat(b.price)-parseFloat(a.price);});
+  else if(currentSort==='name_az')p.sort(function(a,b){return a.name.localeCompare(b.name,'tr');});
+  return p;
 }
-
-/* ══════════════════  HERO SLIDER  ══════════════════ */
-var si = 0;
-var slides = document.querySelectorAll('.slide');
-var dotsEl = document.getElementById('heroDots');
-for (var di = 0; di < slides.length; di++) {
-  (function(i){
-    var d = document.createElement('button');
-    d.className = 'dot' + (i===0?' on':'');
-    d.onclick = function(){ goSlide(i); };
-    dotsEl.appendChild(d);
-  })(di);
-}
-function goSlide(n) {
-  slides[si].classList.remove('on'); dotsEl.children[si].classList.remove('on');
-  si = (n + slides.length) % slides.length;
-  slides[si].classList.add('on'); dotsEl.children[si].classList.add('on');
-}
-document.getElementById('heroPrev').onclick = function(){ goSlide(si-1); };
-document.getElementById('heroNext').onclick = function(){ goSlide(si+1); };
-setInterval(function(){ goSlide(si+1); }, 5000);
-
-/* ══════════════════  NAV & PILLS  ══════════════════ */
-function buildNav() {
-  var nl = document.getElementById('navLinks'); nl.innerHTML = '';
-  function mk(label, f, extra) {
-    var b = document.createElement('button');
-    b.className = 'nl'+(activeCat===f?' ac':'')+(extra?' '+extra:'');
-    b.textContent = label;
-    b.onclick = function(){ activeCat=f; buildNav(); buildPills(); renderProds(''); };
-    nl.appendChild(b);
-  }
-  mk('🌿 Tüm Ürünler','all');
-  getCats().forEach(function(c){ mk(c.emoji+' '+c.name, c.id); });
-  mk('🏷️ İndirim','sale','sale');
-}
-function buildPills() {
-  var el = document.getElementById('pills'); el.innerHTML = '';
-  function mk(label, f) {
-    var b = document.createElement('button');
-    b.className = 'pill'+(activeCat===f?' on':'');
-    b.textContent = label;
-    b.onclick = function(){ activeCat=f; buildNav(); buildPills(); renderProds(''); };
-    el.appendChild(b);
-  }
-  mk('🌿 Tüm Ürünler','all');
-  getCats().forEach(function(c){ mk(c.emoji+' '+c.name, c.id); });
-  mk('🏷️ İndirim','sale');
-}
-
-/* ══════════════════  ÜRÜN LİSTESİ  ══════════════════ */
-function renderProds(search) {
-  var prods = allProducts.slice();
-  if (search && search.trim()) {
-    var q = search.toLowerCase();
-    prods = prods.filter(function(p){ return p.name.toLowerCase().indexOf(q)>=0 || (p.desc&&p.desc.toLowerCase().indexOf(q)>=0); });
-  } else if (activeCat==='sale') {
-    prods = prods.filter(function(p){ return p.old && p.old.toString().trim(); });
-  } else if (activeCat!=='all') {
-    prods = prods.filter(function(p){ return p.catId===activeCat; });
-  }
-  var grid = document.getElementById('grid'); grid.innerHTML = '';
-  if (!prods.length) {
-    grid.innerHTML = '<div class="empty-pg"><i class="fas fa-search"></i><p>Ürün bulunamadı.</p></div>';
-    return;
-  }
+function renderProds(search){
+  var prods=allProducts.slice();
+  if(search&&search.trim()){var q=search.toLowerCase();prods=prods.filter(function(p){return p.name.toLowerCase().indexOf(q)>=0||(p.desc&&p.desc.toLowerCase().indexOf(q)>=0);});}
+  else if(activeCat==='sale'){prods=prods.filter(function(p){return p.old&&p.old.toString().trim();});}
+  else if(activeCat!=='all'){prods=prods.filter(function(p){return p.catId===activeCat;});}
+  prods=getSorted(prods);
+  var grid=document.getElementById('grid');grid.innerHTML='';
+  if(!prods.length){grid.innerHTML='<div class="empty-pg"><i class="fas fa-search"></i><p>Ürün bulunamadı.</p></div>';return;}
   prods.forEach(function(p){
-    var cat = getCatById(p.catId);
-    var hasDisc = p.old && p.old.toString().trim();
-    var waMsg = encodeURIComponent('Merhaba! "'+p.name+'" ürünüyle ilgileniyorum. Fiyat: '+p.price+' TL');
-    var imgs = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
-    var card = document.createElement('div'); card.className = 'card';
+    var cat=getCatById(p.catId),hasDisc=p.old&&p.old.toString().trim(),inStock=p.inStock!==false;
+    var imgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]);
+    var waMsg=encodeURIComponent('Merhaba! "'+p.name+'" ürünüyle ilgileniyorum. Fiyat: '+p.price+' TL');
+    var bKey=!inStock?'out':(p.badge||(hasDisc?'sale':null));
+    var badge=bKey&&BADGE_CFG[bKey]?'<span class="cbadge '+BADGE_CFG[bKey].cls+'">'+BADGE_CFG[bKey].lbl+'</span>':'';
+    var card=document.createElement('div');card.className='card';
 
     var ciHtml;
-    if (imgs.length <= 1) {
-      var src = imgs[0] || 'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok';
-      ciHtml = '<div class="ci"><img src="'+src+'" alt="'+p.name+'" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok\'">'+(hasDisc?'<span class="cbadge">İndirim</span>':'')+'</div>';
+    if(imgs.length<=1){
+      var s0=imgs[0]||'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok';
+      ciHtml='<div class="ci" data-cidx="0"><div class="ci-track"><img src="'+s0+'" alt="'+p.name+'" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok\'"></div>'+badge+(!inStock?'<div class="stock-out-overlay"><span>Stok Tükendi</span></div>':'')+'</div>';
     } else {
-      var trackImgs = imgs.map(function(src){
-        return '<img src="'+src+'" alt="'+p.name+'" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok\'">';
-      }).join('');
-      var dots = imgs.map(function(_,i){ return '<button class="ci-dot'+(i===0?' on':'')+'" data-i="'+i+'"></button>'; }).join('');
-      ciHtml = '<div class="ci" data-cidx="0">'+
-        '<div class="ci-track">'+trackImgs+'</div>'+
-        (imgs.length>1?'<button class="ci-arr lf"><i class="fas fa-chevron-left"></i></button><button class="ci-arr rg"><i class="fas fa-chevron-right"></i></button><div class="ci-dots">'+dots+'</div>':'')+
-        (hasDisc?'<span class="cbadge">İndirim</span>':'')+
-        '</div>';
+      var tr=imgs.map(function(s){return '<img src="'+s+'" alt="'+p.name+'" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok\'">';}).join('');
+      var dts=imgs.map(function(_,i){return '<button class="ci-dot'+(i===0?' on':'')+'" data-i="'+i+'"></button>';}).join('');
+      ciHtml='<div class="ci" data-cidx="0"><div class="ci-track">'+tr+'</div><button class="ci-arr lf"><i class="fas fa-chevron-left"></i></button><button class="ci-arr rg"><i class="fas fa-chevron-right"></i></button><div class="ci-dots">'+dts+'</div>'+badge+(!inStock?'<div class="stock-out-overlay"><span>Stok Tükendi</span></div>':'')+'</div>';
     }
-
-    card.innerHTML = ciHtml +
-      '<div class="cb"><div class="ccat">'+cat.emoji+' '+cat.name+'</div>'+
-      '<div class="cname">'+p.name+'</div>'+
+    var acts='<div class="card-actions"><button class="ca-btn fav-toggle'+(isFav(p.id)?' on':'')+'" data-id="'+p.id+'"><i class="fas fa-heart"></i></button><button class="ca-btn share-ca" data-id="'+p.id+'"><i class="fas fa-share-alt"></i></button></div>';
+    card.innerHTML=ciHtml+acts+
+      '<div class="cb"><div class="ccat">'+cat.emoji+' '+cat.name+'</div><div class="cname">'+p.name+'</div>'+
       (p.desc?'<div class="cdesc">'+p.desc+'</div>':'')+
       '<div class="cfoot"><div class="cprice">'+(hasDisc?'<span class="cold">'+p.old+' TL</span>':'')+p.price+' TL</div>'+
-      '<a href="https://wa.me/905535900029?text='+waMsg+'" target="_blank" rel="noopener"><button class="wabtn"><i class="fab fa-whatsapp"></i> Sipariş Ver</button></a></div></div>';
+      '<a href="https://wa.me/905535900029?text='+waMsg+'" target="_blank" rel="noopener" onclick="event.stopPropagation()"><button class="wabtn"'+(inStock?'':' disabled')+'>'+
+      (inStock?'<i class="fab fa-whatsapp"></i> Sipariş Ver':'Stok Tükendi')+'</button></a></div></div>';
 
-    if (imgs.length > 1) {
-      var ciEl   = card.querySelector('.ci');
-      var track  = card.querySelector('.ci-track');
-      var dotEls = card.querySelectorAll('.ci-dot');
-      function goCI(n) {
-        var total = imgs.length;
-        var idx   = ((n % total) + total) % total;
-        ciEl.setAttribute('data-cidx', idx);
-        track.style.transform = 'translateX(-'+idx+'00%)';
-        dotEls.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
-      }
-      card.querySelector('.ci-arr.lf').addEventListener('click', function(e){ e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')-1); });
-      card.querySelector('.ci-arr.rg').addEventListener('click', function(e){ e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')+1); });
-      dotEls.forEach(function(d){ d.addEventListener('click', function(e){ e.preventDefault(); goCI(+d.getAttribute('data-i')); }); });
+    if(imgs.length>1){
+      var ci=card.querySelector('.ci'),tr2=card.querySelector('.ci-track'),dts2=card.querySelectorAll('.ci-dot');
+      function mkGoCI(ciEl,track,dots){return function(n){var t=dots.length,idx=((n%t)+t)%t;ciEl.setAttribute('data-cidx',idx);track.style.transform='translateX(-'+idx+'00%)';dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});};}
+      var goCI=mkGoCI(ci,tr2,dts2);
+      card.querySelector('.ci-arr.lf').addEventListener('click',function(e){e.stopPropagation();goCI(+ci.getAttribute('data-cidx')-1);});
+      card.querySelector('.ci-arr.rg').addEventListener('click',function(e){e.stopPropagation();goCI(+ci.getAttribute('data-cidx')+1);});
+      dts2.forEach(function(d){d.addEventListener('click',function(e){e.stopPropagation();goCI(+d.getAttribute('data-i'));});});
+      var tx2=0;
+      ci.addEventListener('touchstart',function(e){tx2=e.touches[0].clientX;},{passive:true});
+      ci.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx2;if(Math.abs(dx)>30){e.stopPropagation();goCI(+ci.getAttribute('data-cidx')+(dx<0?1:-1));}},{passive:true});
     }
+    card.querySelector('.fav-toggle').addEventListener('click',function(e){e.stopPropagation();toggleFav(p);});
+    card.querySelector('.share-ca').addEventListener('click',function(e){e.stopPropagation();shareProduct(p);});
+    card.addEventListener('click',function(e){if(e.target.closest('.wabtn')||e.target.closest('a'))return;openProdModal(p);});
     grid.appendChild(card);
   });
 }
 
-/* ══════════════════  KATEGORİ KARTLARI  ══════════════════ */
-function getCatImg(c) {
-  // Önce kategorinin kendi görseli, sonra ID'ye göre fallback, sonra genel default
-  if (c.img && c.img.trim()) return c.img;
-  return CAT_IMGS_FALLBACK[c.id] || DEFAULT_CAT_IMG;
+/* ÜRÜN DETAY MODAL */
+function openProdModal(p){
+  currentProd=p;
+  var cat=getCatById(p.catId),imgs=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]),hasDisc=p.old&&p.old.toString().trim(),inStock=p.inStock!==false;
+  var waMsg=encodeURIComponent('Merhaba! "'+p.name+'" ürünüyle ilgileniyorum. Fiyat: '+p.price+' TL');
+  document.getElementById('pmCat').textContent=cat.emoji+' '+cat.name;
+  document.getElementById('pmName').textContent=p.name;
+  document.getElementById('pmPrice').textContent=p.price+' TL';
+  var pmO=document.getElementById('pmOld'),pmD=document.getElementById('pmDisc');
+  if(hasDisc){var pct=Math.round((1-parseFloat(p.price)/parseFloat(p.old))*100);pmO.textContent=p.old+' TL';pmO.style.display='block';pmD.textContent='-%'+pct;pmD.style.display='block';}
+  else{pmO.style.display='none';pmD.style.display='none';}
+  var stk=document.getElementById('pmStock');
+  stk.className='pm-stock '+(inStock?'in':'out');
+  stk.innerHTML=inStock?'<i class="fas fa-check-circle"></i> Stokta Mevcut':'<i class="fas fa-times-circle"></i> Stok Tükendi';
+  var de=document.getElementById('pmDesc');if(p.desc){de.textContent=p.desc;de.style.display='block';}else{de.style.display='none';}
+  var mi=document.getElementById('pmMainImg');mi.src=imgs[0]||'https://via.placeholder.com/600x500/c8dfc0/1a3a2a?text=Gorsel+Yok';mi.onerror=function(){this.src='https://via.placeholder.com/600x500/c8dfc0/1a3a2a?text=Gorsel+Yok';};
+  var th=document.getElementById('pmThumbs');th.innerHTML='';
+  if(imgs.length>1){imgs.forEach(function(src,i){var t=document.createElement('img');t.className='pm-thumb'+(i===0?' on':'');t.src=src;t.alt='';t.onclick=function(){mi.src=src;th.querySelectorAll('.pm-thumb').forEach(function(x,j){x.classList.toggle('on',j===i);});};th.appendChild(t);});}
+  var wb=document.getElementById('pmWaBtn');wb.disabled=!inStock;wb.innerHTML=inStock?'<i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver':'Stok Tükendi';
+  wb.onclick=function(){if(!inStock)return;window.open('https://wa.me/905535900029?text='+waMsg,'_blank');};
+  var pf=document.getElementById('pmFav');pf.classList.toggle('on',isFav(p.id));pf.innerHTML=isFav(p.id)?'<i class="fas fa-heart"></i> Favorilerde':'<i class="fas fa-heart"></i> Favorilere Ekle';
+  pf.onclick=function(){toggleFav(p);};
+  document.getElementById('pmShare').onclick=function(){shareProduct(p);};
+  document.getElementById('prodModal').classList.add('on');document.body.style.overflow='hidden';
+}
+function closeProdModal(){document.getElementById('prodModal').classList.remove('on');document.body.style.overflow='';currentProd=null;}
+document.getElementById('pmClose').onclick=closeProdModal;
+document.getElementById('prodModal').addEventListener('click',function(e){if(e.target===this)closeProdModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeProdModal();});
+
+/* SHARE */
+function shareProduct(p){
+  var text=p.name+' — '+p.price+' TL | Doğa Pasajı';
+  if(navigator.share){navigator.share({title:'Doğa Pasajı',text:text,url:window.location.href}).catch(function(){});}
+  else{window.open('https://wa.me/?text='+encodeURIComponent(text+' '+window.location.href),'_blank');}
 }
 
-function renderCatCards() {
-  var el = document.getElementById('catCards');
-  var cats = getCats().slice(0,4);
-  el.style.gridTemplateColumns = cats.length < 4 ? 'repeat('+cats.length+',1fr)' : '';
-  el.innerHTML = cats.map(function(c){
-    var img = getCatImg(c);
-    var cnt = allProducts.filter(function(p){ return p.catId===c.id; }).length;
-    return '<div class="ccard" data-catid="'+c.id+'"><img src="'+img+'" alt="'+c.name+'" loading="lazy"><div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div></div>';
-  }).join('');
-  el.querySelectorAll('.ccard').forEach(function(card){
-    card.onclick = function(){
-      activeCat = card.getAttribute('data-catid');
-      buildNav(); buildPills(); renderProds('');
-      document.getElementById('urunler').scrollIntoView({behavior:'smooth'});
-    };
-  });
+/* CAT CARDS */
+function renderCatCards(){
+  var el=document.getElementById('catCards'),cats=getCats().slice(0,4);
+  el.style.gridTemplateColumns=cats.length<4?'repeat('+cats.length+',1fr)':'';
+  el.innerHTML=cats.map(function(c){var img=getCatImg(c),cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;return '<div class="ccard" data-catid="'+c.id+'"><img src="'+img+'" alt="'+c.name+'" loading="lazy"><div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div></div>';}).join('');
+  el.querySelectorAll('.ccard').forEach(function(card){card.onclick=function(){activeCat=card.getAttribute('data-catid');buildNav();buildPills();renderProds('');document.getElementById('urunler').scrollIntoView({behavior:'smooth'});};});
 }
 
-/* ══════════════════  ARAMA  ══════════════════ */
+/* SEARCH */
 var srchTimer;
-document.getElementById('srch').addEventListener('input', function(){
-  clearTimeout(srchTimer);
-  var val = this.value;
-  srchTimer = setTimeout(function(){ renderProds(val); }, 250);
-});
+document.getElementById('srch').addEventListener('input',function(){clearTimeout(srchTimer);var v=this.value;srchTimer=setTimeout(function(){renderProds(v);},250);});
 
-/* ══════════════════  ADMIN GİRİŞ  ══════════════════ */
-var loginModal = document.getElementById('loginModal');
-document.getElementById('openAdmin').addEventListener('click', function(){
-  if (sessionStorage.getItem('dp_admin')==='1') {
-    document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});
-  } else {
-    loginModal.classList.add('on');
-    document.getElementById('uname').value='';
-    document.getElementById('upass').value='';
-    document.getElementById('loginErr').style.display='none';
-    setTimeout(function(){ document.getElementById('uname').focus(); }, 120);
-  }
-});
-document.getElementById('mclose').addEventListener('click', function(){ loginModal.classList.remove('on'); });
-loginModal.addEventListener('click', function(e){ if(e.target===loginModal) loginModal.classList.remove('on'); });
+/* ADMIN LOGIN */
+var loginModal=document.getElementById('loginModal');
+document.getElementById('openAdmin').addEventListener('click',function(){if(sessionStorage.getItem('dp_admin')==='1'){document.getElementById('adminPanel').scrollIntoView({behavior:'smooth'});}else{loginModal.classList.add('on');document.getElementById('uname').value='';document.getElementById('upass').value='';document.getElementById('loginErr').style.display='none';setTimeout(function(){document.getElementById('uname').focus();},120);}});
+document.getElementById('mclose').addEventListener('click',function(){loginModal.classList.remove('on');});
+loginModal.addEventListener('click',function(e){if(e.target===loginModal)loginModal.classList.remove('on');});
+function tryLogin(){var u=document.getElementById('uname').value.trim(),p=document.getElementById('upass').value;if(u===ADMIN_U&&p===ADMIN_P){sessionStorage.setItem('dp_admin','1');loginModal.classList.remove('on');openAdminPanel();showToast('✅ Admin girişi başarılı!');}else{document.getElementById('loginErr').style.display='block';document.getElementById('upass').value='';document.getElementById('upass').focus();}}
+document.getElementById('loginBtn').addEventListener('click',tryLogin);
+document.getElementById('upass').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin();});
+document.getElementById('uname').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('upass').focus();});
+function openAdminPanel(){document.getElementById('adminPanel').style.display='block';setBlobBadge(blobMode);populateCatSelect('');renderAdminPList();renderAdminCList();initSlots();initCatImgZone();}
+function closeAdminPanel(){sessionStorage.removeItem('dp_admin');document.getElementById('adminPanel').style.display='none';}
+document.getElementById('logoutBtn').addEventListener('click',function(){closeAdminPanel();showToast('Çıkış yapıldı','fa-sign-out-alt');});
 
-function tryLogin() {
-  var u = document.getElementById('uname').value.trim();
-  var p = document.getElementById('upass').value;
-  if (u===ADMIN_U && p===ADMIN_P) {
-    sessionStorage.setItem('dp_admin','1');
-    loginModal.classList.remove('on');
-    openAdminPanel();
-    showToast('✅ Admin girişi başarılı!');
-  } else {
-    document.getElementById('loginErr').style.display='block';
-    document.getElementById('upass').value='';
-    document.getElementById('upass').focus();
-  }
-}
-document.getElementById('loginBtn').addEventListener('click', tryLogin);
-document.getElementById('upass').addEventListener('keydown', function(e){ if(e.key==='Enter') tryLogin(); });
-document.getElementById('uname').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('upass').focus(); });
+/* ADMIN TABS */
+document.querySelectorAll('.atab').forEach(function(tab){tab.addEventListener('click',function(){document.querySelectorAll('.atab').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.abody').forEach(function(b){b.classList.remove('on');});tab.classList.add('on');var t=tab.getAttribute('data-tab');document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('on');});});
 
-function openAdminPanel() {
-  document.getElementById('adminPanel').style.display='block';
-  setBlobBadge(blobMode);
-  populateCatSelect(''); renderAdminPList(); renderAdminCList();
-  initSlots(); initCatImgZone();
-}
-function closeAdminPanel() {
-  sessionStorage.removeItem('dp_admin');
-  document.getElementById('adminPanel').style.display='none';
-}
-document.getElementById('logoutBtn').addEventListener('click', function(){ closeAdminPanel(); showToast('Çıkış yapıldı','fa-sign-out-alt'); });
+/* CAT IMAGE */
+var catDropZone=document.getElementById('catDropZone'),catFileInput=document.getElementById('catFileInput'),catImgPreview=document.getElementById('catImgPreview'),catImgPreviewImg=document.getElementById('catImgPreviewImg'),catImgOk=document.getElementById('catImgOk');
+function initCatImgZone(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';}
+function setCatPreview(url){catImgUrl=url;catImgPreviewImg.src=url;catImgPreview.style.display='block';catImgOk.style.display='block';catImgOk.innerHTML=url.startsWith('data:')?'⚠️ Yerel mod':'✅ CDN\'e yüklendi';}
+function clearCatImg(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';catFileInput.value='';}
+document.getElementById('catImgDel').addEventListener('click',function(e){e.stopPropagation();clearCatImg();});
+function uploadCatImg(file){if(!file||!file.type.match(/^image\//))return;catImgOk.style.display='block';catImgOk.innerHTML='⏳ Yükleniyor...';catImgPreview.style.display='none';var r=new FileReader();r.onload=function(e){var b64=e.target.result;fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){if(d.success&&d.url){setCatPreview(d.url);showToast('🖼️ Görsel yüklendi!');}else{setCatPreview(b64);showToast('⚠️ Yerel mod','fa-exclamation-triangle');}}).catch(function(){setCatPreview(b64);});};r.readAsDataURL(file);}
+catDropZone.addEventListener('click',function(){catFileInput.click();});
+catDropZone.addEventListener('dragover',function(e){e.preventDefault();catDropZone.classList.add('drag');});
+catDropZone.addEventListener('dragleave',function(){catDropZone.classList.remove('drag');});
+catDropZone.addEventListener('drop',function(e){e.preventDefault();catDropZone.classList.remove('drag');var f=e.dataTransfer.files[0];if(f)uploadCatImg(f);});
+catFileInput.addEventListener('change',function(){if(catFileInput.files[0]){uploadCatImg(catFileInput.files[0]);catFileInput.value='';}});
 
-/* ══════════════════  ADMIN TABS  ══════════════════ */
-document.querySelectorAll('.atab').forEach(function(tab){
-  tab.addEventListener('click', function(){
-    document.querySelectorAll('.atab').forEach(function(t){ t.classList.remove('on'); });
-    document.querySelectorAll('.abody').forEach(function(b){ b.classList.remove('on'); });
-    tab.classList.add('on');
-    var t = tab.getAttribute('data-tab');
-    document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.add('on');
-  });
-});
-
-/* ══════════════════════════════════════════════════════════
-   KATEGORİ GÖRSEL YÜKLEME
-══════════════════════════════════════════════════════════ */
-var catDropZone   = document.getElementById('catDropZone');
-var catFileInput  = document.getElementById('catFileInput');
-var catImgPreview = document.getElementById('catImgPreview');
-var catImgPreviewImg = document.getElementById('catImgPreviewImg');
-var catImgOk      = document.getElementById('catImgOk');
-
-function initCatImgZone() {
-  catImgUrl = '';
-  catImgPreview.style.display = 'none';
-  catImgOk.style.display = 'none';
-  catImgOk.innerHTML = '';
-}
-
-function setCatPreview(url) {
-  catImgUrl = url;
-  catImgPreviewImg.src = url;
-  catImgPreview.style.display = 'block';
-  catImgOk.style.display = 'block';
-  catImgOk.innerHTML = url.startsWith('data:') ? '⚠️ Yerel mod (Blob bağlı değil)' : '✅ Görsel CDN\'e yüklendi';
-}
-
-function clearCatImg() {
-  catImgUrl = '';
-  catImgPreview.style.display = 'none';
-  catImgOk.style.display = 'none';
-  catImgOk.innerHTML = '';
-  catFileInput.value = '';
-}
-
-document.getElementById('catImgDel').addEventListener('click', function(e){
-  e.stopPropagation();
-  clearCatImg();
-});
-
-function uploadCatImg(file) {
-  if (!file || !file.type.match(/^image\//)) { showToast('❗ Sadece görsel seçin','fa-exclamation-circle'); return; }
-  catImgOk.style.display = 'block';
-  catImgOk.innerHTML = '⏳ Yükleniyor...';
-  catImgPreview.style.display = 'none';
-
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var base64 = e.target.result;
-    fetch('/api/upload', {
-      method:  'POST',
-      headers: {'Content-Type':'application/json'},
-      body:    JSON.stringify({image: base64, filename: file.name})
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data.success && data.url) {
-        setCatPreview(data.url);
-        showToast('🖼️ Kategori görseli yüklendi!');
-      } else {
-        setCatPreview(base64);
-        showToast('⚠️ Blob bağlı değil — yerel mod','fa-exclamation-triangle');
-      }
-    })
-    .catch(function(){
-      setCatPreview(base64);
-      showToast('⚠️ API yok — yerel mod','fa-exclamation-triangle');
-    });
-  };
-  reader.readAsDataURL(file);
-}
-
-catDropZone.addEventListener('click', function(){ catFileInput.click(); });
-catDropZone.addEventListener('dragover', function(e){ e.preventDefault(); catDropZone.classList.add('drag'); });
-catDropZone.addEventListener('dragleave', function(){ catDropZone.classList.remove('drag'); });
-catDropZone.addEventListener('drop', function(e){
-  e.preventDefault(); catDropZone.classList.remove('drag');
-  var f = e.dataTransfer.files[0];
-  if (f) uploadCatImg(f);
-});
-catFileInput.addEventListener('change', function(){
-  if (catFileInput.files[0]) { uploadCatImg(catFileInput.files[0]); catFileInput.value=''; }
-});
-
-/* ══════════════════════════════════════════════════════════
-   ÇOKLU ÜRÜN GÖRSEL YÜKLEME
-══════════════════════════════════════════════════════════ */
-var MAX_IMGS  = 5;
-var dropZone  = document.getElementById('dropZone');
-var fileInput = document.getElementById('fileInput');
-var imgOk     = document.getElementById('imgOk');
-var imgSlots  = document.getElementById('imgSlots');
-var imgCount  = document.getElementById('imgCount');
-
-function initSlots() {
-  imgSlots.innerHTML = '';
-  for (var i = 0; i < MAX_IMGS; i++) {
-    var slot = document.createElement('div');
-    slot.className = 'img-slot';
-    slot.setAttribute('data-idx', i);
-    slot.innerHTML =
-      '<i class="fas fa-plus slot-icon"></i>' +
-      '<span class="slot-num">'+(i===0?'Ana':'')+'</span>' +
-      '<button class="slot-del" title="Kaldır"><i class="fas fa-times"></i></button>';
-    if (i === 0) slot.innerHTML += '<span class="slot-star">ANA</span>';
-    (function(idx, slotEl) {
-      slotEl.addEventListener('click', function(e) {
-        if (e.target.closest('.slot-del')) return;
-        if (uploadedImgs[idx]) return;
-        var tmp = document.createElement('input');
-        tmp.type = 'file'; tmp.accept = 'image/*';
-        tmp.onchange = function() { if (tmp.files[0]) processFile(tmp.files[0], idx); };
-        tmp.click();
-      });
-      slotEl.querySelector('.slot-del').addEventListener('click', function(e) {
-        e.stopPropagation();
-        removeSlot(idx);
-      });
-    })(i, slot);
-    imgSlots.appendChild(slot);
-  }
+/* MULTI IMAGE */
+var MAX_IMGS=5,dropZone=document.getElementById('dropZone'),fileInput=document.getElementById('fileInput'),imgOk=document.getElementById('imgOk'),imgSlots=document.getElementById('imgSlots'),imgCount=document.getElementById('imgCount');
+function initSlots(){
+  imgSlots.innerHTML='';
+  for(var i=0;i<MAX_IMGS;i++){var sl=document.createElement('div');sl.className='img-slot';sl.setAttribute('data-idx',i);sl.innerHTML='<i class="fas fa-plus slot-icon"></i><span class="slot-num">'+(i===0?'Ana':'')+'</span><button class="slot-del"><i class="fas fa-times"></i></button>'+(i===0?'<span class="slot-star">ANA</span>':'');
+    (function(idx,slotEl){slotEl.addEventListener('click',function(e){if(e.target.closest('.slot-del'))return;if(uploadedImgs[idx])return;var t=document.createElement('input');t.type='file';t.accept='image/*';t.onchange=function(){if(t.files[0])processFile(t.files[0],idx);};t.click();});slotEl.querySelector('.slot-del').addEventListener('click',function(e){e.stopPropagation();removeSlot(idx);});})(i,sl);
+    imgSlots.appendChild(sl);}
   updateSlotUI();
 }
-
-function updateSlotUI() {
-  var slots = imgSlots.querySelectorAll('.img-slot');
-  slots.forEach(function(slot, i) {
-    var url = uploadedImgs[i];
-    var existImg = slot.querySelector('img');
-    if (existImg) existImg.remove();
-    var prog = slot.querySelector('.slot-prog');
-    if (prog) prog.remove();
-
-    if (url === '__uploading__') {
-      slot.className = 'img-slot uploading';
-      var p = document.createElement('div'); p.className = 'slot-prog';
-      p.innerHTML = '<i class="fas fa-spinner"></i>';
-      slot.appendChild(p);
-    } else if (url) {
-      slot.className = 'img-slot filled';
-      var img = document.createElement('img');
-      img.src = url; img.alt = 'Görsel '+(i+1);
-      slot.insertBefore(img, slot.firstChild);
-    } else {
-      slot.className = 'img-slot';
-    }
+function updateSlotUI(){
+  imgSlots.querySelectorAll('.img-slot').forEach(function(sl,i){var url=uploadedImgs[i];var ex=sl.querySelector('img');if(ex)ex.remove();var pr=sl.querySelector('.slot-prog');if(pr)pr.remove();
+    if(url==='__uploading__'){sl.className='img-slot uploading';var p=document.createElement('div');p.className='slot-prog';p.innerHTML='<i class="fas fa-spinner"></i>';sl.appendChild(p);}
+    else if(url){sl.className='img-slot filled';var img=document.createElement('img');img.src=url;img.alt='';sl.insertBefore(img,sl.firstChild);}
+    else sl.className='img-slot';
   });
-  var filled  = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
-  var loading = uploadedImgs.filter(function(u){ return u === '__uploading__'; }).length;
-  if (filled > 0 || loading > 0) {
-    imgCount.textContent = filled + ' görsel eklendi' + (loading ? ', '+ loading +' yükleniyor...' : '') + ' (maks 5)';
-    imgOk.style.display = loading ? 'none' : 'block';
-    imgOk.innerHTML = filled > 0 && !loading ? '✅ '+filled+' görsel CDN\'e yüklendi — herkese açık' : '';
-  } else {
-    imgCount.textContent = '';
-    imgOk.style.display = 'none';
-  }
-  document.getElementById('saveProdBtn').disabled = loading > 0;
+  var f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,l=uploadedImgs.filter(function(u){return u==='__uploading__';}).length;
+  if(f>0||l>0){imgCount.textContent=f+' görsel'+(l?', '+l+' yükleniyor...':'')+' (maks 5)';imgOk.style.display=l?'none':'block';imgOk.innerHTML=f>0&&!l?'✅ '+f+' görsel hazır':'';}
+  else{imgCount.textContent='';imgOk.style.display='none';}
+  document.getElementById('saveProdBtn').disabled=l>0;
 }
-
-function removeSlot(idx) {
-  uploadedImgs[idx] = null;
-  var compact = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; });
-  uploadedImgs = compact;
-  updateSlotUI();
+function removeSlot(idx){uploadedImgs[idx]=null;uploadedImgs=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';});updateSlotUI();}
+function processFile(file,idx){
+  if(!file.type.match(/^image\//))return;
+  var f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length;
+  if(f>=MAX_IMGS){showToast('❗ En fazla 5 görsel','fa-exclamation-circle');return;}
+  var ti=(idx!==undefined&&idx<MAX_IMGS)?idx:f;uploadedImgs[ti]='__uploading__';updateSlotUI();
+  var r=new FileReader();r.onload=function(e){var b64=e.target.result;
+    fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){uploadedImgs[ti]=d.success&&d.url?d.url:b64;showToast(d.success&&d.url?'🖼️ Görsel '+(ti+1)+' yüklendi!':'⚠️ Yerel mod','fa-'+(d.success&&d.url?'check-circle':'exclamation-triangle'));updateSlotUI();}).catch(function(){uploadedImgs[ti]=b64;updateSlotUI();});};r.readAsDataURL(file);
 }
+dropZone.addEventListener('click',function(){fileInput.click();});
+dropZone.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dropZone.classList.add('drag');});
+dropZone.addEventListener('dragleave',function(e){e.stopPropagation();dropZone.classList.remove('drag');});
+dropZone.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dropZone.classList.remove('drag');var files=Array.from(e.dataTransfer.files).filter(function(f){return f.type.match(/^image\//);});if(!files.length)return;var f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,rem=MAX_IMGS-f;files.slice(0,rem).forEach(function(fl){processFile(fl,undefined);});});
+fileInput.addEventListener('change',function(){if(!fileInput.files.length)return;var files=Array.from(fileInput.files),f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,rem=MAX_IMGS-f;files.slice(0,rem).forEach(function(fl){processFile(fl,undefined);});fileInput.value='';});
 
-function processFile(file, idx) {
-  if (!file.type.match(/^image\//)) { showToast('❗ Sadece görsel dosyası seçin','fa-exclamation-circle'); return; }
-  var filled = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
-  if (filled >= MAX_IMGS) { showToast('❗ En fazla 5 görsel ekleyebilirsiniz','fa-exclamation-circle'); return; }
-  var targetIdx = (idx !== undefined && idx < MAX_IMGS) ? idx : filled;
-  uploadedImgs[targetIdx] = '__uploading__';
-  updateSlotUI();
-
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var base64 = e.target.result;
-    fetch('/api/upload', {
-      method:  'POST',
-      headers: {'Content-Type':'application/json'},
-      body:    JSON.stringify({image: base64, filename: file.name})
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data.success && data.url) {
-        uploadedImgs[targetIdx] = data.url;
-        showToast('🖼️ Görsel '+(targetIdx+1)+' yüklendi!');
-      } else {
-        uploadedImgs[targetIdx] = base64;
-        showToast('⚠️ Blob bağlı değil — yerel mod','fa-exclamation-triangle');
-      }
-      updateSlotUI();
-    })
-    .catch(function(){
-      uploadedImgs[targetIdx] = base64;
-      showToast('⚠️ API yok — yerel mod','fa-exclamation-triangle');
-      updateSlotUI();
-    });
-  };
-  reader.readAsDataURL(file);
-}
-
-dropZone.addEventListener('click', function(){ fileInput.click(); });
-dropZone.addEventListener('dragover', function(e){ e.preventDefault(); e.stopPropagation(); dropZone.classList.add('drag'); });
-dropZone.addEventListener('dragleave', function(e){ e.stopPropagation(); dropZone.classList.remove('drag'); });
-dropZone.addEventListener('drop', function(e){
-  e.preventDefault(); e.stopPropagation(); dropZone.classList.remove('drag');
-  var files = Array.from(e.dataTransfer.files).filter(function(f){ return f.type.match(/^image\//); });
-  if (!files.length) { showToast('❗ Görsel dosyası seçin','fa-exclamation-circle'); return; }
-  var filled = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
-  var remaining = MAX_IMGS - filled;
-  files.slice(0, remaining).forEach(function(f){ processFile(f, undefined); });
-  if (files.length > remaining) showToast('⚠️ Sadece '+remaining+' görsel eklendi (maks 5)','fa-exclamation-triangle');
+/* SAVE PRODUCT */
+function populateCatSelect(sel){var s=document.getElementById('pCat');s.innerHTML='<option value="">-- Seçin --</option>';getCats().forEach(function(c){var o=document.createElement('option');o.value=c.id;o.textContent=c.emoji+' '+c.name;if(c.id===sel)o.selected=true;s.appendChild(o);});}
+function clearProdForm(){['pName','pPrice','pOld','pDesc'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('pCat').value='';document.getElementById('pBadge').value='';document.getElementById('pStock').checked=true;imgOk.style.display='none';imgOk.innerHTML='';uploadedImgs=[];fileInput.value='';editIdx=null;initSlots();document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-plus"></i> Ürünü Yayınla';document.getElementById('saveProdBtn').disabled=false;document.getElementById('cancelEditBtn').style.display='none';}
+document.getElementById('saveProdBtn').addEventListener('click',function(){
+  var name=document.getElementById('pName').value.trim(),price=document.getElementById('pPrice').value.trim(),old=document.getElementById('pOld').value.trim(),catId=document.getElementById('pCat').value,desc=document.getElementById('pDesc').value.trim(),badge=document.getElementById('pBadge').value,inStock=document.getElementById('pStock').checked;
+  if(!name||!price||!catId){showToast('❗ Zorunlu alanları doldurun','fa-exclamation-circle');return;}
+  var fi=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';});
+  if(!fi.length&&editIdx!==null&&allProducts[editIdx]){var ex=allProducts[editIdx];fi=(ex.imgs&&ex.imgs.length)?ex.imgs:(ex.img?[ex.img]:[]);}
+  if(!fi.length){showToast('❗ En az 1 görsel yükleyin','fa-exclamation-circle');return;}
+  var btn=document.getElementById('saveProdBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...';
+  var pd={name:name,price:price,old:old,catId:catId,desc:desc,badge:badge,inStock:inStock,imgs:fi};
+  if(editIdx!==null){pd.id=allProducts[editIdx].id;allProducts[editIdx]=pd;}else{pd.id='p'+Date.now();allProducts.unshift(pd);}
+  apiSaveProducts(allProducts,function(ok,err){btn.disabled=false;showToast(ok?(editIdx!==null?'✅ Güncellendi!':'✅ Yayınlandı!'):'⚠️ Hata: '+(err||'?'),ok?'fa-check-circle':'fa-exclamation-triangle');clearProdForm();renderAdminPList();renderProds('');renderCatCards();buildPills();});
 });
-fileInput.addEventListener('change', function(){
-  if (!fileInput.files.length) return;
-  var files = Array.from(fileInput.files);
-  var filled = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
-  var remaining = MAX_IMGS - filled;
-  files.slice(0, remaining).forEach(function(f){ processFile(f, undefined); });
-  if (files.length > remaining) showToast('⚠️ Sadece '+remaining+' görsel eklendi (maks 5)','fa-exclamation-triangle');
-  fileInput.value = '';
-});
+document.getElementById('cancelEditBtn').addEventListener('click',function(){clearProdForm();});
 
-/* ══════════════════  ÜRÜN KAYDET  ══════════════════ */
-function populateCatSelect(selId) {
-  var sel = document.getElementById('pCat');
-  sel.innerHTML = '<option value="">-- Kategori seçin --</option>';
-  getCats().forEach(function(c){
-    var o = document.createElement('option');
-    o.value=c.id; o.textContent=c.emoji+' '+c.name;
-    if(c.id===selId) o.selected=true;
-    sel.appendChild(o);
-  });
-}
-function clearProdForm() {
-  ['pName','pPrice','pOld','pDesc'].forEach(function(id){ document.getElementById(id).value=''; });
-  document.getElementById('pCat').value='';
-  imgOk.style.display='none'; imgOk.innerHTML='';
-  uploadedImgs = [];
-  fileInput.value=''; editIdx=null;
-  initSlots();
-  document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-plus"></i> Ürünü Yayınla';
-  document.getElementById('saveProdBtn').disabled=false;
-  document.getElementById('cancelEditBtn').style.display='none';
-}
-
-document.getElementById('saveProdBtn').addEventListener('click', function(){
-  var name  = document.getElementById('pName').value.trim();
-  var price = document.getElementById('pPrice').value.trim();
-  var old   = document.getElementById('pOld').value.trim();
-  var catId = document.getElementById('pCat').value;
-  var desc  = document.getElementById('pDesc').value.trim();
-
-  if (!name)  { showToast('❗ Ürün adı girin','fa-exclamation-circle'); return; }
-  if (!price) { showToast('❗ Fiyat girin','fa-exclamation-circle'); return; }
-  if (!catId) { showToast('❗ Kategori seçin','fa-exclamation-circle'); return; }
-
-  var finalImgs = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; });
-  if (!finalImgs.length && editIdx !== null && allProducts[editIdx]) {
-    var existing = allProducts[editIdx];
-    finalImgs = (existing.imgs && existing.imgs.length) ? existing.imgs : (existing.img ? [existing.img] : []);
-  }
-  if (!finalImgs.length) { showToast('❗ En az 1 görsel yükleyin','fa-exclamation-circle'); return; }
-
-  var btn = document.getElementById('saveProdBtn');
-  btn.disabled=true;
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...';
-
-  var prodData = {name:name, price:price, old:old, catId:catId, desc:desc, imgs:finalImgs};
-  if (editIdx!==null) { prodData.id = allProducts[editIdx].id; allProducts[editIdx] = prodData; }
-  else { prodData.id = 'p'+Date.now(); allProducts.unshift(prodData); }
-
-  apiSaveProducts(allProducts, function(ok, err){
-    btn.disabled=false;
-    if (ok) showToast(editIdx!==null?'✅ Ürün güncellendi!':'✅ Ürün yayınlandı!');
-    else showToast('⚠️ Blob kaydı başarısız: '+(err||'bilinmeyen hata'),'fa-exclamation-triangle');
-    clearProdForm();
-    renderAdminPList(); renderProds(''); renderCatCards();
-  });
-});
-
-document.getElementById('cancelEditBtn').addEventListener('click', function(){ clearProdForm(); });
-
-/* ══════════════════  ADMIN ÜRÜN LİSTESİ  ══════════════════ */
-function renderAdminPList() {
-  document.getElementById('pCount').textContent = allProducts.length;
-  var el = document.getElementById('adminPList'); el.innerHTML='';
-  if (!allProducts.length) { el.innerHTML='<p style="color:var(--mut);font-size:.88rem;padding:1rem">Henüz ürün yok.</p>'; return; }
-  allProducts.forEach(function(p, idx){
-    var cat = getCatById(p.catId);
-    var thumbSrc = (p.imgs && p.imgs[0]) ? p.imgs[0] : (p.img || '');
-    var div = document.createElement('div'); div.className='aitem';
-    div.innerHTML=
-      '<img src="'+thumbSrc+'" alt="'+p.name+'" onerror="this.src=\'https://via.placeholder.com/54?text=?\'">' +
-      '<div class="aii"><h5>'+p.name+'</h5><p>'+p.price+' TL &bull; '+cat.emoji+' '+cat.name+'</p></div>' +
-      '<div class="aacts"><button class="editbtn" title="Düzenle"><i class="fas fa-edit"></i></button><button class="delbtn" title="Sil"><i class="fas fa-trash"></i></button></div>';
-    div.querySelector('.editbtn').addEventListener('click', function(){
-      editIdx=idx;
-      document.getElementById('pName').value=p.name;
-      document.getElementById('pPrice').value=p.price;
-      document.getElementById('pOld').value=p.old||'';
-      document.getElementById('pDesc').value=p.desc||'';
-      populateCatSelect(p.catId);
-      var existImgs = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
-      uploadedImgs = existImgs.slice(0, MAX_IMGS);
-      initSlots();
-      imgOk.style.display='block'; imgOk.innerHTML='✅ Mevcut görseller — değiştirmek için slota tıkla';
-      document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';
-      document.getElementById('cancelEditBtn').style.display='inline-flex';
-      document.getElementById('tabProds').scrollIntoView({behavior:'smooth'});
-      document.getElementById('pName').focus();
-
-      // Ürünler tabına geç
-      document.querySelectorAll('.atab').forEach(function(t){ t.classList.remove('on'); });
-      document.querySelectorAll('.abody').forEach(function(b){ b.classList.remove('on'); });
-      document.querySelector('.atab[data-tab="prods"]').classList.add('on');
-      document.getElementById('tabProds').classList.add('on');
+/* ADMIN PRODUCT LIST */
+function renderAdminPList(){
+  document.getElementById('pCount').textContent=allProducts.length;
+  var el=document.getElementById('adminPList');el.innerHTML='';
+  if(!allProducts.length){el.innerHTML='<p style="color:var(--mut);font-size:.88rem;padding:1rem">Henüz ürün yok.</p>';return;}
+  allProducts.forEach(function(p,idx){
+    var cat=getCatById(p.catId),thumb=(p.imgs&&p.imgs[0])?p.imgs[0]:(p.img||'');
+    var div=document.createElement('div');div.className='aitem';
+    var sd=p.inStock!==false?'<span style="color:var(--g3);font-size:.7rem">●</span>':'<span style="color:var(--red);font-size:.7rem">●</span>';
+    div.innerHTML='<img src="'+thumb+'" alt="'+p.name+'" onerror="this.src=\'https://via.placeholder.com/54?text=?\'">'+'<div class="aii"><h5>'+p.name+'</h5><p>'+p.price+' TL &bull; '+cat.emoji+' '+cat.name+' '+sd+'</p></div><div class="aacts"><button class="editbtn"><i class="fas fa-edit"></i></button><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
+    div.querySelector('.editbtn').addEventListener('click',function(){
+      editIdx=idx;document.getElementById('pName').value=p.name;document.getElementById('pPrice').value=p.price;document.getElementById('pOld').value=p.old||'';document.getElementById('pDesc').value=p.desc||'';document.getElementById('pBadge').value=p.badge||'';document.getElementById('pStock').checked=p.inStock!==false;populateCatSelect(p.catId);
+      var ei=(p.imgs&&p.imgs.length)?p.imgs:(p.img?[p.img]:[]);uploadedImgs=ei.slice(0,MAX_IMGS);initSlots();imgOk.style.display='block';imgOk.innerHTML='✅ Mevcut görseller';
+      document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';document.getElementById('cancelEditBtn').style.display='inline-flex';
+      document.querySelectorAll('.atab').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.abody').forEach(function(b){b.classList.remove('on');});
+      document.querySelector('.atab[data-tab="prods"]').classList.add('on');document.getElementById('tabProds').classList.add('on');
+      document.getElementById('tabProds').scrollIntoView({behavior:'smooth'});document.getElementById('pName').focus();
     });
-    div.querySelector('.delbtn').addEventListener('click', function(){
-      if (!confirm('"'+p.name+'" ürünü silinecek. Emin misiniz?')) return;
-      allProducts.splice(idx,1);
-      apiSaveProducts(allProducts, function(ok){
-        if (ok) showToast('🗑️ Ürün silindi','fa-trash');
-        else { allProducts.splice(idx,0,p); showToast('❗ Silme başarısız','fa-exclamation-circle'); }
-        renderAdminPList(); renderProds(''); renderCatCards();
-      });
-    });
+    div.querySelector('.delbtn').addEventListener('click',function(){if(!confirm('"'+p.name+'" silinecek?'))return;allProducts.splice(idx,1);apiSaveProducts(allProducts,function(ok){if(ok)showToast('🗑️ Silindi','fa-trash');else{allProducts.splice(idx,0,p);showToast('❗ Hata','fa-exclamation-circle');}renderAdminPList();renderProds('');renderCatCards();buildPills();});});
     el.appendChild(div);
   });
 }
 
-/* ══════════════════  KATEGORİ YÖNETİMİ  ══════════════════ */
-var editCatIdx = null; // null = yeni ekle, number = düzenleme modu
-
-function clearCatForm() {
-  document.getElementById('cName').value='';
-  document.getElementById('cEmoji').value='';
-  clearCatImg();
-  editCatIdx = null;
-  document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';
-  document.getElementById('cancelCatEditBtn').style.display='none';
-}
-
-document.getElementById('cancelCatEditBtn').addEventListener('click', function(){ clearCatForm(); });
-
-document.getElementById('saveCatBtn').addEventListener('click', function(){
-  var name  = document.getElementById('cName').value.trim();
-  var emoji = document.getElementById('cEmoji').value.trim() || '📦';
-  if (!name) { showToast('❗ Kategori adı girin','fa-exclamation-circle'); return; }
-  var cats = getCats();
-
-  if (editCatIdx !== null) {
-    // Düzenleme modu — sadece değişenleri güncelle
-    cats[editCatIdx].name  = name;
-    cats[editCatIdx].emoji = emoji;
-    // Görsel: yeni yüklendiyse güncelle, yoksa eskisini koru
-    if (catImgUrl) cats[editCatIdx].img = catImgUrl;
-    saveCats(cats);
-    showToast('✅ Kategori güncellendi!');
-  } else {
-    // Yeni kategori ekle
-    cats.push({id:'c'+Date.now(), name:name, emoji:emoji, img:catImgUrl});
-    saveCats(cats);
-    showToast('✅ Kategori eklendi!');
-  }
-
-  clearCatForm();
-  renderAdminCList(); buildNav(); buildPills(); renderCatCards(); populateCatSelect('');
+/* CATEGORY MANAGEMENT */
+var editCatIdx=null;
+function clearCatForm(){document.getElementById('cName').value='';document.getElementById('cEmoji').value='';clearCatImg();editCatIdx=null;document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';document.getElementById('cancelCatEditBtn').style.display='none';}
+document.getElementById('cancelCatEditBtn').addEventListener('click',function(){clearCatForm();});
+document.getElementById('saveCatBtn').addEventListener('click',function(){
+  var name=document.getElementById('cName').value.trim(),emoji=document.getElementById('cEmoji').value.trim()||'📦';
+  if(!name){showToast('❗ Kategori adı girin','fa-exclamation-circle');return;}
+  var cats=getCats();
+  if(editCatIdx!==null){cats[editCatIdx].name=name;cats[editCatIdx].emoji=emoji;if(catImgUrl)cats[editCatIdx].img=catImgUrl;saveCats(cats);showToast('✅ Kategori güncellendi!');}
+  else{cats.push({id:'c'+Date.now(),name:name,emoji:emoji,img:catImgUrl});saveCats(cats);showToast('✅ Kategori eklendi!');}
+  clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
 });
-
-function renderAdminCList() {
-  var cats = getCats();
-  var el = document.getElementById('adminCList'); el.innerHTML='';
-  if (!cats.length) { el.innerHTML='<p style="color:var(--mut);font-size:.88rem;padding:1rem">Henüz kategori yok.</p>'; return; }
-  cats.forEach(function(c, idx){
-    var cnt = allProducts.filter(function(p){ return p.catId===c.id; }).length;
-    var div = document.createElement('div'); div.className='aitem';
-
-    var thumbHtml;
-    if (c.img && c.img.trim()) {
-      thumbHtml = '<img src="'+c.img+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0">';
-    } else {
-      thumbHtml = '<div class="cat-emoji-thumb">'+c.emoji+'</div>';
-    }
-
-    div.innerHTML=
-      thumbHtml +
-      '<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel var</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Görsel yok</span>')+'</p></div>' +
-      '<div class="aacts"><button class="editbtn" title="Düzenle"><i class="fas fa-edit"></i></button><button class="delbtn" title="Sil"><i class="fas fa-trash"></i></button></div>';
-
-    div.querySelector('.editbtn').addEventListener('click', function(){
-      // Formu kategori verileriyle doldur
-      editCatIdx = idx;
-      document.getElementById('cName').value  = c.name;
-      document.getElementById('cEmoji').value = c.emoji !== '📦' ? c.emoji : '';
-      // Mevcut görseli önizlemeye yükle
-      if (c.img && c.img.trim()) {
-        setCatPreview(c.img);
-        document.getElementById('catImgOk').innerHTML = '✅ Mevcut görsel — değiştirmek için yeni yükle';
-      } else {
-        clearCatImg();
-      }
-      document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';
-      document.getElementById('cancelCatEditBtn').style.display='inline-flex';
-      document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});
-      document.getElementById('cName').focus();
-    });
-
-    div.querySelector('.delbtn').addEventListener('click', function(){
-      if (cnt>0) { showToast('❗ Önce bu kategorideki ürünleri silin','fa-exclamation-circle'); return; }
-      if (!confirm('"'+c.name+'" kategorisi silinecek?')) return;
-      var cs=getCats(); cs.splice(idx,1); saveCats(cs);
-      clearCatForm();
-      renderAdminCList(); buildNav(); buildPills(); renderCatCards(); populateCatSelect('');
-      showToast('🗑️ Kategori silindi','fa-trash');
-    });
+function renderAdminCList(){
+  var cats=getCats(),el=document.getElementById('adminCList');el.innerHTML='';
+  if(!cats.length){el.innerHTML='<p style="color:var(--mut);font-size:.88rem;padding:1rem">Henüz kategori yok.</p>';return;}
+  cats.forEach(function(c,idx){
+    var cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;
+    var div=document.createElement('div');div.className='aitem';
+    var th=c.img&&c.img.trim()?'<img src="'+c.img+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0">':'<div class="cat-emoji-thumb">'+c.emoji+'</div>';
+    div.innerHTML=th+'<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Görsel yok</span>')+'</p></div><div class="aacts"><button class="editbtn"><i class="fas fa-edit"></i></button><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
+    div.querySelector('.editbtn').addEventListener('click',function(){editCatIdx=idx;document.getElementById('cName').value=c.name;document.getElementById('cEmoji').value=c.emoji!=='📦'?c.emoji:'';if(c.img&&c.img.trim()){setCatPreview(c.img);document.getElementById('catImgOk').innerHTML='✅ Mevcut görsel';}else clearCatImg();document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';document.getElementById('cancelCatEditBtn').style.display='inline-flex';document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});document.getElementById('cName').focus();});
+    div.querySelector('.delbtn').addEventListener('click',function(){if(cnt>0){showToast('❗ Önce ürünleri silin','fa-exclamation-circle');return;}if(!confirm('"'+c.name+'" silinecek?'))return;var cs=getCats();cs.splice(idx,1);saveCats(cs);clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');showToast('🗑️ Silindi','fa-trash');});
     el.appendChild(div);
   });
 }
 
-/* ══════════════════  BAŞLANGIÇ  ══════════════════ */
+/* START */
+loadFavs();
 apiGetProducts(function(){
   document.getElementById('loadingOverlay').classList.add('hide');
-  buildNav(); buildPills(); renderProds(''); renderCatCards();
-  if (sessionStorage.getItem('dp_admin')==='1') openAdminPanel();
+  buildNav();buildPills();renderProds('');renderCatCards();updateFavBadge();
+  if(sessionStorage.getItem('dp_admin')==='1')openAdminPanel();
 });
 </script>
 </body>
