@@ -336,7 +336,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   border:1.5px solid #e2e8e4;
   border-radius:12px;
   font-family:'DM Sans',sans-serif;
-  font-size:16px; /* prevents iOS zoom */
+  font-size:16px;
   background:#fff;
   outline:none;
   transition:.2s;
@@ -378,7 +378,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .dz i{font-size:1.6rem;color:var(--g3);display:block;margin-bottom:.35rem;pointer-events:none}
 .dz p{color:var(--mut);font-size:.82rem;line-height:1.5;pointer-events:none}
 .dz p strong{color:var(--g3)}
-/* File input as invisible full overlay — works on iOS/Android */
 .dz input[type=file]{
   position:absolute;
   inset:0;
@@ -390,7 +389,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   font-size:16px;
 }
 
-/* IMAGE SLOTS — 3 columns on mobile, 5 on desktop */
+/* IMAGE SLOTS */
 .img-slots{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -980,9 +979,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
       <!-- MODEL SEÇİCİ -->
       <div style="margin-top:1rem">
         <label style="display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g1);margin-bottom:.5rem"><i class="fas fa-microchip" style="color:#667eea"></i> Aktif Model</label>
-        <div class="model-grid" id="modelGrid">
-          <!-- JS tarafından doldurulur -->
-        </div>
+        <div class="model-grid" id="modelGrid"></div>
         <div class="model-active-info" id="modelActiveInfo"></div>
       </div>
 
@@ -1075,12 +1072,10 @@ function getCats(){
 }
 function saveCats(v){
   lsSet('dp_cats',v);
-  // Force UI refresh everywhere after save
   buildNav();buildPills();renderCatCards();populateCatSelect('');
 }
 function getCatById(id){var cats=getCats();for(var i=0;i<cats.length;i++)if(cats[i].id===id)return cats[i];return{name:'Genel',emoji:'📦',img:''};}
 function getCatImg(c){
-  // Always use freshly stored data — read directly from storage to avoid stale closures
   var fresh=getCats();
   for(var i=0;i<fresh.length;i++){
     if(fresh[i].id===c.id){
@@ -1100,8 +1095,8 @@ function deleteGeminiKey(){localStorage.removeItem('dp_gemini_key');}
 
 /* ─── GEMINI MODEL (persistent) ─── */
 var GEMINI_MODELS=[
-  {id:'gemini-2.5-flash-preview-05-20', name:'Gemini 2.5 Flash', tags:['preview','fast'], desc:'En güncel, hızlı ve zeki model'},
-  {id:'gemini-2.5-pro-exp-03-25',       name:'Gemini 2.5 Pro',   tags:['preview','smart'], desc:'En güçlü analiz, derin düşünme'},
+  {id:'gemini-2.5-flash-preview-04-17', name:'Gemini 2.5 Flash', tags:['preview','fast'], desc:'En güncel, hızlı ve zeki model'},
+  {id:'gemini-2.5-pro-preview-05-06',   name:'Gemini 2.5 Pro',   tags:['preview','smart'], desc:'En güçlü analiz, derin düşünme'},
   {id:'gemini-2.0-flash',               name:'Gemini 2.0 Flash', tags:['free','fast'], desc:'Hızlı, ücretsiz, güvenilir'},
   {id:'gemini-2.0-flash-lite',          name:'Gemini 2.0 Lite',  tags:['free','fast'], desc:'En hızlı, hafif, ücretsiz'},
   {id:'gemini-1.5-flash',               name:'Gemini 1.5 Flash', tags:['free','fast'], desc:'Yaygın, stabil, ücretsiz'},
@@ -1198,14 +1193,12 @@ function runGeminiAnalysis(key,imgUrl){
   btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> '+mname+' analiz ediyor...';
   res.classList.remove('on');
 
-  // Convert image to base64 if it's already base64 data URL, or fetch if URL
   if(imgUrl.startsWith('data:')){
     var parts=imgUrl.split(',');
     var mime=parts[0].match(/:(.*?);/)[1];
     var b64=parts[1];
     callGeminiVision(key,b64,mime,btn);
   } else {
-    // Fetch external image and convert to base64
     fetch(imgUrl)
       .then(function(r){return r.blob();})
       .then(function(blob){
@@ -1219,7 +1212,6 @@ function runGeminiAnalysis(key,imgUrl){
         reader.readAsDataURL(blob);
       })
       .catch(function(){
-        // If fetch fails (CORS), use URL directly with a text-only prompt
         callGeminiTextFallback(key,btn);
       });
   }
@@ -1247,7 +1239,6 @@ function callGeminiVision(key,b64,mime,btn){
     var text=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts[0].text;
     if(!text){showToast('❗ AI yanıt veremedi','fa-exclamation-circle');return;}
     var clean=text.replace(/```json|```/g,'').trim();
-    // Extract JSON from response
     var jsonMatch=clean.match(/\{[\s\S]*\}/);
     if(!jsonMatch){showToast('❗ AI geçersiz yanıt verdi','fa-exclamation-circle');return;}
     try{
@@ -1263,7 +1254,6 @@ function callGeminiVision(key,b64,mime,btn){
 }
 
 function callGeminiTextFallback(key,btn){
-  // Fallback: analyze product name if typed
   var name=document.getElementById('pName').value.trim();
   if(!name){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';showToast('❗ Görsel yüklenemedi, önce ürün adı girin','fa-exclamation-circle');return;}
   var prompt='Sen bir e-ticaret fiyatlandırma uzmanısın. "'+name+'" ürünü için Türkiye piyasası analizi yap ve SADECE şu JSON formatında yanıt ver:\n{"urun_adi":"'+name+'","kategori":"...","aciklama":"...","piyasa_min":0,"piyasa_max":0,"piyasa_ort":0,"boyut_fiyatlar":[{"boyut":"Küçük","fiyat":0},{"boyut":"Orta","fiyat":0},{"boyut":"Büyük","fiyat":0}],"min_satis":0,"onerilen_satis":0,"uyari":"..."}';
@@ -1291,7 +1281,6 @@ function renderAiResult(data){
   document.getElementById('aiProdName').textContent=data.urun_adi||'—';
   document.getElementById('aiDescText').textContent=data.aciklama||'';
 
-  // Price grid
   var pg=document.getElementById('aiPriceGrid');
   pg.innerHTML='';
   function mkPCard(label,val,highlight){
@@ -1305,7 +1294,6 @@ function renderAiResult(data){
   mkPCard('Piyasa Ort.',data.piyasa_ort);
   mkPCard('✅ Önerilen Satış',data.onerilen_satis,true);
 
-  // Sizes
   var sc=document.getElementById('aiSizes');
   var sr=document.getElementById('aiSizeRows');
   if(data.boyut_fiyatlar&&data.boyut_fiyatlar.length){
@@ -1318,7 +1306,6 @@ function renderAiResult(data){
     sc.style.display='block';
   } else {sc.style.display='none';}
 
-  // Warning
   if(data.uyari&&data.uyari.trim()){
     document.getElementById('aiWarning').style.display='flex';
     document.getElementById('aiWarningText').textContent=data.uyari;
@@ -1502,14 +1489,14 @@ function shareProduct(p){
   else{window.open('https://wa.me/?text='+encodeURIComponent(text+' '+window.location.href),'_blank');}
 }
 
-/* ─── CAT CARDS (always fresh) ─── */
+/* ─── CAT CARDS ─── */
 function renderCatCards(){
   var el=document.getElementById('catCards');
-  var cats=getCats().slice(0,4); // Always read fresh from storage
+  var cats=getCats().slice(0,4);
   el.style.gridTemplateColumns=cats.length<4?'repeat('+cats.length+',1fr)':'';
   el.innerHTML='';
   cats.forEach(function(c){
-    var img=getCatImg(c); // Fresh read every time
+    var img=getCatImg(c);
     var cnt=allProducts.filter(function(p){return p.catId===c.id;}).length;
     var card=document.createElement('div');card.className='ccard';card.setAttribute('data-catid',c.id);
     card.innerHTML='<img src="'+img+'" alt="'+c.name+'" loading="lazy" onerror="this.src=\''+DEF_IMG+'\'">'+'<div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div>';
@@ -1569,7 +1556,6 @@ function updateSlotUI(){
   if(f>0||l>0){imgCount.textContent=f+' görsel'+(l?', '+l+' yükleniyor...':'')+' (maks 5)';imgOk.style.display=l?'none':'block';imgOk.innerHTML=f>0&&!l?'✅ '+f+' görsel hazır':'';}
   else{imgCount.textContent='';imgOk.style.display='none';}
   document.getElementById('saveProdBtn').disabled=l>0;
-  // Update AI button state
   var aiBtn=document.getElementById('aiAnalyzeBtn');
   if(aiBtn)aiBtn.disabled=!(getGeminiKey()&&f>0);
 }
@@ -1637,15 +1623,14 @@ document.getElementById('saveCatBtn').addEventListener('click',function(){
   if(editCatIdx!==null){
     cats[editCatIdx].name=name;cats[editCatIdx].emoji=emoji;
     if(catImgUrl)cats[editCatIdx].img=catImgUrl;
-    lsSet('dp_cats',cats); // Save directly
+    lsSet('dp_cats',cats);
     showToast('✅ Kategori güncellendi!');
   } else {
     cats.push({id:'c'+Date.now(),name:name,emoji:emoji,img:catImgUrl});
-    lsSet('dp_cats',cats); // Save directly
+    lsSet('dp_cats',cats);
     showToast('✅ Kategori eklendi!');
   }
   clearCatForm();
-  // Force refresh all category displays immediately
   renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
 });
 
