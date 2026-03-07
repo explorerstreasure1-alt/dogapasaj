@@ -219,20 +219,21 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .bsub{background:var(--g1);color:#fff;border:none;padding:.48rem 1.5rem;border-radius:50px;font-size:.88rem;font-weight:600;transition:.2s;cursor:pointer}
 .bsub:hover{background:var(--g2)}
 /* ADMIN */
-#adminPanel{display:none;background:#fff;border-radius:20px;box-shadow:var(--sh);border:1px solid #eaeeec;overflow:hidden;margin:1.5rem 1.5rem}
-.atop{background:var(--g1);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
-.atop h2{font-family:'Playfair Display',serif;color:#fff;font-size:1.15rem}
+#adminPanel{display:none;background:#fff;border-radius:20px;box-shadow:var(--sh);border:1px solid #eaeeec;overflow:hidden;margin:1.5rem 1.5rem;max-width:calc(100vw - 3rem)}
+.atop{background:var(--g1);padding:1.2rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.atop h2{font-family:'Playfair Display',serif;color:#fff;font-size:1.15rem;flex-shrink:0}
+.atop-right{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;flex:1;justify-content:flex-end}
 .atabs{display:flex;gap:.4rem;flex-wrap:wrap}
-.atab{background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);border:none;padding:.38rem 1rem;border-radius:50px;font-size:.84rem;cursor:pointer;transition:.2s}
+.atab{background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);border:none;padding:.38rem .85rem;border-radius:50px;font-size:.84rem;cursor:pointer;transition:.2s;white-space:nowrap}
 .atab.on{background:#fff;color:var(--g1);font-weight:600}
-.logob{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,.2);padding:.38rem .95rem;border-radius:50px;font-size:.8rem;cursor:pointer;transition:.2s;margin-left:.6rem}
+.logob{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,.2);padding:.38rem .95rem;border-radius:50px;font-size:.8rem;cursor:pointer;transition:.2s;white-space:nowrap;flex-shrink:0}
 .logob:hover{background:rgba(255,255,255,.22)}
-.abody{padding:1.5rem;display:none}
+.abody{padding:1.5rem;display:none;overflow:hidden}
 .abody.on{display:block}
 .ag2{display:grid;grid-template-columns:1fr 1.5fr;gap:1.8rem}
-.fg2{margin-bottom:1rem}
+.fg2{margin-bottom:1rem;min-width:0}
 .fg2 label{display:block;font-size:.8rem;font-weight:600;color:var(--g1);margin-bottom:.28rem;text-transform:uppercase;letter-spacing:.04em}
-.fg2 input,.fg2 textarea,.fg2 select{width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8e4;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:#f8faf9;outline:none;transition:.2s}
+.fg2 input,.fg2 textarea,.fg2 select{width:100%;padding:.65rem .9rem;border:1.5px solid #e2e8e4;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.88rem;background:#f8faf9;outline:none;transition:.2s;box-sizing:border-box;max-width:100%}
 .fg2 input:focus,.fg2 textarea:focus,.fg2 select:focus{border-color:var(--g3);background:#fff}
 .fg2 textarea{min-height:70px;resize:vertical}
 .fg2-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
@@ -244,28 +245,28 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .toggle input:checked+.toggle-sl{background:var(--g3)}
 .toggle input:checked+.toggle-sl:before{transform:translateX(18px)}
 .toggle-label{font-size:.88rem;color:var(--txt)}
-.dz{border:2px dashed var(--gp);border-radius:16px;padding:1.8rem 1.5rem;text-align:center;background:#f5faf6;cursor:pointer;transition:.2s;user-select:none;position:relative}
+.dz{border:2px dashed var(--gp);border-radius:16px;padding:1.4rem 1rem;text-align:center;background:#f5faf6;cursor:pointer;transition:.2s;user-select:none;position:relative;overflow:hidden;box-sizing:border-box;width:100%}
 .dz:hover,.dz.drag{border-color:var(--g2);background:#edf5ef}
-.dz i{font-size:2rem;color:var(--g3);display:block;margin-bottom:.45rem}
-.dz p{color:var(--mut);font-size:.85rem}
+.dz i{font-size:1.8rem;color:var(--g3);display:block;margin-bottom:.4rem;pointer-events:none}
+.dz p{color:var(--mut);font-size:.83rem;line-height:1.5;word-break:break-word;pointer-events:none}
 .dz small{color:var(--g3);font-weight:600}
 .cat-img-preview{display:none;margin-top:.75rem;position:relative;border-radius:14px;overflow:hidden;height:120px;background:#f0f5f2}
 .cat-img-preview img{width:100%;height:100%;object-fit:cover}
 .cat-img-preview .cat-img-del{position:absolute;top:.4rem;right:.4rem;background:var(--red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .cat-img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
-.img-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-top:.75rem}
-.img-slot{position:relative;aspect-ratio:1;border-radius:10px;border:2px dashed var(--gp);background:#f5faf6;overflow:hidden;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.2rem}
+.img-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem;margin-top:.75rem;width:100%}
+.img-slot{position:relative;aspect-ratio:1;border-radius:8px;border:2px dashed var(--gp);background:#f5faf6;overflow:hidden;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.15rem;min-width:0}
 .img-slot:hover{border-color:var(--g2);background:#edf5ef}
 .img-slot.filled{border-style:solid;border-color:var(--g3)}
 .img-slot.uploading{border-color:var(--gold);background:#fffbf0}
 .img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.img-slot .slot-icon{font-size:1.3rem;color:var(--gp);pointer-events:none}
-.img-slot .slot-num{font-size:.65rem;color:var(--mut);font-weight:600;pointer-events:none}
-.img-slot .slot-del{position:absolute;top:3px;right:3px;background:var(--red);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:.6rem;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5;padding:0}
+.img-slot .slot-icon{font-size:1rem;color:var(--gp);pointer-events:none}
+.img-slot .slot-num{font-size:.58rem;color:var(--mut);font-weight:600;pointer-events:none}
+.img-slot .slot-del{position:absolute;top:2px;right:2px;background:var(--red);color:#fff;border:none;border-radius:50%;width:16px;height:16px;font-size:.55rem;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:5;padding:0}
 .img-slot.filled .slot-del{display:flex}
 .img-slot .slot-prog{position:absolute;inset:0;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center}
-.img-slot .slot-prog i{color:var(--gold);font-size:1.1rem;animation:spin 1s linear infinite}
-.img-slot .slot-star{position:absolute;bottom:3px;left:3px;background:var(--gold);color:#fff;font-size:.58rem;font-weight:700;padding:.1rem .35rem;border-radius:4px}
+.img-slot .slot-prog i{color:var(--gold);font-size:1rem;animation:spin 1s linear infinite}
+.img-slot .slot-star{position:absolute;bottom:2px;left:2px;background:var(--gold);color:#fff;font-size:.5rem;font-weight:700;padding:.08rem .28rem;border-radius:3px}
 .img-count{font-size:.76rem;color:var(--mut);margin-top:.4rem;text-align:center}
 .img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
 .abtn{background:var(--g1);color:#fff;border:none;padding:.65rem 1.6rem;border-radius:50px;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:.45rem;transition:.2s;cursor:pointer}
@@ -356,17 +357,32 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .tri div i{font-size:1.2rem}.tri div h4{font-size:.82rem}.tri div p{font-size:.72rem}
   .fg{grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}.fi{padding:0 1rem}
   .fc ul{columns:2;gap:1rem}
-  #adminPanel{margin:.75rem;border-radius:16px}
-  .atop{padding:.9rem 1rem;gap:.5rem}.atop h2{font-size:.95rem;width:100%}
-  .atabs{flex:1}.atab{font-size:.8rem;padding:.35rem .85rem}.logob{font-size:.78rem;padding:.35rem .85rem;margin-left:auto}
-  .abody{padding:.85rem}.ag2{grid-template-columns:1fr;gap:1rem}
-  .fg2 input,.fg2 textarea,.fg2 select{font-size:16px;padding:.72rem .95rem}.fg2 label{font-size:.78rem}.fg2{margin-bottom:.85rem}
-  .dz{padding:1.4rem 1rem}.dz i{font-size:1.7rem;margin-bottom:.4rem}.dz p{font-size:.82rem}
-  .abtn{width:100%;justify-content:center;padding:.72rem;font-size:.88rem}
-  .abnc{width:100%;justify-content:center;margin-left:0;margin-top:.55rem;padding:.62rem;font-size:.85rem}
-  .alist{max-height:none;padding:.9rem}.alist h4{font-size:.77rem}
-  .aitem{padding:.6rem;gap:.6rem}.aitem img{width:44px;height:44px;border-radius:8px}
-  .aii h5{font-size:.82rem}.aii p{font-size:.72rem}.aacts button{padding:.18rem .48rem;font-size:.72rem}
+  #adminPanel{margin:.5rem;border-radius:16px;max-width:calc(100vw - 1rem)}
+  .atop{padding:.75rem .85rem;gap:.4rem}
+  .atop h2{font-size:.9rem;width:100%}
+  .atop-right{width:100%;justify-content:flex-start}
+  .atabs{flex-wrap:wrap;gap:.3rem}
+  .atab{font-size:.78rem;padding:.32rem .75rem}
+  .logob{font-size:.76rem;padding:.32rem .75rem;margin-left:auto}
+  .abody{padding:.75rem;overflow:hidden}
+  .ag2{grid-template-columns:1fr;gap:.85rem}
+  .fg2 input,.fg2 textarea,.fg2 select{font-size:16px;padding:.72rem .9rem}
+  .fg2 label{font-size:.76rem}
+  .fg2{margin-bottom:.75rem}
+  .fg2-row{grid-template-columns:1fr 1fr;gap:.5rem}
+  .dz{padding:1rem .85rem}
+  .dz i{font-size:1.5rem;margin-bottom:.35rem}
+  .dz p{font-size:.8rem}
+  .abtn{width:100%;justify-content:center;padding:.72rem;font-size:.88rem;min-height:48px}
+  .abnc{width:100%;justify-content:center;margin-left:0;margin-top:.45rem;padding:.62rem;font-size:.85rem;min-height:44px}
+  .ai-btn{font-size:.8rem;padding:.65rem 1rem;min-height:48px}
+  .alist{max-height:none;padding:.75rem}
+  .alist h4{font-size:.75rem}
+  .aitem{padding:.55rem;gap:.55rem}
+  .aitem img,.aitem .cat-emoji-thumb{width:42px;height:42px;border-radius:7px;font-size:1.4rem}
+  .aii h5{font-size:.8rem}
+  .aii p{font-size:.7rem}
+  .aacts button{padding:.18rem .45rem;font-size:.7rem;min-height:30px}
   .waf span{display:none}.waf{padding:.82rem;border-radius:50%;bottom:1.2rem;right:1.2rem}
   .btt{bottom:4.5rem;right:1.2rem}
   .fpi{padding:0 1rem}.sh h2{font-size:1.45rem}
@@ -375,8 +391,10 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .fav-drawer{max-width:100%}
   .sort-wrap label{display:none}
   .api-key-wrap{flex-direction:column}
-  .img-slots{grid-template-columns:repeat(5,1fr)}
   .ai-price-grid{grid-template-columns:1fr 1fr}
+  .api-key-wrap .btn-save-key{width:100%;padding:.75rem;min-height:48px}
+  .settings-card{padding:1rem}
+  .gemini-info{font-size:.78rem}
 }
 @media(max-width:380px){
   .pg{grid-template-columns:1fr}.ci{height:220px}
@@ -452,7 +470,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 <div id="adminPanel">
   <div class="atop">
     <h2>⚙️ Admin Paneli <span class="blob-badge" id="blobBadge" style="display:none"></span></h2>
-    <div style="display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+    <div class="atop-right">
       <div class="atabs">
         <button class="atab on" data-tab="prods">Ürünler</button>
         <button class="atab" data-tab="cats">Kategoriler</button>
@@ -481,7 +499,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <div class="fg2"><label>Açıklama</label><textarea id="pDesc" placeholder="Ürün hakkında kısa açıklama..."></textarea></div>
         <div class="fg2">
           <label>Ürün Görselleri * <span style="font-weight:400;color:var(--mut);text-transform:none">(en fazla 5)</span></label>
-          <div class="dz" id="dropZone"><i class="fas fa-cloud-upload-alt"></i><p>Görselleri buraya <small>sürükle &amp; bırak</small><br>ya da <small>tıkla ve seç</small></p><input type="file" id="fileInput" accept="image/*" multiple style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer"></div>
+          <div class="dz" id="dropZone"><i class="fas fa-cloud-upload-alt"></i><p>Görselleri buraya <strong>sürükle &amp; bırak</strong><br>ya da <small>tıkla ve seç</small></p><input type="file" id="fileInput" accept="image/*" multiple style="opacity:0;position:absolute;inset:0;cursor:pointer;width:100%;height:100%;z-index:2"></div>
           <div class="img-slots" id="imgSlots"></div>
           <div class="img-count" id="imgCount"></div>
           <div id="imgOk" class="img-ok"></div>
@@ -519,7 +537,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <div class="fg2"><label>Emoji</label><input type="text" id="cEmoji" placeholder="Örn: 🐟"></div>
         <div class="fg2">
           <label>Kategori Görseli <span style="font-weight:400;color:var(--mut);text-transform:none">(opsiyonel)</span></label>
-          <div class="dz" id="catDropZone" style="padding:1.2rem"><i class="fas fa-image"></i><p>Görsel seç ya da <small>sürükle &amp; bırak</small></p><input type="file" id="catFileInput" accept="image/*" style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer"></div>
+          <div class="dz" id="catDropZone" style="padding:1.1rem"><i class="fas fa-image"></i><p>Görsel seç ya da <small>sürükle &amp; bırak</small></p><input type="file" id="catFileInput" accept="image/*" style="opacity:0;position:absolute;inset:0;cursor:pointer;width:100%;height:100%;z-index:2"></div>
           <div class="cat-img-preview" id="catImgPreview"><img id="catImgPreviewImg" src="" alt=""><button class="cat-img-del" id="catImgDel"><i class="fas fa-times"></i></button></div>
           <div class="cat-img-ok" id="catImgOk"></div>
         </div>
@@ -1053,7 +1071,6 @@ function setCatPreview(url){catImgUrl=url;catImgPreviewImg.src=url;catImgPreview
 function clearCatImg(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';catFileInput.value='';}
 document.getElementById('catImgDel').addEventListener('click',function(e){e.stopPropagation();clearCatImg();});
 function uploadCatImg(file){if(!file||!file.type.match(/^image\//))return;catImgOk.style.display='block';catImgOk.innerHTML='⏳ Yükleniyor...';catImgPreview.style.display='none';var r=new FileReader();r.onload=function(e){var b64=e.target.result;fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){if(d.success&&d.url){setCatPreview(d.url);showToast('🖼️ Görsel yüklendi!');}else{setCatPreview(b64);showToast('⚠️ Yerel mod','fa-exclamation-triangle');}}).catch(function(){setCatPreview(b64);});};r.readAsDataURL(file);}
-catDropZone.addEventListener('click',function(){catFileInput.click();});
 catDropZone.addEventListener('dragover',function(e){e.preventDefault();catDropZone.classList.add('drag');});
 catDropZone.addEventListener('dragleave',function(){catDropZone.classList.remove('drag');});
 catDropZone.addEventListener('drop',function(e){e.preventDefault();catDropZone.classList.remove('drag');var f=e.dataTransfer.files[0];if(f)uploadCatImg(f);});
@@ -1091,7 +1108,6 @@ function processFile(file,idx){
   var r=new FileReader();r.onload=function(e){var b64=e.target.result;
     fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){uploadedImgs[ti]=d.success&&d.url?d.url:b64;showToast(d.success&&d.url?'🖼️ Görsel '+(ti+1)+' yüklendi!':'⚠️ Yerel mod','fa-'+(d.success&&d.url?'check-circle':'exclamation-triangle'));updateSlotUI();}).catch(function(){uploadedImgs[ti]=b64;updateSlotUI();});};r.readAsDataURL(file);
 }
-dropZone.addEventListener('click',function(){fileInput.click();});
 dropZone.addEventListener('dragover',function(e){e.preventDefault();e.stopPropagation();dropZone.classList.add('drag');});
 dropZone.addEventListener('dragleave',function(e){e.stopPropagation();dropZone.classList.remove('drag');});
 dropZone.addEventListener('drop',function(e){e.preventDefault();e.stopPropagation();dropZone.classList.remove('drag');var files=Array.from(e.dataTransfer.files).filter(function(f){return f.type.match(/^image\//);});if(!files.length)return;var f=uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length,rem=MAX_IMGS-f;files.slice(0,rem).forEach(function(fl){processFile(fl,undefined);});});
