@@ -190,6 +190,13 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .dz i{font-size:2rem;color:var(--g3);display:block;margin-bottom:.45rem}
 .dz p{color:var(--mut);font-size:.85rem}
 .dz small{color:var(--g3);font-weight:600}
+
+/* Kategori görsel önizleme */
+.cat-img-preview{display:none;margin-top:.75rem;position:relative;border-radius:14px;overflow:hidden;height:120px;background:#f0f5f2}
+.cat-img-preview img{width:100%;height:100%;object-fit:cover}
+.cat-img-preview .cat-img-del{position:absolute;top:.4rem;right:.4rem;background:var(--red);color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cat-img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
+
 /* ── Çoklu Görsel Yükleme ── */
 .img-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-top:.75rem}
 .img-slot{position:relative;aspect-ratio:1;border-radius:10px;border:2px dashed var(--gp);background:#f5faf6;overflow:hidden;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.2rem}
@@ -226,6 +233,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .alist h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:.9rem}
 .aitem{background:#fff;border-radius:12px;padding:.7rem;margin-bottom:.6rem;display:flex;gap:.75rem;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.04)}
 .aitem img{width:50px;height:50px;border-radius:9px;object-fit:cover;background:#e8f0e9;flex-shrink:0}
+.aitem .cat-emoji-thumb{width:50px;height:50px;border-radius:9px;background:#e8f0e9;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
 .aii{flex:1;min-width:0}
 .aii h5{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.12rem}
 .aii p{font-size:.75rem;color:var(--mut)}
@@ -388,9 +396,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
             <p>Görselleri buraya <small>sürükle &amp; bırak</small><br>ya da <small>tıkla ve seç</small></p>
             <input type="file" id="fileInput" accept="image/*" multiple style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer">
           </div>
-          <div class="img-slots" id="imgSlots">
-            <!-- JS ile doldurulur -->
-          </div>
+          <div class="img-slots" id="imgSlots"></div>
           <div class="img-count" id="imgCount"></div>
           <div id="imgOk" class="img-ok"></div>
         </div>
@@ -410,6 +416,19 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
       <div>
         <div class="fg2"><label>Kategori Adı *</label><input type="text" id="cName" placeholder="Örn: Balıklar"></div>
         <div class="fg2"><label>Emoji (opsiyonel)</label><input type="text" id="cEmoji" placeholder="Örn: 🐟"></div>
+        <div class="fg2">
+          <label>Kategori Görseli <span style="font-weight:400;color:var(--mut);text-transform:none">(opsiyonel)</span></label>
+          <div class="dz" id="catDropZone" style="padding:1.2rem">
+            <i class="fas fa-image"></i>
+            <p>Görsel seç ya da <small>sürükle &amp; bırak</small></p>
+            <input type="file" id="catFileInput" accept="image/*" style="display:none;position:absolute;inset:0;opacity:0;cursor:pointer">
+          </div>
+          <div class="cat-img-preview" id="catImgPreview">
+            <img id="catImgPreviewImg" src="" alt="Kategori görseli">
+            <button class="cat-img-del" id="catImgDel" title="Görseli kaldır"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="cat-img-ok" id="catImgOk"></div>
+        </div>
         <button class="abtn" id="saveCatBtn"><i class="fas fa-plus"></i> Kategori Ekle</button>
       </div>
       <div>
@@ -479,39 +498,35 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 <script>
 'use strict';
 
-/* ══════════════════════════════════════════════════════════
-   DOĞA PASAJI — index.html
-   Ürün verileri: Vercel Blob (products.json) üzerinde saklanır.
-   Admin ekle/sil/güncelle → /api/products → Blob güncellenir
-   → Dünyanın her yerinden, her tarayıcıdan görünür ✅
-══════════════════════════════════════════════════════════ */
-
-// ── Sabitler ───────────────────────────────────────────────
 var ADMIN_U   = 'admin';
 var ADMIN_P   = 'admin123';
-var ADMIN_KEY = 'dp_admin_2025'; // api/products.js ile eşleşmeli
+var ADMIN_KEY = 'dp_admin_2025';
 
 var DEFAULT_CATS = [
-  {id:'c1', name:'Balıklar',         emoji:'🐟'},
-  {id:'c2', name:'Kaktüs & Bitkiler',emoji:'🌵'},
-  {id:'c3', name:'Akvaryum',         emoji:'🐠'},
-  {id:'c4', name:'Ev & Yaşam',       emoji:'🏡'}
+  {id:'c1', name:'Balıklar',         emoji:'🐟', img:''},
+  {id:'c2', name:'Kaktüs & Bitkiler',emoji:'🌵', img:''},
+  {id:'c3', name:'Akvaryum',         emoji:'🐠', img:''},
+  {id:'c4', name:'Ev & Yaşam',       emoji:'🏡', img:''}
 ];
-var CAT_IMGS = {
+
+// Fallback görseller — sadece kategori kendi görseli yoksa kullanılır
+var CAT_IMGS_FALLBACK = {
   c1:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
   c2:'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=600&q=80',
   c3:'https://images.unsplash.com/photo-1497206365907-f5e630693df0?w=600&q=80',
   c4:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80'
 };
+var DEFAULT_CAT_IMG = 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80';
 
 // ── State ──────────────────────────────────────────────────
-var allProducts = [];   // Blob'dan yüklenen canlı veri
-var activeCat   = 'all';
-var editIdx     = null;
-var uploadedImgs = [];  // max 5 URL (Blob CDN veya base64 fallback)
-var blobMode    = false;
+var allProducts  = [];
+var activeCat    = 'all';
+var editIdx      = null;
+var uploadedImgs = [];
+var catImgUrl    = '';   // Kategori için yüklenen görsel URL'si
+var blobMode     = false;
 
-// ── localStorage — sadece kategoriler ─────────────────────
+// ── localStorage ──────────────────────────────────────────
 function lsGet(k, def) {
   try { var s = localStorage.getItem(k); if (s !== null) return JSON.parse(s); } catch(e) {}
   return def;
@@ -519,11 +534,10 @@ function lsGet(k, def) {
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} }
 function getCats()       { var c = lsGet('dp_cats', null); if (!c) { c = DEFAULT_CATS; lsSet('dp_cats', c); } return c; }
 function saveCats(v)     { lsSet('dp_cats', v); }
-function getCatById(id)  { var cats = getCats(); for (var i=0;i<cats.length;i++) if (cats[i].id===id) return cats[i]; return {name:'Genel',emoji:'📦'}; }
+function getCatById(id)  { var cats = getCats(); for (var i=0;i<cats.length;i++) if (cats[i].id===id) return cats[i]; return {name:'Genel',emoji:'📦',img:''}; }
 
 /* ════════════════════════════════════════════════════════════
-   BLOB API  — ürünleri Vercel Blob'dan oku / yaz
-   Başarısız olursa localStorage fallback devreye girer.
+   BLOB API
 ════════════════════════════════════════════════════════════ */
 function apiGetProducts(cb) {
   fetch('/api/products')
@@ -532,15 +546,12 @@ function apiGetProducts(cb) {
       if (data.success && Array.isArray(data.products)) {
         allProducts = data.products;
         blobMode    = true;
-        lsSet('dp_prods_cache', allProducts); // offline cache
+        lsSet('dp_prods_cache', allProducts);
         setBlobBadge(true);
         cb(allProducts);
-      } else {
-        throw new Error('API success:false');
-      }
+      } else { throw new Error('API success:false'); }
     })
     .catch(function(){
-      // Fallback: cache veya default
       var cached = lsGet('dp_prods_cache', null);
       allProducts = cached || [];
       blobMode    = false;
@@ -557,34 +568,21 @@ function apiSaveProducts(products, cb) {
   })
     .then(function(r){ return r.json(); })
     .then(function(data){
-      if (data.success) {
-        lsSet('dp_prods_cache', products);
-        if (cb) cb(true);
-      } else {
-        if (cb) cb(false, data.error);
-      }
+      if (data.success) { lsSet('dp_prods_cache', products); if (cb) cb(true); }
+      else { if (cb) cb(false, data.error); }
     })
-    .catch(function(err){
-      if (cb) cb(false, err.message);
-    });
+    .catch(function(err){ if (cb) cb(false, err.message); });
 }
 
 function setBlobBadge(ok) {
   var b = document.getElementById('blobBadge');
   if (!b) return;
   b.style.display = 'inline-flex';
-  if (ok) {
-    b.className = 'blob-badge ok';
-    b.innerHTML = '<i class="fas fa-cloud"></i> Blob bağlı — herkes görür';
-  } else {
-    b.className = 'blob-badge warn';
-    b.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Blob bağlı değil';
-  }
+  if (ok) { b.className='blob-badge ok'; b.innerHTML='<i class="fas fa-cloud"></i> Blob bağlı — herkes görür'; }
+  else     { b.className='blob-badge warn'; b.innerHTML='<i class="fas fa-exclamation-triangle"></i> Blob bağlı değil'; }
 }
 
-/* ══════════════════
-   TOAST
-══════════════════ */
+/* ══════════════════  TOAST  ══════════════════ */
 function showToast(msg, icon) {
   var t = document.getElementById('toast');
   document.getElementById('toastMsg').textContent = msg;
@@ -594,9 +592,7 @@ function showToast(msg, icon) {
   t._timer = setTimeout(function(){ t.classList.remove('on'); }, 2600);
 }
 
-/* ══════════════════
-   HERO SLIDER
-══════════════════ */
+/* ══════════════════  HERO SLIDER  ══════════════════ */
 var si = 0;
 var slides = document.querySelectorAll('.slide');
 var dotsEl = document.getElementById('heroDots');
@@ -617,9 +613,7 @@ document.getElementById('heroPrev').onclick = function(){ goSlide(si-1); };
 document.getElementById('heroNext').onclick = function(){ goSlide(si+1); };
 setInterval(function(){ goSlide(si+1); }, 5000);
 
-/* ══════════════════
-   NAV & PILLS
-══════════════════ */
+/* ══════════════════  NAV & PILLS  ══════════════════ */
 function buildNav() {
   var nl = document.getElementById('navLinks'); nl.innerHTML = '';
   function mk(label, f, extra) {
@@ -647,9 +641,7 @@ function buildPills() {
   mk('🏷️ İndirim','sale');
 }
 
-/* ══════════════════
-   ÜRÜN LİSTESİ
-══════════════════ */
+/* ══════════════════  ÜRÜN LİSTESİ  ══════════════════ */
 function renderProds(search) {
   var prods = allProducts.slice();
   if (search && search.trim()) {
@@ -669,11 +661,9 @@ function renderProds(search) {
     var cat = getCatById(p.catId);
     var hasDisc = p.old && p.old.toString().trim();
     var waMsg = encodeURIComponent('Merhaba! "'+p.name+'" ürünüyle ilgileniyorum. Fiyat: '+p.price+' TL');
-    // Geriye dönük uyum: eski 'img' alanı veya yeni 'imgs' dizisi
     var imgs = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
     var card = document.createElement('div'); card.className = 'card';
 
-    // Görsel alanı — tek görsel ise basit, çok ise carousel
     var ciHtml;
     if (imgs.length <= 1) {
       var src = imgs[0] || 'https://via.placeholder.com/400x300/c8dfc0/1a3a2a?text=Gorsel+Yok';
@@ -697,7 +687,6 @@ function renderProds(search) {
       '<div class="cfoot"><div class="cprice">'+(hasDisc?'<span class="cold">'+p.old+' TL</span>':'')+p.price+' TL</div>'+
       '<a href="https://wa.me/905535900029?text='+waMsg+'" target="_blank" rel="noopener"><button class="wabtn"><i class="fab fa-whatsapp"></i> Sipariş Ver</button></a></div></div>';
 
-    // Carousel event binding
     if (imgs.length > 1) {
       var ciEl   = card.querySelector('.ci');
       var track  = card.querySelector('.ci-track');
@@ -709,28 +698,27 @@ function renderProds(search) {
         track.style.transform = 'translateX(-'+idx+'00%)';
         dotEls.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
       }
-      card.querySelector('.ci-arr.lf').addEventListener('click', function(e){
-        e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')-1);
-      });
-      card.querySelector('.ci-arr.rg').addEventListener('click', function(e){
-        e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')+1);
-      });
+      card.querySelector('.ci-arr.lf').addEventListener('click', function(e){ e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')-1); });
+      card.querySelector('.ci-arr.rg').addEventListener('click', function(e){ e.preventDefault(); goCI(+ciEl.getAttribute('data-cidx')+1); });
       dotEls.forEach(function(d){ d.addEventListener('click', function(e){ e.preventDefault(); goCI(+d.getAttribute('data-i')); }); });
     }
-
     grid.appendChild(card);
   });
 }
 
-/* ══════════════════
-   KATEGORİ KARTLARI
-══════════════════ */
+/* ══════════════════  KATEGORİ KARTLARI  ══════════════════ */
+function getCatImg(c) {
+  // Önce kategorinin kendi görseli, sonra ID'ye göre fallback, sonra genel default
+  if (c.img && c.img.trim()) return c.img;
+  return CAT_IMGS_FALLBACK[c.id] || DEFAULT_CAT_IMG;
+}
+
 function renderCatCards() {
   var el = document.getElementById('catCards');
   var cats = getCats().slice(0,4);
-  el.style.gridTemplateColumns = cats.length<4 ? 'repeat('+cats.length+',1fr)' : '';
+  el.style.gridTemplateColumns = cats.length < 4 ? 'repeat('+cats.length+',1fr)' : '';
   el.innerHTML = cats.map(function(c){
-    var img = CAT_IMGS[c.id] || CAT_IMGS.c4;
+    var img = getCatImg(c);
     var cnt = allProducts.filter(function(p){ return p.catId===c.id; }).length;
     return '<div class="ccard" data-catid="'+c.id+'"><img src="'+img+'" alt="'+c.name+'" loading="lazy"><div class="ccov"><h3>'+c.emoji+' '+c.name+'</h3><span>'+cnt+' ürün</span></div></div>';
   }).join('');
@@ -743,9 +731,7 @@ function renderCatCards() {
   });
 }
 
-/* ══════════════════
-   ARAMA
-══════════════════ */
+/* ══════════════════  ARAMA  ══════════════════ */
 var srchTimer;
 document.getElementById('srch').addEventListener('input', function(){
   clearTimeout(srchTimer);
@@ -753,9 +739,7 @@ document.getElementById('srch').addEventListener('input', function(){
   srchTimer = setTimeout(function(){ renderProds(val); }, 250);
 });
 
-/* ══════════════════
-   ADMIN GİRİŞ
-══════════════════ */
+/* ══════════════════  ADMIN GİRİŞ  ══════════════════ */
 var loginModal = document.getElementById('loginModal');
 document.getElementById('openAdmin').addEventListener('click', function(){
   if (sessionStorage.getItem('dp_admin')==='1') {
@@ -793,7 +777,7 @@ function openAdminPanel() {
   document.getElementById('adminPanel').style.display='block';
   setBlobBadge(blobMode);
   populateCatSelect(''); renderAdminPList(); renderAdminCList();
-  initSlots();
+  initSlots(); initCatImgZone();
 }
 function closeAdminPanel() {
   sessionStorage.removeItem('dp_admin');
@@ -801,9 +785,7 @@ function closeAdminPanel() {
 }
 document.getElementById('logoutBtn').addEventListener('click', function(){ closeAdminPanel(); showToast('Çıkış yapıldı','fa-sign-out-alt'); });
 
-/* ══════════════════
-   ADMIN TABS
-══════════════════ */
+/* ══════════════════  ADMIN TABS  ══════════════════ */
 document.querySelectorAll('.atab').forEach(function(tab){
   tab.addEventListener('click', function(){
     document.querySelectorAll('.atab').forEach(function(t){ t.classList.remove('on'); });
@@ -815,9 +797,88 @@ document.querySelectorAll('.atab').forEach(function(tab){
 });
 
 /* ══════════════════════════════════════════════════════════
+   KATEGORİ GÖRSEL YÜKLEME
+══════════════════════════════════════════════════════════ */
+var catDropZone   = document.getElementById('catDropZone');
+var catFileInput  = document.getElementById('catFileInput');
+var catImgPreview = document.getElementById('catImgPreview');
+var catImgPreviewImg = document.getElementById('catImgPreviewImg');
+var catImgOk      = document.getElementById('catImgOk');
+
+function initCatImgZone() {
+  catImgUrl = '';
+  catImgPreview.style.display = 'none';
+  catImgOk.style.display = 'none';
+  catImgOk.innerHTML = '';
+}
+
+function setCatPreview(url) {
+  catImgUrl = url;
+  catImgPreviewImg.src = url;
+  catImgPreview.style.display = 'block';
+  catImgOk.style.display = 'block';
+  catImgOk.innerHTML = url.startsWith('data:') ? '⚠️ Yerel mod (Blob bağlı değil)' : '✅ Görsel CDN\'e yüklendi';
+}
+
+function clearCatImg() {
+  catImgUrl = '';
+  catImgPreview.style.display = 'none';
+  catImgOk.style.display = 'none';
+  catImgOk.innerHTML = '';
+  catFileInput.value = '';
+}
+
+document.getElementById('catImgDel').addEventListener('click', function(e){
+  e.stopPropagation();
+  clearCatImg();
+});
+
+function uploadCatImg(file) {
+  if (!file || !file.type.match(/^image\//)) { showToast('❗ Sadece görsel seçin','fa-exclamation-circle'); return; }
+  catImgOk.style.display = 'block';
+  catImgOk.innerHTML = '⏳ Yükleniyor...';
+  catImgPreview.style.display = 'none';
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result;
+    fetch('/api/upload', {
+      method:  'POST',
+      headers: {'Content-Type':'application/json'},
+      body:    JSON.stringify({image: base64, filename: file.name})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (data.success && data.url) {
+        setCatPreview(data.url);
+        showToast('🖼️ Kategori görseli yüklendi!');
+      } else {
+        setCatPreview(base64);
+        showToast('⚠️ Blob bağlı değil — yerel mod','fa-exclamation-triangle');
+      }
+    })
+    .catch(function(){
+      setCatPreview(base64);
+      showToast('⚠️ API yok — yerel mod','fa-exclamation-triangle');
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+catDropZone.addEventListener('click', function(){ catFileInput.click(); });
+catDropZone.addEventListener('dragover', function(e){ e.preventDefault(); catDropZone.classList.add('drag'); });
+catDropZone.addEventListener('dragleave', function(){ catDropZone.classList.remove('drag'); });
+catDropZone.addEventListener('drop', function(e){
+  e.preventDefault(); catDropZone.classList.remove('drag');
+  var f = e.dataTransfer.files[0];
+  if (f) uploadCatImg(f);
+});
+catFileInput.addEventListener('change', function(){
+  if (catFileInput.files[0]) { uploadCatImg(catFileInput.files[0]); catFileInput.value=''; }
+});
+
 /* ══════════════════════════════════════════════════════════
-   ÇOKLU GÖRSEL YÜKLEME — max 5 görsel/ürün
-   Her görsel ayrı /api/upload çağrısı → Blob CDN (public URL)
+   ÇOKLU ÜRÜN GÖRSEL YÜKLEME
 ══════════════════════════════════════════════════════════ */
 var MAX_IMGS  = 5;
 var dropZone  = document.getElementById('dropZone');
@@ -826,7 +887,6 @@ var imgOk     = document.getElementById('imgOk');
 var imgSlots  = document.getElementById('imgSlots');
 var imgCount  = document.getElementById('imgCount');
 
-// Slot UI'ını başlat
 function initSlots() {
   imgSlots.innerHTML = '';
   for (var i = 0; i < MAX_IMGS; i++) {
@@ -841,8 +901,7 @@ function initSlots() {
     (function(idx, slotEl) {
       slotEl.addEventListener('click', function(e) {
         if (e.target.closest('.slot-del')) return;
-        if (uploadedImgs[idx]) return; // doluysa tıklama engelle
-        // Boş slota tıklandı → file seç
+        if (uploadedImgs[idx]) return;
         var tmp = document.createElement('input');
         tmp.type = 'file'; tmp.accept = 'image/*';
         tmp.onchange = function() { if (tmp.files[0]) processFile(tmp.files[0], idx); };
@@ -862,7 +921,6 @@ function updateSlotUI() {
   var slots = imgSlots.querySelectorAll('.img-slot');
   slots.forEach(function(slot, i) {
     var url = uploadedImgs[i];
-    // Mevcut img varsa kaldır
     var existImg = slot.querySelector('img');
     if (existImg) existImg.remove();
     var prog = slot.querySelector('.slot-prog');
@@ -882,8 +940,7 @@ function updateSlotUI() {
       slot.className = 'img-slot';
     }
   });
-  // Count
-  var filled = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
+  var filled  = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
   var loading = uploadedImgs.filter(function(u){ return u === '__uploading__'; }).length;
   if (filled > 0 || loading > 0) {
     imgCount.textContent = filled + ' görsel eklendi' + (loading ? ', '+ loading +' yükleniyor...' : '') + ' (maks 5)';
@@ -893,13 +950,11 @@ function updateSlotUI() {
     imgCount.textContent = '';
     imgOk.style.display = 'none';
   }
-  // Savebtn: yüklenirken disable
   document.getElementById('saveProdBtn').disabled = loading > 0;
 }
 
 function removeSlot(idx) {
   uploadedImgs[idx] = null;
-  // Boşlukları kapatmak için sıkıştır
   var compact = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; });
   uploadedImgs = compact;
   updateSlotUI();
@@ -909,8 +964,6 @@ function processFile(file, idx) {
   if (!file.type.match(/^image\//)) { showToast('❗ Sadece görsel dosyası seçin','fa-exclamation-circle'); return; }
   var filled = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; }).length;
   if (filled >= MAX_IMGS) { showToast('❗ En fazla 5 görsel ekleyebilirsiniz','fa-exclamation-circle'); return; }
-
-  // Hangi slota yazacağız
   var targetIdx = (idx !== undefined && idx < MAX_IMGS) ? idx : filled;
   uploadedImgs[targetIdx] = '__uploading__';
   updateSlotUI();
@@ -929,13 +982,13 @@ function processFile(file, idx) {
         uploadedImgs[targetIdx] = data.url;
         showToast('🖼️ Görsel '+(targetIdx+1)+' yüklendi!');
       } else {
-        uploadedImgs[targetIdx] = base64; // fallback
+        uploadedImgs[targetIdx] = base64;
         showToast('⚠️ Blob bağlı değil — yerel mod','fa-exclamation-triangle');
       }
       updateSlotUI();
     })
     .catch(function(){
-      uploadedImgs[targetIdx] = base64; // fallback
+      uploadedImgs[targetIdx] = base64;
       showToast('⚠️ API yok — yerel mod','fa-exclamation-triangle');
       updateSlotUI();
     });
@@ -943,7 +996,6 @@ function processFile(file, idx) {
   reader.readAsDataURL(file);
 }
 
-// Drop zone — çoklu dosya desteği
 dropZone.addEventListener('click', function(){ fileInput.click(); });
 dropZone.addEventListener('dragover', function(e){ e.preventDefault(); e.stopPropagation(); dropZone.classList.add('drag'); });
 dropZone.addEventListener('dragleave', function(e){ e.stopPropagation(); dropZone.classList.remove('drag'); });
@@ -966,10 +1018,7 @@ fileInput.addEventListener('change', function(){
   fileInput.value = '';
 });
 
-/* ══════════════════════════════════════════════════════════
-   ÜRÜN KAYDET  →  /api/products  →  Blob güncellenir
-   Dünyanın her yerinden görünür ✅
-══════════════════════════════════════════════════════════ */
+/* ══════════════════  ÜRÜN KAYDET  ══════════════════ */
 function populateCatSelect(selId) {
   var sel = document.getElementById('pCat');
   sel.innerHTML = '<option value="">-- Kategori seçin --</option>';
@@ -1004,12 +1053,9 @@ document.getElementById('saveProdBtn').addEventListener('click', function(){
   if (!catId) { showToast('❗ Kategori seçin','fa-exclamation-circle'); return; }
 
   var finalImgs = uploadedImgs.filter(function(u){ return u && u !== '__uploading__'; });
-  if (!finalImgs.length) {
-    // Düzenleme modundaysa mevcut görselleri koru
-    if (editIdx !== null && allProducts[editIdx]) {
-      var existing = allProducts[editIdx];
-      finalImgs = (existing.imgs && existing.imgs.length) ? existing.imgs : (existing.img ? [existing.img] : []);
-    }
+  if (!finalImgs.length && editIdx !== null && allProducts[editIdx]) {
+    var existing = allProducts[editIdx];
+    finalImgs = (existing.imgs && existing.imgs.length) ? existing.imgs : (existing.img ? [existing.img] : []);
   }
   if (!finalImgs.length) { showToast('❗ En az 1 görsel yükleyin','fa-exclamation-circle'); return; }
 
@@ -1018,23 +1064,13 @@ document.getElementById('saveProdBtn').addEventListener('click', function(){
   btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...';
 
   var prodData = {name:name, price:price, old:old, catId:catId, desc:desc, imgs:finalImgs};
+  if (editIdx!==null) { prodData.id = allProducts[editIdx].id; allProducts[editIdx] = prodData; }
+  else { prodData.id = 'p'+Date.now(); allProducts.unshift(prodData); }
 
-  if (editIdx!==null) {
-    prodData.id = allProducts[editIdx].id;
-    allProducts[editIdx] = prodData;
-  } else {
-    prodData.id = 'p'+Date.now();
-    allProducts.unshift(prodData);
-  }
-
-  // ── Blob'a kaydet ──────────────────────────────────────
   apiSaveProducts(allProducts, function(ok, err){
     btn.disabled=false;
-    if (ok) {
-      showToast(editIdx!==null?'✅ Ürün güncellendi — herkes görebilir!':'✅ Ürün yayınlandı — herkes görebilir!');
-    } else {
-      showToast('⚠️ Blob kaydı başarısız: '+(err||'bilinmeyen hata'),'fa-exclamation-triangle');
-    }
+    if (ok) showToast(editIdx!==null?'✅ Ürün güncellendi!':'✅ Ürün yayınlandı!');
+    else showToast('⚠️ Blob kaydı başarısız: '+(err||'bilinmeyen hata'),'fa-exclamation-triangle');
     clearProdForm();
     renderAdminPList(); renderProds(''); renderCatCards();
   });
@@ -1042,9 +1078,7 @@ document.getElementById('saveProdBtn').addEventListener('click', function(){
 
 document.getElementById('cancelEditBtn').addEventListener('click', function(){ clearProdForm(); });
 
-/* ══════════════════
-   ADMIN ÜRÜN LİSTESİ
-══════════════════ */
+/* ══════════════════  ADMIN ÜRÜN LİSTESİ  ══════════════════ */
 function renderAdminPList() {
   document.getElementById('pCount').textContent = allProducts.length;
   var el = document.getElementById('adminPList'); el.innerHTML='';
@@ -1064,20 +1098,23 @@ function renderAdminPList() {
       document.getElementById('pOld').value=p.old||'';
       document.getElementById('pDesc').value=p.desc||'';
       populateCatSelect(p.catId);
-      // Mevcut görselleri slotlara yükle
       var existImgs = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
       uploadedImgs = existImgs.slice(0, MAX_IMGS);
       initSlots();
-      imgOk.style.display='block'; imgOk.innerHTML='✅ Mevcut görseller — değiştirmek için slot\'a tıkla';
+      imgOk.style.display='block'; imgOk.innerHTML='✅ Mevcut görseller — değiştirmek için slota tıkla';
       document.getElementById('saveProdBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';
       document.getElementById('cancelEditBtn').style.display='inline-flex';
       document.getElementById('tabProds').scrollIntoView({behavior:'smooth'});
       document.getElementById('pName').focus();
+
+      // Ürünler tabına geç
+      document.querySelectorAll('.atab').forEach(function(t){ t.classList.remove('on'); });
+      document.querySelectorAll('.abody').forEach(function(b){ b.classList.remove('on'); });
+      document.querySelector('.atab[data-tab="prods"]').classList.add('on');
+      document.getElementById('tabProds').classList.add('on');
     });
     div.querySelector('.delbtn').addEventListener('click', function(){
       if (!confirm('"'+p.name+'" ürünü silinecek. Emin misiniz?')) return;
-      var btn = div.querySelector('.delbtn');
-      btn.disabled=true;
       allProducts.splice(idx,1);
       apiSaveProducts(allProducts, function(ok){
         if (ok) showToast('🗑️ Ürün silindi','fa-trash');
@@ -1089,17 +1126,17 @@ function renderAdminPList() {
   });
 }
 
-/* ══════════════════
-   KATEGORİ YÖNETİMİ
-══════════════════ */
+/* ══════════════════  KATEGORİ YÖNETİMİ  ══════════════════ */
 document.getElementById('saveCatBtn').addEventListener('click', function(){
   var name  = document.getElementById('cName').value.trim();
   var emoji = document.getElementById('cEmoji').value.trim() || '📦';
   if (!name) { showToast('❗ Kategori adı girin','fa-exclamation-circle'); return; }
   var cats = getCats();
-  cats.push({id:'c'+Date.now(), name:name, emoji:emoji});
+  cats.push({id:'c'+Date.now(), name:name, emoji:emoji, img:catImgUrl});
   saveCats(cats);
-  document.getElementById('cName').value=''; document.getElementById('cEmoji').value='';
+  document.getElementById('cName').value='';
+  document.getElementById('cEmoji').value='';
+  clearCatImg();
   renderAdminCList(); buildNav(); buildPills(); renderCatCards(); populateCatSelect('');
   showToast('✅ Kategori eklendi!');
 });
@@ -1111,9 +1148,18 @@ function renderAdminCList() {
   cats.forEach(function(c, idx){
     var cnt = allProducts.filter(function(p){ return p.catId===c.id; }).length;
     var div = document.createElement('div'); div.className='aitem';
+
+    // Thumbnail: kendi görseli varsa küçük img, yoksa emoji
+    var thumbHtml;
+    if (c.img && c.img.trim()) {
+      thumbHtml = '<img src="'+c.img+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0">';
+    } else {
+      thumbHtml = '<div class="cat-emoji-thumb">'+c.emoji+'</div>';
+    }
+
     div.innerHTML=
-      '<div style="font-size:1.7rem;width:50px;text-align:center;flex-shrink:0">'+c.emoji+'</div>' +
-      '<div class="aii"><h5>'+c.name+'</h5><p>'+cnt+' ürün</p></div>' +
+      thumbHtml +
+      '<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel var</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Görsel yok</span>')+'</p></div>' +
       '<div class="aacts"><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
     div.querySelector('.delbtn').addEventListener('click', function(){
       if (cnt>0) { showToast('❗ Önce bu kategorideki ürünleri silin','fa-exclamation-circle'); return; }
@@ -1126,9 +1172,7 @@ function renderAdminCList() {
   });
 }
 
-/* ══════════════════════════════════════════════════════════
-   BAŞLANGIÇ — Blob'dan ürünleri yükle, sonra render et
-══════════════════════════════════════════════════════════ */
+/* ══════════════════  BAŞLANGIÇ  ══════════════════ */
 apiGetProducts(function(){
   document.getElementById('loadingOverlay').classList.add('hide');
   buildNav(); buildPills(); renderProds(''); renderCatCards();
