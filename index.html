@@ -230,7 +230,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   width:calc(100% - 1.5rem);
   box-sizing:border-box;
 }
-/* TOP BAR */
 .atop{
   background:var(--g1);
   padding:.9rem 1rem;
@@ -293,12 +292,8 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 }
 .blob-badge.ok{background:#e6f4ea;color:#1e7e34}
 .blob-badge.warn{background:#fff3cd;color:#856404}
-
-/* TAB BODIES */
 .abody{padding:1rem;display:none;box-sizing:border-box;width:100%;overflow:hidden}
 .abody.on{display:block}
-
-/* FORM FIELDS — mobile-first, no inline-flex tricks */
 .af-section{
   background:#f8faf9;
   border-radius:14px;
@@ -348,8 +343,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .fg2 textarea{min-height:75px;resize:vertical}
 .fg2-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.75rem}
 .fg2-row .fg2{margin-bottom:0}
-
-/* TOGGLE */
 .toggle-wrap{display:flex;align-items:center;gap:.65rem;padding:.4rem 0}
 .toggle{position:relative;width:44px;height:26px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0;position:absolute}
@@ -358,8 +351,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .toggle input:checked+.toggle-sl{background:var(--g3)}
 .toggle input:checked+.toggle-sl:before{transform:translateX(18px)}
 .toggle-label{font-size:.9rem;color:var(--txt)}
-
-/* DROP ZONE */
 .dz{
   border:2px dashed var(--gp);
   border-radius:14px;
@@ -388,8 +379,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   z-index:3;
   font-size:16px;
 }
-
-/* IMAGE SLOTS */
 .img-slots{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -453,8 +442,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 }
 .img-count{font-size:.75rem;color:var(--mut);margin-top:.4rem;text-align:center}
 .img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
-
-/* BUTTONS */
 .abtn{
   display:flex;
   align-items:center;
@@ -498,8 +485,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .abnc.show{display:flex}
 .abnc:active{background:#f5f5f5}
 .abtn-row{display:flex;flex-direction:column;gap:.5rem;margin-top:.75rem}
-
-/* AI BUTTON */
 .ai-btn{
   display:flex;
   align-items:center;
@@ -520,8 +505,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 }
 .ai-btn:active:not(:disabled){opacity:.85}
 .ai-btn:disabled{opacity:.45;cursor:not-allowed}
-
-/* AI RESULT */
 .ai-result{
   background:linear-gradient(135deg,#f0f4ff,#f5f0ff);
   border:1.5px solid #c4b5f4;
@@ -556,8 +539,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   min-height:46px;
 }
 .ai-apply-btn:active{background:var(--g2)}
-
-/* PRODUCT LIST */
 .alist{
   background:#f5faf6;
   border-radius:14px;
@@ -635,8 +616,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .editbtn:active{background:var(--g2);color:#fff}
 .delbtn{background:#fef2f2;color:var(--red);border:1px solid #fecaca}
 .delbtn:active{background:var(--red);color:#fff}
-
-/* CAT IMG PREVIEW */
 .cat-img-preview{
   display:none;margin-top:.65rem;
   position:relative;border-radius:12px;
@@ -651,8 +630,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   justify-content:center;cursor:pointer;
 }
 .cat-img-ok{font-size:.78rem;color:var(--g3);margin-top:.35rem;display:none}
-
-/* SETTINGS */
 .settings-card{
   background:#f5faf6;
   border-radius:14px;
@@ -709,8 +686,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   background:#fff;border-radius:10px;padding:.75rem;
 }
 .gemini-info strong{color:var(--g1)}
-
-/* MODEL GRID */
 .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.5rem}
 .model-card{
   background:#fff;
@@ -735,8 +710,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 .model-card .mc-desc{font-size:.68rem;color:var(--mut);line-height:1.4}
 .model-active-info{font-size:.75rem;color:#667eea;font-weight:600;padding:.3rem .5rem;background:#f0f4ff;border-radius:8px;display:none}
 .model-active-info.on{display:block}
-
-/* DESKTOP overrides */
 @media(min-width:800px){
   #adminPanel{margin:1.5rem;width:calc(100% - 3rem)}
   .atop{flex-direction:row;align-items:center;padding:1rem 1.5rem}
@@ -754,10 +727,8 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .abtn-row{flex-direction:row;align-items:center}
   .aacts{flex-direction:row}
 }
-/* ══════════════════════════════════════════════════════════ */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g1);color:#fff;padding:.65rem 1.5rem;border-radius:50px;font-size:.86rem;font-weight:500;box-shadow:var(--shl);z-index:1500;opacity:0;transition:.3s;pointer-events:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;max-width:calc(100vw - 2rem)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media(max-width:960px){
   .fg{grid-template-columns:1fr 1fr}.ag2{grid-template-columns:1fr}
   .ccg{grid-template-columns:repeat(2,1fr)}.tri{grid-template-columns:repeat(2,1fr);gap:.75rem}
@@ -790,7 +761,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
   .pm-info{padding:1.3rem}
   .fav-drawer{max-width:100%}
   .sort-wrap label{display:none}
-  .fpi{padding:0 1rem}.sh h2{font-size:1.45rem}
 }
 @media(max-width:380px){
   .pg{grid-template-columns:1fr}
@@ -975,14 +945,11 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <div class="api-status none" id="geminiStatus"><i class="fas fa-circle" style="font-size:.5rem"></i> <span id="geminiStatusText">API key girilmemiş</span></div>
         <button class="api-key-del" id="deleteGeminiKey" style="display:none"><i class="fas fa-trash"></i> Sil</button>
       </div>
-
-      <!-- MODEL SEÇİCİ -->
       <div style="margin-top:1rem">
         <label style="display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g1);margin-bottom:.5rem"><i class="fas fa-microchip" style="color:#667eea"></i> Aktif Model</label>
         <div class="model-grid" id="modelGrid"></div>
         <div class="model-active-info" id="modelActiveInfo"></div>
       </div>
-
       <div class="gemini-info" style="margin-top:.85rem">
         <strong>🔑 API Key Nereden Alınır?</strong><br>
         <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#667eea">aistudio.google.com</a> → ücretsiz key alın.<br><br>
@@ -992,7 +959,6 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
     </div>
   </div>
 </div>
-
 
 <footer id="iletisim">
   <div class="fi">
@@ -1070,10 +1036,18 @@ function getCats(){
   if(!c){c=DEFAULT_CATS;lsSet('dp_cats',c);}
   return c;
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KRİTİK DÜZELTME: saveCats artık sunucuya (Blob) kaydediyor
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function saveCats(v){
-  lsSet('dp_cats',v);
+  lsSet('dp_cats',v);              /* hızlı yerel kopyasını güncelle */
+  apiSaveCats(v,function(ok){      /* sunucuya kaydet */
+    if(ok) setBlobBadge(true);
+  });
   buildNav();buildPills();renderCatCards();populateCatSelect('');
 }
+
 function getCatById(id){var cats=getCats();for(var i=0;i<cats.length;i++)if(cats[i].id===id)return cats[i];return{name:'Genel',emoji:'📦',img:''};}
 function getCatImg(c){
   var fresh=getCats();
@@ -1351,13 +1325,67 @@ document.getElementById('openFavPanel').onclick=function(){document.getElementBy
 document.getElementById('favClose').onclick=function(){document.getElementById('favPanel').classList.remove('on');};
 document.getElementById('favPanel').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
 
-/* ─── BLOB API ─── */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KRİTİK DÜZELTME: BLOB API — kategori verisi de eklendi
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function apiGetProducts(cb){
-  fetch('/api/products').then(function(r){return r.json();}).then(function(d){if(d.success&&Array.isArray(d.products)){allProducts=d.products;blobMode=true;lsSet('dp_prods_cache',allProducts);setBlobBadge(true);cb();}else throw 0;}).catch(function(){allProducts=lsGet('dp_prods_cache',[])||[];blobMode=false;setBlobBadge(false);cb();});
+  fetch('/api/products')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.success){
+        /* Ürünleri al */
+        if(Array.isArray(d.products)){
+          allProducts=d.products;
+          lsSet('dp_prods_cache',allProducts);
+        }
+        /* ★ KATEGORİLERİ SUNUCUDAN AL — farklı cihazlarda aynı görünür */
+        if(Array.isArray(d.categories)&&d.categories.length){
+          lsSet('dp_cats',d.categories);
+        }
+        blobMode=true;
+        setBlobBadge(true);
+        cb();
+      } else throw 0;
+    })
+    .catch(function(){
+      allProducts=lsGet('dp_prods_cache',[])||[];
+      blobMode=false;
+      setBlobBadge(false);
+      cb();
+    });
 }
+
+/* ★ Ürünleri kaydet — kategorileri de birlikte gönder */
 function apiSaveProducts(products,cb){
-  fetch('/api/products',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({products:products,adminKey:ADMIN_KEY})}).then(function(r){return r.json();}).then(function(d){if(d.success){lsSet('dp_prods_cache',products);if(cb)cb(true);}else if(cb)cb(false,d.error);}).catch(function(e){lsSet('dp_prods_cache',products);if(cb)cb(true);});
+  var cats=getCats();
+  fetch('/api/products',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({products:products,categories:cats,adminKey:ADMIN_KEY})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){lsSet('dp_prods_cache',products);if(cb)cb(true);}
+    else if(cb)cb(false,d.error);
+  })
+  .catch(function(e){lsSet('dp_prods_cache',products);if(cb)cb(true);});
 }
+
+/* ★ Kategorileri ayrıca kaydet (ürünlerle birlikte gönderilir) */
+function apiSaveCats(cats,cb){
+  fetch('/api/products',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({products:allProducts,categories:cats,adminKey:ADMIN_KEY})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){lsSet('dp_cats',cats);if(cb)cb(true);}
+    else if(cb)cb(false,d.error);
+  })
+  .catch(function(e){lsSet('dp_cats',cats);if(cb)cb(true);});
+}
+
 function setBlobBadge(ok){var b=document.getElementById('blobBadge');if(!b)return;b.style.display='inline-flex';b.className='blob-badge '+(ok?'ok':'warn');b.innerHTML=ok?'<i class="fas fa-cloud"></i> Blob bağlı':'<i class="fas fa-hdd"></i> Yerel mod';}
 
 /* ─── TOAST ─── */
@@ -1531,7 +1559,27 @@ function initCatImgZone(){catImgUrl='';catImgPreview.style.display='none';catImg
 function setCatPreview(url){catImgUrl=url;catImgPreviewImg.src=url;catImgPreview.style.display='block';catImgOk.style.display='block';catImgOk.innerHTML=url.startsWith('data:')?'⚠️ Yerel mod':'✅ Görsel hazır';}
 function clearCatImg(){catImgUrl='';catImgPreview.style.display='none';catImgOk.style.display='none';catImgOk.innerHTML='';catFileInput.value='';}
 document.getElementById('catImgDel').addEventListener('click',function(e){e.stopPropagation();clearCatImg();});
-function uploadCatImg(file){if(!file||!file.type.match(/^image\//))return;catImgOk.style.display='block';catImgOk.innerHTML='⏳ Yükleniyor...';catImgPreview.style.display='none';var r=new FileReader();r.onload=function(e){var b64=e.target.result;fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})}).then(function(r){return r.json();}).then(function(d){if(d.success&&d.url){setCatPreview(d.url);showToast('🖼️ Görsel yüklendi!');}else{setCatPreview(b64);showToast('⚠️ Yerel mod','fa-exclamation-triangle');}}).catch(function(){setCatPreview(b64);});};r.readAsDataURL(file);}
+function uploadCatImg(file){
+  if(!file||!file.type.match(/^image\//))return;
+  catImgOk.style.display='block';catImgOk.innerHTML='⏳ Yükleniyor...';catImgPreview.style.display='none';
+  var r=new FileReader();
+  r.onload=function(e){
+    var b64=e.target.result;
+    fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:b64,filename:file.name})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d.success&&d.url){
+          setCatPreview(d.url);
+          showToast('🖼️ Kategori görseli yüklendi!');
+        } else {
+          setCatPreview(b64);
+          showToast('⚠️ Yerel mod','fa-exclamation-triangle');
+        }
+      })
+      .catch(function(){setCatPreview(b64);});
+  };
+  r.readAsDataURL(file);
+}
 catDropZone.addEventListener('dragover',function(e){e.preventDefault();catDropZone.classList.add('drag');});
 catDropZone.addEventListener('dragleave',function(){catDropZone.classList.remove('drag');});
 catDropZone.addEventListener('drop',function(e){e.preventDefault();catDropZone.classList.remove('drag');var f=e.dataTransfer.files[0];if(f)uploadCatImg(f);});
@@ -1612,7 +1660,9 @@ function renderAdminPList(){
   });
 }
 
-/* ─── CATEGORY MANAGEMENT ─── */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KRİTİK DÜZELTME: Kategori yönetimi — sunucuya kaydediyor
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 var editCatIdx=null;
 function clearCatForm(){document.getElementById('cName').value='';document.getElementById('cEmoji').value='';clearCatImg();editCatIdx=null;document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';document.getElementById('cancelCatEditBtn').classList.remove('show');}
 document.getElementById('cancelCatEditBtn').addEventListener('click',function(){clearCatForm();});
@@ -1620,18 +1670,32 @@ document.getElementById('saveCatBtn').addEventListener('click',function(){
   var name=document.getElementById('cName').value.trim(),emoji=document.getElementById('cEmoji').value.trim()||'📦';
   if(!name){showToast('❗ Kategori adı girin','fa-exclamation-circle');return;}
   var cats=getCats();
+  var savingBtn=document.getElementById('saveCatBtn');
+  savingBtn.disabled=true;
+  savingBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...';
+
   if(editCatIdx!==null){
-    cats[editCatIdx].name=name;cats[editCatIdx].emoji=emoji;
-    if(catImgUrl)cats[editCatIdx].img=catImgUrl;
-    lsSet('dp_cats',cats);
-    showToast('✅ Kategori güncellendi!');
+    cats[editCatIdx].name=name;
+    cats[editCatIdx].emoji=emoji;
+    if(catImgUrl) cats[editCatIdx].img=catImgUrl;
   } else {
     cats.push({id:'c'+Date.now(),name:name,emoji:emoji,img:catImgUrl});
-    lsSet('dp_cats',cats);
-    showToast('✅ Kategori eklendi!');
   }
-  clearCatForm();
-  renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
+
+  lsSet('dp_cats',cats);
+
+  /* ★ Sunucuya kaydet */
+  apiSaveCats(cats,function(ok){
+    savingBtn.disabled=false;
+    savingBtn.innerHTML=editCatIdx!==null?'<i class="fas fa-sync"></i> Güncelle':'<i class="fas fa-plus"></i> Kategori Ekle';
+    if(ok){
+      showToast(editCatIdx!==null?'✅ Kategori güncellendi! (sunucuya kaydedildi)':'✅ Kategori eklendi! (sunucuya kaydedildi)');
+    } else {
+      showToast('⚠️ Kategori yerel kaydedildi (blob bağlantısı yok)','fa-exclamation-triangle');
+    }
+    clearCatForm();
+    renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
+  });
 });
 
 function renderAdminCList(){
@@ -1652,8 +1716,13 @@ function renderAdminCList(){
     div.querySelector('.delbtn').addEventListener('click',function(){
       if(cnt>0){showToast('❗ Önce bu kategorideki ürünleri silin','fa-exclamation-circle');return;}
       if(!confirm('"'+c.name+'" silinecek?'))return;
-      var cs=getCats();cs.splice(idx,1);lsSet('dp_cats',cs);
-      clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');showToast('🗑️ Silindi','fa-trash');
+      var cs=getCats();cs.splice(idx,1);
+      lsSet('dp_cats',cs);
+      /* ★ Silme işlemini de sunucuya kaydet */
+      apiSaveCats(cs,function(ok){
+        showToast(ok?'🗑️ Kategori silindi (sunucuya kaydedildi)':'🗑️ Silindi (yerel)','fa-trash');
+      });
+      clearCatForm();renderAdminCList();buildNav();buildPills();renderCatCards();populateCatSelect('');
     });
     el.appendChild(div);
   });
