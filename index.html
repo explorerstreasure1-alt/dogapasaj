@@ -430,6 +430,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
           <div class="cat-img-ok" id="catImgOk"></div>
         </div>
         <button class="abtn" id="saveCatBtn"><i class="fas fa-plus"></i> Kategori Ekle</button>
+        <button class="abnc" id="cancelCatEditBtn" style="display:none"><i class="fas fa-times"></i> İptal</button>
       </div>
       <div>
         <div class="alist"><h4>Kategoriler</h4><div id="adminCList"></div></div>
@@ -1127,18 +1128,42 @@ function renderAdminPList() {
 }
 
 /* ══════════════════  KATEGORİ YÖNETİMİ  ══════════════════ */
+var editCatIdx = null; // null = yeni ekle, number = düzenleme modu
+
+function clearCatForm() {
+  document.getElementById('cName').value='';
+  document.getElementById('cEmoji').value='';
+  clearCatImg();
+  editCatIdx = null;
+  document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-plus"></i> Kategori Ekle';
+  document.getElementById('cancelCatEditBtn').style.display='none';
+}
+
+document.getElementById('cancelCatEditBtn').addEventListener('click', function(){ clearCatForm(); });
+
 document.getElementById('saveCatBtn').addEventListener('click', function(){
   var name  = document.getElementById('cName').value.trim();
   var emoji = document.getElementById('cEmoji').value.trim() || '📦';
   if (!name) { showToast('❗ Kategori adı girin','fa-exclamation-circle'); return; }
   var cats = getCats();
-  cats.push({id:'c'+Date.now(), name:name, emoji:emoji, img:catImgUrl});
-  saveCats(cats);
-  document.getElementById('cName').value='';
-  document.getElementById('cEmoji').value='';
-  clearCatImg();
+
+  if (editCatIdx !== null) {
+    // Düzenleme modu — sadece değişenleri güncelle
+    cats[editCatIdx].name  = name;
+    cats[editCatIdx].emoji = emoji;
+    // Görsel: yeni yüklendiyse güncelle, yoksa eskisini koru
+    if (catImgUrl) cats[editCatIdx].img = catImgUrl;
+    saveCats(cats);
+    showToast('✅ Kategori güncellendi!');
+  } else {
+    // Yeni kategori ekle
+    cats.push({id:'c'+Date.now(), name:name, emoji:emoji, img:catImgUrl});
+    saveCats(cats);
+    showToast('✅ Kategori eklendi!');
+  }
+
+  clearCatForm();
   renderAdminCList(); buildNav(); buildPills(); renderCatCards(); populateCatSelect('');
-  showToast('✅ Kategori eklendi!');
 });
 
 function renderAdminCList() {
@@ -1149,7 +1174,6 @@ function renderAdminCList() {
     var cnt = allProducts.filter(function(p){ return p.catId===c.id; }).length;
     var div = document.createElement('div'); div.className='aitem';
 
-    // Thumbnail: kendi görseli varsa küçük img, yoksa emoji
     var thumbHtml;
     if (c.img && c.img.trim()) {
       thumbHtml = '<img src="'+c.img+'" alt="'+c.name+'" style="width:50px;height:50px;border-radius:9px;object-fit:cover;flex-shrink:0">';
@@ -1160,11 +1184,31 @@ function renderAdminCList() {
     div.innerHTML=
       thumbHtml +
       '<div class="aii"><h5>'+c.emoji+' '+c.name+'</h5><p>'+cnt+' ürün'+(c.img?' &bull; <span style="color:var(--g3);font-size:.72rem">✓ Görsel var</span>':' &bull; <span style="color:var(--mut);font-size:.72rem">Görsel yok</span>')+'</p></div>' +
-      '<div class="aacts"><button class="delbtn"><i class="fas fa-trash"></i></button></div>';
+      '<div class="aacts"><button class="editbtn" title="Düzenle"><i class="fas fa-edit"></i></button><button class="delbtn" title="Sil"><i class="fas fa-trash"></i></button></div>';
+
+    div.querySelector('.editbtn').addEventListener('click', function(){
+      // Formu kategori verileriyle doldur
+      editCatIdx = idx;
+      document.getElementById('cName').value  = c.name;
+      document.getElementById('cEmoji').value = c.emoji !== '📦' ? c.emoji : '';
+      // Mevcut görseli önizlemeye yükle
+      if (c.img && c.img.trim()) {
+        setCatPreview(c.img);
+        document.getElementById('catImgOk').innerHTML = '✅ Mevcut görsel — değiştirmek için yeni yükle';
+      } else {
+        clearCatImg();
+      }
+      document.getElementById('saveCatBtn').innerHTML='<i class="fas fa-sync"></i> Güncelle';
+      document.getElementById('cancelCatEditBtn').style.display='inline-flex';
+      document.getElementById('tabCats').scrollIntoView({behavior:'smooth'});
+      document.getElementById('cName').focus();
+    });
+
     div.querySelector('.delbtn').addEventListener('click', function(){
       if (cnt>0) { showToast('❗ Önce bu kategorideki ürünleri silin','fa-exclamation-circle'); return; }
       if (!confirm('"'+c.name+'" kategorisi silinecek?')) return;
       var cs=getCats(); cs.splice(idx,1); saveCats(cs);
+      clearCatForm();
       renderAdminCList(); buildNav(); buildPills(); renderCatCards(); populateCatSelect('');
       showToast('🗑️ Kategori silindi','fa-trash');
     });
