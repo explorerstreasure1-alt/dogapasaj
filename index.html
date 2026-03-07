@@ -711,6 +711,32 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 }
 .gemini-info strong{color:var(--g1)}
 
+/* MODEL GRID */
+.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.5rem}
+.model-card{
+  background:#fff;
+  border:2px solid #e8ecee;
+  border-radius:12px;
+  padding:.65rem .75rem;
+  cursor:pointer;
+  transition:.2s;
+  -webkit-tap-highlight-color:transparent;
+  position:relative;
+  overflow:hidden;
+}
+.model-card:active{border-color:#667eea;background:#f5f3ff}
+.model-card.active{border-color:#667eea;background:linear-gradient(135deg,#f0f4ff,#f5f0ff)}
+.model-card.active::after{content:'✓';position:absolute;top:4px;right:7px;font-size:.75rem;font-weight:800;color:#667eea}
+.model-card .mc-name{font-size:.78rem;font-weight:700;color:var(--g1);margin-bottom:.18rem;padding-right:1rem}
+.model-card .mc-tag{display:inline-block;font-size:.62rem;font-weight:700;padding:.08rem .42rem;border-radius:50px;margin-bottom:.2rem}
+.mc-tag.free{background:#e6f4ea;color:#1e7e34}
+.mc-tag.fast{background:#e8f0fe;color:#1967d2}
+.mc-tag.smart{background:#fce8e6;color:#c5221f}
+.mc-tag.preview{background:#fff3e0;color:#e65100}
+.model-card .mc-desc{font-size:.68rem;color:var(--mut);line-height:1.4}
+.model-active-info{font-size:.75rem;color:#667eea;font-weight:600;padding:.3rem .5rem;background:#f0f4ff;border-radius:8px;display:none}
+.model-active-info.on{display:block}
+
 /* DESKTOP overrides */
 @media(min-width:800px){
   #adminPanel{margin:1.5rem;width:calc(100% - 3rem)}
@@ -950,7 +976,17 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
         <div class="api-status none" id="geminiStatus"><i class="fas fa-circle" style="font-size:.5rem"></i> <span id="geminiStatusText">API key girilmemiş</span></div>
         <button class="api-key-del" id="deleteGeminiKey" style="display:none"><i class="fas fa-trash"></i> Sil</button>
       </div>
-      <div class="gemini-info">
+
+      <!-- MODEL SEÇİCİ -->
+      <div style="margin-top:1rem">
+        <label style="display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g1);margin-bottom:.5rem"><i class="fas fa-microchip" style="color:#667eea"></i> Aktif Model</label>
+        <div class="model-grid" id="modelGrid">
+          <!-- JS tarafından doldurulur -->
+        </div>
+        <div class="model-active-info" id="modelActiveInfo"></div>
+      </div>
+
+      <div class="gemini-info" style="margin-top:.85rem">
         <strong>🔑 API Key Nereden Alınır?</strong><br>
         <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="color:#667eea">aistudio.google.com</a> → ücretsiz key alın.<br><br>
         <strong>📸 AI Ne Yapar?</strong><br>
@@ -1062,6 +1098,51 @@ function getGeminiKey(){return lsGet('dp_gemini_key','')||'';}
 function saveGeminiKey(k){lsSet('dp_gemini_key',k);}
 function deleteGeminiKey(){localStorage.removeItem('dp_gemini_key');}
 
+/* ─── GEMINI MODEL (persistent) ─── */
+var GEMINI_MODELS=[
+  {id:'gemini-2.5-flash-preview-05-20', name:'Gemini 2.5 Flash', tags:['preview','fast'], desc:'En güncel, hızlı ve zeki model'},
+  {id:'gemini-2.5-pro-exp-03-25',       name:'Gemini 2.5 Pro',   tags:['preview','smart'], desc:'En güçlü analiz, derin düşünme'},
+  {id:'gemini-2.0-flash',               name:'Gemini 2.0 Flash', tags:['free','fast'], desc:'Hızlı, ücretsiz, güvenilir'},
+  {id:'gemini-2.0-flash-lite',          name:'Gemini 2.0 Lite',  tags:['free','fast'], desc:'En hızlı, hafif, ücretsiz'},
+  {id:'gemini-1.5-flash',               name:'Gemini 1.5 Flash', tags:['free','fast'], desc:'Yaygın, stabil, ücretsiz'},
+  {id:'gemini-1.5-flash-8b',            name:'Gemini 1.5 Flash 8B', tags:['free'], desc:'Küçük, hızlı, ücretsiz tier'},
+  {id:'gemini-1.5-pro',                 name:'Gemini 1.5 Pro',   tags:['smart'], desc:'Büyük bağlam, güçlü analiz'},
+];
+var TAG_LABELS={free:'ÜCRETSİZ',fast:'HIZLI',smart:'AKILLI',preview:'ÖNIZLEME'};
+var TAG_CLASSES={free:'free',fast:'fast',smart:'smart',preview:'preview'};
+var DEFAULT_MODEL='gemini-2.0-flash';
+
+function getGeminiModel(){return lsGet('dp_gemini_model',DEFAULT_MODEL)||DEFAULT_MODEL;}
+function saveGeminiModel(id){lsSet('dp_gemini_model',id);}
+function getGeminiModelUrl(key){
+  var id=getGeminiModel();
+  return 'https://generativelanguage.googleapis.com/v1beta/models/'+id+':generateContent?key='+key;
+}
+
+function buildModelGrid(){
+  var grid=document.getElementById('modelGrid');
+  var activeInfo=document.getElementById('modelActiveInfo');
+  if(!grid)return;
+  var current=getGeminiModel();
+  grid.innerHTML='';
+  GEMINI_MODELS.forEach(function(m){
+    var card=document.createElement('div');
+    card.className='model-card'+(m.id===current?' active':'');
+    card.setAttribute('data-model',m.id);
+    var tagsHtml=m.tags.map(function(t){return '<span class="mc-tag '+TAG_CLASSES[t]+'">'+TAG_LABELS[t]+'</span>';}).join(' ');
+    card.innerHTML='<div class="mc-name">'+m.name+'</div>'+tagsHtml+'<div class="mc-desc">'+m.desc+'</div>';
+    card.addEventListener('click',function(){
+      saveGeminiModel(m.id);
+      buildModelGrid();
+      showToast('✅ Model: '+m.name,'fa-microchip');
+    });
+    grid.appendChild(card);
+  });
+  var active=GEMINI_MODELS.find(function(m){return m.id===current;})||GEMINI_MODELS[0];
+  activeInfo.className='model-active-info on';
+  activeInfo.innerHTML='<i class="fas fa-circle" style="font-size:.5rem;margin-right:.3rem"></i> Aktif: <strong>'+active.name+'</strong> — '+active.id;
+}
+
 function updateGeminiUI(){
   var key=getGeminiKey();
   var inp=document.getElementById('geminiKeyInput');
@@ -1083,6 +1164,7 @@ function updateGeminiUI(){
     delBtn.style.display='none';
   }
   if(analyzeBtn) analyzeBtn.disabled=!(key && uploadedImgs.filter(function(u){return u&&u!=='__uploading__';}).length>0);
+  buildModelGrid();
 }
 
 document.getElementById('saveGeminiKey').addEventListener('click',function(){
@@ -1112,7 +1194,8 @@ function runGeminiAnalysis(key,imgUrl){
   var btn=document.getElementById('aiAnalyzeBtn');
   var res=document.getElementById('aiResult');
   btn.disabled=true;
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Analiz ediliyor...';
+  var mname=(GEMINI_MODELS.find(function(m){return m.id===getGeminiModel();})||{name:'Gemini'}).name;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> '+mname+' analiz ediyor...';
   res.classList.remove('on');
 
   // Convert image to base64 if it's already base64 data URL, or fetch if URL
@@ -1145,7 +1228,7 @@ function runGeminiAnalysis(key,imgUrl){
 function callGeminiVision(key,b64,mime,btn){
   var prompt='Sen bir e-ticaret fiyatlandırma uzmanısın. Bu ürün görselini analiz et ve SADECE şu JSON formatında yanıt ver (başka hiçbir metin, açıklama veya markdown kodu yok):\n{"urun_adi":"...","kategori":"...","aciklama":"...","piyasa_min":0,"piyasa_max":0,"piyasa_ort":0,"boyut_fiyatlar":[{"boyut":"Küçük","fiyat":0},{"boyut":"Orta","fiyat":0},{"boyut":"Büyük","fiyat":0}],"min_satis":0,"onerilen_satis":0,"uyari":"..."}\nTürkiye piyasası için TL cinsinden gerçekçi fiyatlar ver. "uyari" alanına minimum fiyat altında satmaması için uyarı yaz.';
 
-  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+key,{
+  fetch(getGeminiModelUrl(key),{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
@@ -1159,7 +1242,7 @@ function callGeminiVision(key,b64,mime,btn){
   .then(function(r){return r.json();})
   .then(function(d){
     btn.disabled=false;
-    btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';
     if(d.error){showToast('❗ API Hatası: '+d.error.message,'fa-exclamation-circle');return;}
     var text=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts[0].text;
     if(!text){showToast('❗ AI yanıt veremedi','fa-exclamation-circle');return;}
@@ -1174,7 +1257,7 @@ function callGeminiVision(key,b64,mime,btn){
   })
   .catch(function(e){
     btn.disabled=false;
-    btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';
     showToast('❗ Bağlantı hatası: '+e.message,'fa-exclamation-circle');
   });
 }
@@ -1182,15 +1265,15 @@ function callGeminiVision(key,b64,mime,btn){
 function callGeminiTextFallback(key,btn){
   // Fallback: analyze product name if typed
   var name=document.getElementById('pName').value.trim();
-  if(!name){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';showToast('❗ Görsel yüklenemedi, önce ürün adı girin','fa-exclamation-circle');return;}
+  if(!name){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';showToast('❗ Görsel yüklenemedi, önce ürün adı girin','fa-exclamation-circle');return;}
   var prompt='Sen bir e-ticaret fiyatlandırma uzmanısın. "'+name+'" ürünü için Türkiye piyasası analizi yap ve SADECE şu JSON formatında yanıt ver:\n{"urun_adi":"'+name+'","kategori":"...","aciklama":"...","piyasa_min":0,"piyasa_max":0,"piyasa_ort":0,"boyut_fiyatlar":[{"boyut":"Küçük","fiyat":0},{"boyut":"Orta","fiyat":0},{"boyut":"Büyük","fiyat":0}],"min_satis":0,"onerilen_satis":0,"uyari":"..."}';
-  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+key,{
+  fetch(getGeminiModelUrl(key),{
     method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{temperature:0.3,maxOutputTokens:600}})
   })
   .then(function(r){return r.json();})
   .then(function(d){
-    btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';
     var text=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts[0].text;
     if(!text){showToast('❗ AI yanıt veremedi','fa-exclamation-circle');return;}
     var clean=text.replace(/```json|```/g,'').trim();
@@ -1199,7 +1282,7 @@ function callGeminiTextFallback(key,btn){
     try{var data=JSON.parse(jsonMatch[0]);renderAiResult(data);}
     catch(e){showToast('❗ AI yanıtı parse edilemedi','fa-exclamation-circle');}
   })
-  .catch(function(){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Gemini AI ile Analiz Et';showToast('❗ Bağlantı hatası','fa-exclamation-circle');});
+  .catch(function(){btn.disabled=false;btn.innerHTML='<i class="fas fa-magic"></i> Görsel ile Piyasa Analizi Yap';showToast('❗ Bağlantı hatası','fa-exclamation-circle');});
 }
 
 function renderAiResult(data){
