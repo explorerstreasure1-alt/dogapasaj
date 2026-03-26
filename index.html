@@ -794,7 +794,7 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
 </head>
 <body>
 <div class="loading-overlay" id="loadingOverlay"><i class="fas fa-leaf"></i><p>Ürünler yükleniyor...</p></div>
-<div class="tb">🚚 250 TL ve üzeri alışverişlerde <strong>ÜCRETSİZ KARGO</strong> &nbsp;|&nbsp; WhatsApp: <strong>0553 590 00 29</strong></div>
+<div class="tb">🚚 250 TL ve üzeri alışverişlerde <strong>ÜCRETSİZ KARGO</strong> &nbsp;|&nbsp; WhatsApp: <strong>0552 267 81 92</strong></div>
 <header>
   <div class="hd">
     <div class="logo"><div class="logo-ic"><i class="fas fa-leaf"></i></div><div class="logo-t">Doğa<span>Pasajı</span></div></div>
@@ -1009,13 +1009,13 @@ footer{background:var(--g1);color:#fff;padding:3.5rem 0 2rem}
       <div class="fc"><div class="fbrand">Doğa<span>Pasajı</span></div><div class="fbrand-desc">2015'ten beri doğanın güzelliğini evinize taşıyan, sürdürülebilir ve estetik ürünler sunuyoruz.</div><div class="soc"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-pinterest"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
       <div class="fc"><h4>Mağaza</h4><ul><li><a href="#">Balıklar</a></li><li><a href="#">Kaktüs & Sukulentler</a></li><li><a href="#">Akvaryum Malzemeleri</a></li><li><a href="#">Ev & Yaşam</a></li><li><a href="#">İndirimli Ürünler</a></li></ul></div>
       <div class="fc"><h4>Yardım</h4><ul><li><a href="#">Sık Sorulanlar</a></li><li><a href="#">Kargo Bilgileri</a></li><li><a href="#">İade & Değişim</a></li><li><a href="#">Gizlilik Politikası</a></li></ul></div>
-      <div class="fc"><h4>İletişim</h4><div class="ci2"><i class="fas fa-map-marker-alt"></i><span>Bursa Nilüfer, Görükle</span></div><div class="ci2"><i class="fas fa-phone"></i><a href="tel:+905535900029">+90 553 590 00 29</a></div><div class="ci2"><i class="fas fa-envelope"></i><a href="mailto:onatpinar55@gmail.com">onatpinar55@gmail.com</a></div><div class="ci2"><i class="fab fa-whatsapp"></i><a href="https://wa.me/905535900029">WhatsApp ile Yaz</a></div></div>
+      <div class="fc"><h4>İletişim</h4><div class="ci2"><i class="fas fa-map-marker-alt"></i><span>Bursa Nilüfer, Görükle</span></div><div class="ci2"><i class="fas fa-phone"></i><a href="tel:+905522678192">+90 552 267 81 92</a></div><div class="ci2"><i class="fas fa-envelope"></i><a href="mailto:onatpinar55@gmail.com">onatpinar55@gmail.com</a></div><div class="ci2"><i class="fab fa-whatsapp"></i><a href="https://wa.me/905522678192">WhatsApp ile Yaz</a></div></div>
     </div>
     <div class="fbot">&copy; 2025 Doğa Pasajı · Tüm hakları saklıdır.</div>
   </div>
 </footer>
 
-<a href="https://wa.me/905535900029" target="_blank" class="waf"><i class="fab fa-whatsapp"></i><span>Canlı Destek</span></a>
+<a href="https://wa.me/905522678192" target="_blank" class="waf"><i class="fab fa-whatsapp"></i><span>Canlı Destek</span></a>
 <button class="btt" id="bttBtn" title="Yukarı çık"><i class="fas fa-chevron-up"></i></button>
 
 <!-- ÜRÜN DETAY MODAL -->
@@ -1503,7 +1503,7 @@ function renderProds(search){
       '<div class="cb"><div class="ccat">'+cat.emoji+' '+cat.name+'</div><div class="cname">'+p.name+'</div>'+
       (p.desc?'<div class="cdesc">'+p.desc+'</div>':'')+
       '<div class="cfoot"><div class="cprice">'+(hasDisc?'<span class="cold">'+p.old+' TL</span>':'')+p.price+' TL</div>'+
-      '<a href="https://wa.me/905535900029?text='+waMsg+'" target="_blank" rel="noopener" onclick="event.stopPropagation()"><button class="wabtn"'+(inStock?'':' disabled')+'>'+
+      '<a href="https://wa.me/905522678192?text='+waMsg+'" target="_blank" rel="noopener" onclick="event.stopPropagation()"><button class="wabtn"'+(inStock?'':' disabled')+'>'+
       (inStock?'<i class="fab fa-whatsapp"></i> Sipariş Ver':'Stok Tükendi')+'</button></a></div></div>';
     if(imgs.length>1){
       var ci=card.querySelector('.ci'),tr2=card.querySelector('.ci-track'),dts2=card.querySelectorAll('.ci-dot');
@@ -1542,7 +1542,7 @@ function openProdModal(p){
   var th=document.getElementById('pmThumbs');th.innerHTML='';
   if(imgs.length>1){imgs.forEach(function(src,i){var t=document.createElement('img');t.className='pm-thumb'+(i===0?' on':'');t.src=src;t.alt='';t.onclick=function(){mi.src=src;th.querySelectorAll('.pm-thumb').forEach(function(x,j){x.classList.toggle('on',j===i);});};th.appendChild(t);});}
   var wb=document.getElementById('pmWaBtn');wb.disabled=!inStock;wb.innerHTML=inStock?'<i class="fab fa-whatsapp"></i> WhatsApp ile Sipariş Ver':'Stok Tükendi';
-  wb.onclick=function(){if(!inStock)return;window.open('https://wa.me/905535900029?text='+waMsg,'_blank');};
+  wb.onclick=function(){if(!inStock)return;window.open('https://wa.me/905522678192?text='+waMsg,'_blank');};
   var pf=document.getElementById('pmFav');pf.classList.toggle('on',isFav(p.id));pf.innerHTML=isFav(p.id)?'<i class="fas fa-heart"></i> Favorilerde':'<i class="fas fa-heart"></i> Favorilere Ekle';
   pf.onclick=function(){toggleFav(p);};
   document.getElementById('pmShare').onclick=function(){shareProduct(p);};
